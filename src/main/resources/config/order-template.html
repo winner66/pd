@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        table
+        {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: left;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+    </style>
+</head>
+<body>
+<table width="90%" class="table">
+    <caption>
+        <h2>{{清单}}</h2>
+    </caption>
+    <!--
+            <thead>
+                <tr>
+                    <th  colspan="2">
+
+                    </th>
+                </tr>
+            </thead>
+    -->
+    <tr>
+        <td width="20%" style="text-align: center;">
+            联系人
+        </td>
+        <td width="80%">
+            {{联系人}}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" style="text-align: center;">
+            联系方式
+        </td>
+        <td>
+            {{联系方式}}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" style="text-align: center;">
+            公司
+        </td>
+        <td>
+            {{公司}}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" style="text-align: center;">
+            备注
+        </td>
+        <td>
+            {{备注}}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" style="text-align: center;">
+            提交时间
+        </td>
+        <td>
+            {{日期}}
+        </td>
+    </tr>
+</table>
+
+<table width="90%" class="table">
+    <caption>
+        <h3>明细</h3>
+    </caption>
+    <thead>
+    <tr>
+        <th style="text-align: center;">
+            序号
+        </th>
+        <th style="text-align: center;">
+            订货标识
+        </th>
+        <th style="text-align: center;">
+            数量
+        </th>
+        <th style="text-align: center;">
+            备注
+        </th>
+    </tr>
+    </thead>
+    <!--
+    <tr>
+        <td width="5%">
+            1
+        </td>
+        <td width="60%">
+            SA CCK41L-3035-BC-300V-121K-引出端形式-ZZR(Z)-Q/RQ26034B-2009+CASS/08.1-2015
+        </td>
+        <td width="10%" >
+            1000
+        </td>
+        <td width="25%">
+            备注要大的
+        </td>
+    </tr>
+    -->
+    {{清单明细}}
+</table>
+</body>
+</html>

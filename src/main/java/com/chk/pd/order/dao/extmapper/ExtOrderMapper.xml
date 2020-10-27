@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chk.pd.order.dao.extmapper.ExtOrderMapper">
+    <select id="listOrderTmp" resultType="com.chk.pd.order.vo.OrderTmpRsp">
+        select
+        pc.icon_url as pcIcon,
+        ot.*
+        from order_tmp ot
+        left join pd_info pi on ot.pd_info_id = pi.id
+        left join pd_model pm on pi.pd_model_id = pm.id
+        left join pd_class pc on pm.pd_class_id = pc.id
+        where 1=1
+        <if test="uid != null">
+            AND ot.uid = #{uid}
+        </if>
+        order by ot.id desc
+    </select>
+
+    <select id="listOrderItem" resultType="com.chk.pd.order.vo.OrderItemRsp">
+        select
+        pc.icon_url as pcIcon,
+        oi.*
+        from order_item oi
+        left join orders o on oi.order_id = o.id
+        left join pd_info pi on oi.pd_info_id = pi.id
+        left join pd_model pm on pi.pd_model_id = pm.id
+        left join pd_class pc on pm.pd_class_id = pc.id
+        where 1=1
+        <if test="uid != null">
+            AND o.uid = #{uid}
+        </if>
+        <if test="oid != null">
+            AND oi.order_id = #{oid}
+        </if>
+        order by oi.id asc
+    </select>
+
+</mapper>
