@@ -39,7 +39,9 @@ public class PdInfoService {
 
     public List<PdInfoRsp> getPdInfos(PdInfoReq pdInfoReq, PageReq pageReq) {
         PageHelper.startPage(pageReq.getPageNum(), pageReq.getPageSize());
+
         List<PdInfoRsp> pdInfos = pdInfoDao.getExtPdInfoMapper().getPdInfos(pdInfoReq);
+
         for (PdInfoRsp pdInfo : pdInfos) {
             pdInfo.setReq(pdInfoReq);
             pdInfo.setTolerance(StringUtils.substringAfter(pdInfo.getTolerance(), ";"));

@@ -38,6 +38,7 @@ public class PdParamService {
 //        }
         for (PdParam param : params) {
             if ("GJB".equals(param.getCode())){
+
                 rsp.add(new CasRsp(param.getName() == null ? param.getCode() : param.getName(), param.getCode(), false));
             }else {
                 rsp.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
@@ -60,6 +61,7 @@ public class PdParamService {
 //        return new ArrayList<>(map.values());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
+//            0805[长宽高] ：0805_12345
             cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
         }
         return cas;

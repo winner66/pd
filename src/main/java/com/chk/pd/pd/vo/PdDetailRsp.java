@@ -375,8 +375,9 @@ public class PdDetailRsp {
 
         private String orderRuleUrl;
 
+//        实物照片
         private String objectUrl;
-
+//        特性曲线图
         private String chartUrl;
 
         private String company;
@@ -386,48 +387,49 @@ public class PdDetailRsp {
 
     @Data
     public class PdInfoVo {
+        //型号
         private String model;
-
+        //执行标准
         private String std;
-
+        //质量等级
         private String quality;
-
+        //尺寸
         private String size;
-
+        //尺寸描述
         private String sizeDesc;
 
         private String temperature;
-
+        //电压
         private String voltage;
-
+        //        容量
         private String capacity;
 
         private String capacityMin;
 
         private String capacityMax;
-
+        //        精度偏差
         private String tolerance;
-
+        //      引出端形式
         private String outlet;
-
+        //电极材料代码
         private String elecCode;
-
+        //电容数量
         private String capNum;
-
+        //电路形式
         private String elecType;
-
+        //        工作温度范围
         private String temperRange;
-
+        //        引线材质
         private String wireMa;
-
+        ///引线长短
         private String wireSize;
-
+        //        电流系列
         private String elecSer;
-
+        //端头结构
         private String socStr;
-
+        //包装方式
         private String packType;
-
+        //引脚形状
         private String pin;
 
         private List<CasRsp> capacities = new ArrayList<>();

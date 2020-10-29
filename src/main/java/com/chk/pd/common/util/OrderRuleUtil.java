@@ -87,6 +87,7 @@ public class OrderRuleUtil {
 
     public static String resetSingleModelExp(String rule, String model) {
         if (StringUtils.isNotBlank(model)) {
+//            ？
             String flag[] = {"-SC", "-EC", "-MC"};
             for (String s : flag) {
                 String str = s + "||-";
@@ -104,6 +105,5 @@ public class OrderRuleUtil {
         }else{
             return qa;
         }
-
     }
 }

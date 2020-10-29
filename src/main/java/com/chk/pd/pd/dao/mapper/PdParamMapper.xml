@@ -11,6 +11,7 @@
     <result column="rel" jdbcType="VARCHAR" property="rel" />
     <result column="descr" jdbcType="VARCHAR" property="descr" />
   </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -69,9 +70,11 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Base_Column_List">
     id, type, name, code, idx, gp, rel, descr
   </sql>
+
   <select id="selectByExample" parameterType="com.chk.pd.pd.domain.PdParamExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -165,6 +168,7 @@
       </if>
     </trim>
   </insert>
+
   <select id="countByExample" parameterType="com.chk.pd.pd.domain.PdParamExample" resultType="java.lang.Long">
     select count(*) from pd_param
     <if test="_parameter != null">

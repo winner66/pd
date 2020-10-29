@@ -58,13 +58,13 @@ public class OrderController {
         orderService.updateTmpNum(tmpReq);
         return Response.ok();
     }
-
+//保存
     @PostMapping("save-tmp")
     public Response saveTmp(@RequestBody OrderTmpReq tmpReq){
         orderService.saveTmp(tmpReq);
         return Response.ok();
     }
-
+//清除
     @PostMapping("delete-tmp")
     public Response deleteTmp(@RequestBody OrderTmpReq tmpReq){
         orderService.deleteTmp(tmpReq.getId());

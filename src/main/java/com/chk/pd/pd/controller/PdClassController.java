@@ -28,7 +28,7 @@ public class PdClassController {
         return Response.ok(pdClasses);
     }
 
-    @GetMapping("list-pd-class")
+    @GetMapping("/list-pd-class")
     public Response listPdClass(){
         List<PdClassRsp> lev2 = pdClassService.getClzTop2();
         List<CasRsp> cas = pdClassService.listPdClass(null);

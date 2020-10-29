@@ -33,6 +33,7 @@ public class PdParamController {
             List<CasRsp> cas = paramService.listQuality(pdInfoReq);
             return Response.ok(cas);
         }else if ("size".equals(pdInfoReq.getFilterType())) {
+//            封装及外形尺寸
             pdInfoReq.setFilterType(ParamType.size.value());
             List<CasRsp> cas = paramService.listSize(pdInfoReq);
             return Response.ok(cas);
