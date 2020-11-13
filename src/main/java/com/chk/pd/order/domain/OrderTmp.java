@@ -12,7 +12,7 @@ public class OrderTmp implements Serializable {
 
     private String flag;
 
-    private Integer num;
+    private Integer num ;
 
     private String descr;
 

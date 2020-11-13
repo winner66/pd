@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chk.pd.fpd2.dao.FpdSeriesDao">
+
+    <resultMap id="BaseResultMap" type="com.chk.pd.fpd2.entity.FpdSeries">
+        <!--@Table fpd_series-->
+        <result property="fFactorys" column="F_factorys" jdbcType="VARCHAR"/>
+        <result property="id" column="Id" jdbcType="INTEGER"/>
+        <result property="fSeries" column="F_series" jdbcType="VARCHAR"/>
+        <result property="hkSeries" column="HK_series" jdbcType="VARCHAR"/>
+        <result property="size" column="size" jdbcType="OTHER"/>
+        <result property="temperature" column="temperature" jdbcType="VARCHAR"/>
+        <result property="voltage" column="voltage" jdbcType="VARCHAR"/>
+        <result property="outlet" column="outlet" jdbcType="VARCHAR"/>
+        <result property="tolerance" column="tolerance" jdbcType="VARCHAR"/>
+        <result property="socStr" column="soc_str" jdbcType="VARCHAR"/>
+        <result property="elecCode" column="elec_code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          F_factorys, Id, F_series, HK_series, size, temperature, voltage, outlet, tolerance, soc_str, elec_code
+        from chk_pd.fpd_series
+        where Id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          F_factorys, Id, F_series, HK_series, size, temperature, voltage, outlet, tolerance, soc_str, elec_code
+        from chk_pd.fpd_series
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          F_factorys, Id, F_series, HK_series, size, temperature, voltage, outlet, tolerance, soc_str, elec_code
+        from chk_pd.fpd_series
+        <where>
+            <if test="fFactorys != null and fFactorys != ''">
+                and F_factorys = #{fFactorys}
+            </if>
+            <if test="id != null">
+                and Id = #{id}
+            </if>
+            <if test="fSeries != null and fSeries != ''">
+                and F_series = #{fSeries}
+            </if>
+            <if test="hkSeries != null and hkSeries != ''">
+                and HK_series = #{hkSeries}
+            </if>
+            <if test="size != null">
+                and size = #{size}
+            </if>
+            <if test="temperature != null and temperature != ''">
+                and temperature = #{temperature}
+            </if>
+            <if test="voltage != null and voltage != ''">
+                and voltage = #{voltage}
+            </if>
+            <if test="outlet != null and outlet != ''">
+                and outlet = #{outlet}
+            </if>
+            <if test="tolerance != null and tolerance != ''">
+                and tolerance = #{tolerance}
+            </if>
+            <if test="socStr != null and socStr != ''">
+                and soc_str = #{socStr}
+            </if>
+            <if test="elecCode != null and elecCode != ''">
+                and elec_code = #{elecCode}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into chk_pd.fpd_series(F_factorys, F_series, HK_series, size, temperature, voltage, outlet, tolerance, soc_str, elec_code)
+        values (#{fFactorys}, #{fSeries}, #{hkSeries}, #{size}, #{temperature}, #{voltage}, #{outlet}, #{tolerance}, #{socStr}, #{elecCode})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update chk_pd.fpd_series
+        <set>
+            <if test="fFactorys != null and fFactorys != ''">
+                F_factorys = #{fFactorys},
+            </if>
+            <if test="fSeries != null and fSeries != ''">
+                F_series = #{fSeries},
+            </if>
+            <if test="hkSeries != null and hkSeries != ''">
+                HK_series = #{hkSeries},
+            </if>
+            <if test="size != null">
+                size = #{size},
+            </if>
+            <if test="temperature != null and temperature != ''">
+                temperature = #{temperature},
+            </if>
+            <if test="voltage != null and voltage != ''">
+                voltage = #{voltage},
+            </if>
+            <if test="outlet != null and outlet != ''">
+                outlet = #{outlet},
+            </if>
+            <if test="tolerance != null and tolerance != ''">
+                tolerance = #{tolerance},
+            </if>
+            <if test="socStr != null and socStr != ''">
+                soc_str = #{socStr},
+            </if>
+            <if test="elecCode != null and elecCode != ''">
+                elec_code = #{elecCode},
+            </if>
+        </set>
+        where Id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from chk_pd.fpd_series where Id = #{id}
+    </delete>
+
+</mapper>

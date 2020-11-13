@@ -41,6 +41,8 @@ public class PdClassService {
         }
         for (PdClass clz : lev2) {
             for (PdClassRsp vo : vos) {
+//                vo1,
+//                clz2
                 if (vo.getId().equals(clz.getpId())) {
                     PdClassRsp cr = new PdClassRsp(clz);
                     vo.getChildren().add(cr);

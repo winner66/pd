@@ -4,6 +4,7 @@ import com.chk.pd.pd.domain.PdClass;
 import com.chk.pd.pd.domain.PdParam;
 import com.chk.pd.pd.vo.PdClassQaVo;
 import com.chk.pd.pd.vo.PdInfoReq;
+import com.chk.pd.pd.vo.PdInfoReqFuzzyByIn;
 import com.chk.pd.pd.vo.PdInfoRsp;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,6 +13,8 @@ import java.util.Map;
 
 public interface ExtPdInfoMapper {
     public List<PdInfoRsp> getPdInfos(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+
+
 
     public List<PdParam> listQuality(@Param("pdInfoReq") PdInfoReq pdInfoReq);
 
@@ -31,4 +34,21 @@ public interface ExtPdInfoMapper {
     public List<PdClassQaVo> listClass(@Param("pdInfoReq") PdInfoReq pdInfoReq);
 
     public List<PdClass> listLev3Class(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+
+//  ~~~~  ~
+    public List<PdInfoRsp>  getPdInfosByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<PdParam> listQualityByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<PdParam> listSizeByFuzzy(@Param("pdInfoReq")PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<PdParam> listVoltageByFuzzy(@Param("pdInfoReq")PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<PdParam> listTemperatureByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<String> listToleranceByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<String> listOutletByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
+    public List<Map<Integer, Integer>> listCapacityByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
 }

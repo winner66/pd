@@ -57,9 +57,16 @@ public class PdInfoService {
         }
         return pdInfos;
     }
+    public  List<PdInfoRsp> getPdInfosByFuzzy(PdInfoReqFuzzyByIn pdInfoReq, PageReq pageReq){
+        PageHelper.startPage(pageReq.getPageNum(), pageReq.getPageSize());
+
+        List<PdInfoRsp> pdInfos = pdInfoDao.getExtPdInfoMapper().getPdInfosByFuzzy(pdInfoReq);
+        return   pdInfos;
+    }
 
     public PdDetailRsp getPdDetail(PdDetailReq req) {
         PdInfo pdInfo = pdInfoDao.getPdInfoMapper().selectByPrimaryKey(req.getId());
+
         PdModel pdModel = pdModelDao.getPdModelMapper().selectByPrimaryKey(pdInfo.getPdModelId());
         PdClass pdClass = pdClassDao.getPdClassMapper().selectByPrimaryKey(pdModel.getPdClassId());
         PdParam size = pdParamDao.getSize(pdInfo.getStd(), pdInfo.getSize());

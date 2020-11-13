@@ -13,6 +13,8 @@ public class PdInfoReqFuzzyByIn {
 
     private String filterType;
     private List<String>  modelCode ;
+    private String  key ;
+
 //    ？
     private List<String>  cm ;
     private List<Long> sizeId ;
@@ -22,7 +24,7 @@ public class PdInfoReqFuzzyByIn {
     private List<String>  clz ;
 //    quality
 
-    private List<String>  key ;
+
     private List<String>  quality;
     private List<String>  size  ;
     private List<String> temperature  ;

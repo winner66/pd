@@ -69,7 +69,6 @@
         <if test="pdInfoReq.key != null">
             AND MATCH(pi.search_key) AGAINST(#{pdInfoReq.key} in boolean mode)
         </if>
-
         <if test="pdInfoReq.cm != null">
             AND pm.pd_class_id = #{pdInfoReq.cm}
         </if>
@@ -98,6 +97,101 @@
         group by pi.quality) p
         join pd_param pp on p.quality = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
     </select>
+    <select id="getPdInfosByFuzzy" resultType="com.chk.pd.pd.vo.PdInfoRsp">
+        select
+        pm.id as pmId,
+        pm.name as pmName,
+        pm.code as pmCode,
+        pm.order_rule as orderRule,
+        pc.id as pcId,
+        pc.name as pcName,
+        pc.icon_url as pcIcon,
+        pi.id as id,
+        pi.model as model,
+        pi.std as std,
+        pi.quality as quality,
+        pi.size as size,
+        pi.temperature as temperature,
+        pi.voltage as voltage,
+        pi.capacity_min as capacityMin,
+        pi.capacity_max as capacityMax,
+        pi.capacity_min_idx as capacityMinIdx,
+        pi.capacity_max_idx as capacityMaxIdx,
+        pi.tolerance as tolerance,
+        pi.outlet as outlet,
+        elec_code as elecCode,
+        cap_num as capNum,
+        elec_type as elecType,
+        temper_range as temperRange,
+        wire_ma as wireMa,
+        wire_size as wireSize,
+        elec_ser as elecSer,
+        soc_str as socStr,
+        pack_type as packType,
+        pin as pin
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        left join pd_class pc on pm.pd_class_id = pc.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+    </select>
+    <sql id="where_clause_fuzzy">
+        <if test="pdInfoReq.quality != null ">
+           AND pi.quality in
+            <foreach item="item" index="index" collection="pdInfoReq.quality" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="pdInfoReq.size != null">
+            AND pi.size in
+            <foreach item="item" index="index" collection="pdInfoReq.size" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="pdInfoReq.temperature != null  ">
+            AND pi.temperature in
+            <foreach item="item" index="index" collection="pdInfoReq.temperature" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="pdInfoReq.voltage != null ">
+            AND pi.voltage in
+            <foreach item="item" index="index" collection="pdInfoReq.voltage" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+
+        <if test="pdInfoReq.capacity != null ">
+            AND
+            <foreach item="item" index="index" collection="pdInfoReq.capacity " open="(" separator="OR" close=")">
+                ( pi.capacity_min_idx &lt;= #{item}
+                AND pi.capacity_max_idx &gt;= #{item} )
+            </foreach>
+
+        </if>
+        <if test="pdInfoReq.tolerance != null  ">
+            AND
+            <foreach item="item" index="index" collection="pdInfoReq.tolerance " open="(" separator="OR" close=")">
+                pi.tolerance  like CONCAT('%;',#{item},';%')
+            </foreach>
+        </if>
+        <if test="pdInfoReq.outlet != null">
+            AND
+            <foreach item="item" index="index" collection="pdInfoReq.outlet" open="(" separator="OR" close=")">
+                pi.outlet like CONCAT('%;',#{item},';%')
+            </foreach>
+
+        </if>
+        <if test="pdInfoReq.key != null ">
+            AND MATCH(pi.search_key) AGAINST(#{pdInfoReq.key} in boolean mode)
+        </if>
+        <if test="pdInfoReq.clz != null ">
+            AND pm.pd_class_id in
+            <foreach item="item" index="index" collection="pdInfoReq.clz" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </sql>
 
     <select id="listSize" resultType="com.chk.pd.pd.domain.PdParam">
         select pp.name, pp.code, pp.rel, pp.id  from
@@ -109,7 +203,7 @@
         group by pi.std, pi.size) p
         join pd_param pp on p.std = pp.rel and p.size = pp.code
         where pp.type = #{pdInfoReq.filterType}
-        group by pp.name,pp.code
+--         group by pp.name,pp.code
         order by idx
     </select>
 
@@ -123,6 +217,8 @@
         group by pi.voltage) p
         join pd_param pp on p.voltage = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
     </select>
+
+
 
     <select id="listTemperature" resultType="com.chk.pd.pd.domain.PdParam">
         select pp.gp, pp.name, pp.code from
@@ -195,5 +291,106 @@
         group by pc.id
         order by pc.idx asc
     </select>
+
+<!--    ~~~~~~     -->
+    <select id="listQualityByFuzzy" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select quality
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+        group by pi.quality) p
+        join pd_param pp on p.quality = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+    <select id="listSizeByFuzzy" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.name, pp.code, pp.rel, pp.id  from
+        (select pi.std as std, pi.size as size
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+        group by pi.std, pi.size) p
+        join pd_param pp on p.std = pp.rel and p.size = pp.code
+        where pp.type = #{pdInfoReq.filterType}
+        --         group by pp.name,pp.code
+        order by idx
+    </select>
+
+    <select id="listVoltageByFuzzy" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select pi.voltage as voltage
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+        group by pi.voltage) p
+        join pd_param pp on p.voltage = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+
+
+
+    <select id="listTemperatureByFuzzy" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select temperature
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+        group by pi.temperature) p
+        join pd_param pp on p.temperature = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+
+    <select id="listToleranceByFuzzy" resultType="string">
+        select tolerance
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        and tolerance is not null
+        <include refid="where_clause_fuzzy" />
+        group by pi.tolerance
+    </select>
+
+    <select id="listOutletByFuzzy" resultType="string">
+        select outlet
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        and outlet is not null
+        <include refid="where_clause_fuzzy" />
+        group by pi.outlet
+    </select>
+
+    <select id="listCapacityByFuzzy" resultType="map">
+        select
+        capacity_min_idx as min, max(capacity_max_idx) as max
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1
+        and capacity_min_idx is not null and capacity_max_idx is not null
+        <include refid="where_clause_fuzzy" />
+        group by pi.capacity_min_idx
+    </select>
+
+    <select id="listClassByFuzzy" resultType="com.chk.pd.pd.vo.PdClassQaVo">
+        select pc.p_id as p_id,
+        pc.qa_gp as qa_gp,
+        qa.pd_class_id as pd_class_id,
+        pc.name as name,
+        GROUP_CONCAT(DISTINCT(qa.qa_code) SEPARATOR ',') as qa_codes
+        from pd_class_qa qa
+        join pd_class pc on qa.pd_class_id = pc.id
+        join pd_model pm on pm.pd_class_id = pc.id
+        join pd_info pi on pi.pd_model_id = pm.id
+        where 1=1
+        and pi.quality = qa.qa_code
+        <include refid="where_clause_fuzzy" />
+        <if test="pdInfoReq.quality != null">
+            AND qa.qa_code = #{pdInfoReq.quality}
+        </if>
+        group by qa.pd_class_id order by pc.idx asc
+    </select>
+
+
 
 </mapper>

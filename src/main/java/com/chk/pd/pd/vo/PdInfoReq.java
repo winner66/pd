@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @Data
@@ -22,11 +23,12 @@ public class PdInfoReq {
     private Long sizeId;
     private String temperature;
     private String voltage;
+
     private String capacity;
     private String tolerance;
     private String outlet;
-
     private String capacityCode;
+
 
     public boolean isNull() {
         try {

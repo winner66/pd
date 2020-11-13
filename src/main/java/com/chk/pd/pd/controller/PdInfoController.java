@@ -29,6 +29,13 @@ public class PdInfoController {
         List<PdInfoRsp> pdInfos = pdInfoService.getPdInfos(pdInfoReq, pageReq);
         return Response.ok(pdInfos);
     }
+    @GetMapping("get-pd-infos-fpd")
+    public Response<List<PdInfoRsp>> getPdInfosByFpd(PdInfoReqFuzzyByIn pdInfoReq, PageReq pageReq) {
+        log.info(pdInfoReq.toString() + "---" + pageReq.toString());
+
+        List<PdInfoRsp> pdInfos = pdInfoService.getPdInfosByFuzzy(pdInfoReq, pageReq);
+        return Response.ok(pdInfos);
+    }
 
     @GetMapping("get-pd-detail")
     public Response<PdDetailRsp> getPdDetail(PdDetailReq req) {

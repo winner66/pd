@@ -7,6 +7,7 @@ import com.chk.pd.fpd.vo.FpdReq;
 import com.chk.pd.fpd.vo.FpdRsp;
 import com.chk.pd.common.vo.PageReq;
 import com.chk.pd.common.vo.Response;
+import com.chk.pd.pd.vo.CasRsp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class FpdController {
     public Response<List<FpdModelRsp>> getFpdModels(){
         List<FpdModelRsp> fpdModels = fpdService.getFpdModels();
         return Response.ok(fpdModels);
+    }
+    @GetMapping("get-fpd-series")
+    public Response<List<CasRsp>> getFpdSeries(){
+        List<CasRsp> fpdSeries = fpdService.getFTree();
+        return Response.ok(fpdSeries);
     }
 
 }
