@@ -33,16 +33,16 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.chk.pd.fpd.domain" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.chk.pd.dao.Info.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.chk.pd.fpd.dao.mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.chk.pd.dao.Info.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.fpd.dao.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.dao.Info.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -52,7 +52,7 @@
 <!--        <table tableName="pd_info"></table>-->
 <!--        <table tableName="pd_param"></table>-->
 
-                <table tableName="fpd_series">
+                <table tableName="pd_info">
                 </table>
 <!--                <table tableName="order_flow">-->
 <!--                </table>-->

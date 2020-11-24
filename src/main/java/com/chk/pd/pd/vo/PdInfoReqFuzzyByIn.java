@@ -23,8 +23,6 @@ public class PdInfoReqFuzzyByIn {
 //    pd_class_id
     private List<String>  clz ;
 //    quality
-
-
     private List<String>  quality;
     private List<String>  size  ;
     private List<String> temperature  ;
@@ -33,6 +31,8 @@ public class PdInfoReqFuzzyByIn {
     private List<String> tolerance  ;
     private List<String>  outlet ;
     private List<String>  capacityCode;
+
+
 
     public boolean isNull() {
         try {

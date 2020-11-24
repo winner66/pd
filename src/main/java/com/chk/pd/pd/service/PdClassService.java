@@ -61,6 +61,7 @@ public class PdClassService {
 
     public List<CasRsp> listPdClass(PdInfoReq pdInfoReq) {
         List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+
         Map<String, SysDict> pdfClz = new HashMap();
         for (SysDict dict : dicts) {
             pdfClz.put(dict.getName(), dict);

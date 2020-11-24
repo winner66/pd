@@ -45,15 +45,12 @@ public class PdInfoServiceTest {
     }
     @Test
     public  void inTest2(){
-
         PageReq page= new PageReq();
         PdInfoReqFuzzyByIn infoReq= new PdInfoReqFuzzyByIn();
         List<String> list=new LinkedList<>();
         list.add("NV");
         list.add("E");
-
         infoReq.setTemperature(list);
-
         List<String> list2=new LinkedList<>();
         list2.add("100V");
         list2.add("500V");
@@ -83,9 +80,13 @@ public class PdInfoServiceTest {
     }
     @Test
     public  void  getF(){
-
         FpdSeries lists=fpdService.getFpdSeries(30);
         System.out.println(lists);
+    }
+
+    @Test
+    public  void  getpdInfo(){
+
 
     }
 
