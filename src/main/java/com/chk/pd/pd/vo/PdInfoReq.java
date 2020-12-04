@@ -11,6 +11,9 @@ import java.util.List;
 
 @Data
 public class PdInfoReq {
+    //搜索分类
+    private String searchType;
+
     private String filterType;
     private String clzqa;
     private Long clz;
@@ -29,6 +32,19 @@ public class PdInfoReq {
     private String outlet;
     private String capacityCode;
 
+//    滤波器
+    private  String centerFrequency;
+    private  String bandwidth;
+    private  String passBandRange;
+    //3dB截止频率
+    private String cutOffFrequency;
+//    功分器
+private String frequencyRange;
+//    陶瓷介质
+    private String surfaceCode;
+    private String thicknessCode;
+    private String lengthWidthCode;
+    private String materialCode;
 
     public boolean isNull() {
         try {

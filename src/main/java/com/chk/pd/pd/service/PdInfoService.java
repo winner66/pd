@@ -57,11 +57,19 @@ public class PdInfoService {
         }
         return pdInfos;
     }
+//    模糊查询对应的国外替代产品
     public  List<PdInfoRsp> getPdInfosByFuzzy(PdInfoReqFuzzyByIn pdInfoReq, PageReq pageReq){
         PageHelper.startPage(pageReq.getPageNum(), pageReq.getPageSize());
 
         List<PdInfoRsp> pdInfos = pdInfoDao.getExtPdInfoMapper().getPdInfosByFuzzy(pdInfoReq);
         return   pdInfos;
+    }
+//    查国外替代产品个数
+    public  Integer getPdCountByFuzzy(PdInfoReqFuzzyByIn pdInfoReq){
+
+
+        Integer count= pdInfoDao.getExtPdInfoMapper().getPdCountByFuzzy(pdInfoReq);
+        return   count;
     }
 
     public PdDetailRsp getPdDetail(PdDetailReq req) {
@@ -75,6 +83,7 @@ public class PdInfoService {
         List<PdParam> tolerances = getTolerance(req, pdInfo);
         List<PdParam> outlets = getOutlet(req, pdInfo);
         List<PdParam> capacities = getCapacity(req, pdInfo);
+
         PdDetailRsp detail = new PdDetailRsp(pdClass, pdModel, pdInfo, size, quality, temperature, tolerances, outlets, capacities, req);
         return detail;
     }

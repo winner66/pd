@@ -32,11 +32,42 @@
         elec_ser as elecSer,
         soc_str as socStr,
         pack_type as packType,
-        pin as pin
+        pin as pin,
+
+        breakdown_voltage as  breakdownVoltage,
+        insulation_resistance as insulationResistance,
+        flexure_strength as flexureStrength,
+        dielectric_loss_by20G as dielectricLossBy20G,
+        dielectric_loss_by1_9G as dielectricLossBy1_9G,
+        permittivity_by15G as permittivityBy15G,
+        permittivity_by1_9G as permittivityBy1_9G,
+        vswr_pass_band  as vswrPassBand,
+          vswr_stop_band as vswrStopBand ,
+          stop_band as stopBand,
+        cut_off_frequency as cutOffFrequency,
+        pass_band_insertion_loss as  passBandInsertionLoss,
+        isolation as isolation,
+        insertion_loss as insertionLoss ,
+         phase_balance as phaseBalance ,
+        amplitude_balance as amplitudeBalance,
+        vswr as vswr ,
+        power_capacity as powerCapacity,
+        pass_band_range  as passBandRange ,
+        ripple as ripple,
+        out_of_band_rejection as outOfBandRejection,
+            other as other,
+            center_frequency as centerFrequency,
+            bandwidth  as bandwidth  ,
+            surface_code as surfaceCode,
+        thickness_code as  thicknessCode,
+        length_width_code  as lengthWidthCode,
+        material_code as materialCode,
+        frequency_range as frequencyRange
+
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
         left join pd_class pc on pm.pd_class_id = pc.id
-        where 1=1
+        where 1=1 and pi.search_type = #{pdInfoReq.searchType}
         <include refid="where_clause" />
     </select>
 
@@ -47,9 +78,9 @@
         <if test="pdInfoReq.size != null">
             AND pi.size = #{pdInfoReq.size}
         </if>
-<!--        <if test="pdInfoReq.sizeId != null">-->
-<!--            AND pi.pd_size_id = #{pdInfoReq.sizeId}-->
-<!--        </if>-->
+        <!--        <if test="pdInfoReq.sizeId != null">-->
+        <!--            AND pi.pd_size_id = #{pdInfoReq.sizeId}-->
+        <!--        </if>-->
         <if test="pdInfoReq.temperature != null">
             AND pi.temperature = #{pdInfoReq.temperature}
         </if>
@@ -85,6 +116,8 @@
                 #{item}
             </foreach>
         </if>
+
+
     </sql>
 
     <select id="listQuality" resultType="com.chk.pd.pd.domain.PdParam">
@@ -92,7 +125,7 @@
         (select quality
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1 and pi.search_type = #{pdInfoReq.searchType}
         <include refid="where_clause" />
         group by pi.quality) p
         join pd_param pp on p.quality = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
@@ -128,7 +161,38 @@
         elec_ser as elecSer,
         soc_str as socStr,
         pack_type as packType,
-        pin as pin
+        pin as pin,
+
+        breakdown_voltage as  breakdownVoltage,
+        insulation_resistance as insulationResistance,
+        flexure_strength as flexureStrength,
+        dielectric_loss_by20G as dielectricLossBy20G,
+        dielectric_loss_by1_9G as dielectricLossBy1_9G,
+        permittivity_by15G as permittivityBy15G,
+        permittivity_by1_9G as permittivityBy1_9G,
+        vswr_pass_band  as vswrPassBand,
+        vswr_stop_band as vswrStopBand ,
+        stop_band as stopBand,
+        cut_off_frequency as cutOffFrequency,
+        pass_band_insertion_loss as  passBandInsertionLoss,
+        isolation as isolation,
+        insertion_loss as insertionLoss ,
+        phase_balance as phaseBalance ,
+        amplitude_balance as amplitudeBalance,
+        vswr as vswr ,
+        power_capacity as powerCapacity,
+        pass_band_range  as passBandRange ,
+        ripple as ripple,
+        out_of_band_rejection as outOfBandRejection,
+        other as other,
+        center_frequency as centerFrequency,
+        bandwidth  as bandwidth  ,
+        surface_code as surfaceCode,
+        thickness_code as  thicknessCode,
+        length_width_code  as lengthWidthCode,
+        material_code as materialCode,
+        frequency_range as frequencyRange
+
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
         left join pd_class pc on pm.pd_class_id = pc.id
@@ -182,9 +246,17 @@
             </foreach>
 
         </if>
+        <if test="pdInfoReq.eleCode != null ">
+            AND pi.elec_code in
+            <foreach item="item" index="index" collection="pdInfoReq.eleCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+
         <if test="pdInfoReq.key != null ">
             AND MATCH(pi.search_key) AGAINST(#{pdInfoReq.key} in boolean mode)
         </if>
+
         <if test="pdInfoReq.clz != null ">
             AND pm.pd_class_id in
             <foreach item="item" index="index" collection="pdInfoReq.clz" open="(" separator="," close=")">
@@ -198,7 +270,7 @@
         (select pi.std as std, pi.size as size
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         <include refid="where_clause" />
         group by pi.std, pi.size) p
         join pd_param pp on p.std = pp.rel and p.size = pp.code
@@ -212,7 +284,7 @@
         (select pi.voltage as voltage
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         <include refid="where_clause" />
         group by pi.voltage) p
         join pd_param pp on p.voltage = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
@@ -225,7 +297,7 @@
         (select temperature
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         <include refid="where_clause" />
         group by pi.temperature) p
         join pd_param pp on p.temperature = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
@@ -235,7 +307,7 @@
         select tolerance
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         and tolerance is not null
         <include refid="where_clause" />
         group by pi.tolerance
@@ -245,7 +317,7 @@
         select outlet
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         and outlet is not null
         <include refid="where_clause" />
         group by pi.outlet
@@ -256,7 +328,7 @@
         capacity_min_idx as min, max(capacity_max_idx) as max
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         and capacity_min_idx is not null and capacity_max_idx is not null
         <include refid="where_clause" />
         group by pi.capacity_min_idx
@@ -272,7 +344,7 @@
         join pd_class pc on qa.pd_class_id = pc.id
         join pd_model pm on pm.pd_class_id = pc.id
         join pd_info pi on pi.pd_model_id = pm.id
-        where 1=1
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
         and pi.quality = qa.qa_code
         <include refid="where_clause" />
         <if test="pdInfoReq.quality != null">
@@ -291,7 +363,101 @@
         group by pc.id
         order by pc.idx asc
     </select>
+<!--    new202011-30-->
+    <select id="listFrequencyRange" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select frequency_range
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.frequency_range) p
+        join pd_param pp on p.frequency_range = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
 
+    <select id="listPassBandRange" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select pass_band_range
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.pass_band_range) p
+        join pd_param pp on p.pass_band_range = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+
+    <select id="listCutOffFrequency" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select cut_off_frequency
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.cut_off_frequency) p
+        join pd_param pp on p.cut_off_frequency = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+
+    <select id="listBandwidth" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select bandwidth
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.bandwidth) p
+        join pd_param pp on p.bandwidth = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+    <select id="listCenterFrequency" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select center_frequency
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.center_frequency) p
+        join pd_param pp on p.center_frequency= pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+    <select id="listMaterialCode" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select material_code
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.material_code) p
+        join pd_param pp on p.material_code = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+    <select id="listLengthWidthCode" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select length_width_code
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.length_width_code) p
+        join pd_param pp on p.length_width_code = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+    <select id="listThicknessCode" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select thickness_code
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.thickness_code) p
+        join pd_param pp on p.thickness_code = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
+
+    <select id="listSurfaceCode" resultType="com.chk.pd.pd.domain.PdParam">
+        select pp.gp, pp.name, pp.code from
+        (select surface_code
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        where 1=1  and pi.search_type= #{pdInfoReq.searchType}
+        <include refid="where_clause" />
+        group by pi.surface_code) p
+        join pd_param pp on p.surface_code = pp.code where pp.type = #{pdInfoReq.filterType} order  by idx
+    </select>
 <!--    ~~~~~~     -->
     <select id="listQualityByFuzzy" resultType="com.chk.pd.pd.domain.PdParam">
         select pp.gp, pp.name, pp.code from
@@ -390,6 +556,17 @@
         </if>
         group by qa.pd_class_id order by pc.idx asc
     </select>
+    <select id="getPdCountByFuzzy" resultType="Int">
+        select
+        COUNT(*)
+        from pd_info pi
+        left join pd_model pm on pi.pd_model_id = pm.id
+        left join pd_class pc on pm.pd_class_id = pc.id
+        where 1=1
+        <include refid="where_clause_fuzzy" />
+    </select>
+
+<!--    新增参数 搜索-->
 
 
 

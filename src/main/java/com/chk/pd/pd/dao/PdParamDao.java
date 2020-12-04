@@ -77,6 +77,7 @@ public class PdParamDao {
         exp.setOrderByClause("idx asc");
         List<PdParam>  params = pdParamMapper.selectByExample(exp);
         return params;
+
     }
 
     public List<PdParam> getAll() {
@@ -84,5 +85,16 @@ public class PdParamDao {
         List<PdParam> pdParams = pdParamMapper.selectByExample(exp);
         exp.setOrderByClause("idx asc limit 0, 5000");
         return pdParams;
+
     }
+
+    public List<PdParam> list(String type ,String gp) {
+        PdParamExample example = null;
+        example.createCriteria().andGpEqualTo(gp);
+        example.createCriteria().andTypeEqualTo(type);
+        List<PdParam>  list=pdParamMapper.selectByExample(example);
+
+        return  list;
+    }
+
 }

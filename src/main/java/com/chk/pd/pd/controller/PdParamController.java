@@ -11,12 +11,12 @@ import com.chk.pd.pd.vo.PdInfoRsp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/pd")
@@ -63,7 +63,38 @@ public class PdParamController {
         }else if ("clzqa".equals(pdInfoReq.getFilterType())) {
             List<CasRsp> cas = paramService.listClass(pdInfoReq);
             return Response.ok(cas);
-        }else{
+        }
+        else if("frequencyRange".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listFrequencyRange(pdInfoReq);
+            return Response.ok(cas);
+        }
+        else if("materialCode".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listMaterialCode(pdInfoReq);
+            return Response.ok(cas);
+        }
+        else if("lengthWidthCode".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listLengthWidthCode(pdInfoReq);
+            return Response.ok(cas);
+        }
+        else if("thicknessCode".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listThicknessCode(pdInfoReq);
+            return Response.ok(cas);
+        }   else if("surfaceCode".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listSurfaceCode(pdInfoReq);
+            return Response.ok(cas);
+        }   else if("bandwidth".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listBandwidth(pdInfoReq);
+            return Response.ok(cas);
+        }   else if("centerFrequency".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listCenterFrequency(pdInfoReq);
+            return Response.ok(cas);
+        }   else if("cutOffFrequency".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listCutOffFrequency(pdInfoReq);
+            return Response.ok(cas);
+        } else if("listPassBandRange".equals(pdInfoReq.getFilterType())){
+            List<CasRsp> cas = paramService.listPassBandRange(pdInfoReq);
+            return Response.ok(cas);
+        }  else{
             return Response.ok();
         }
     }
@@ -120,4 +151,84 @@ public class PdParamController {
         }
 
     }
+
+    //    LTCC低通滤波器 的参数
+
+    @PostMapping("/LLPF")
+    public Response  llccParam() {
+        Map<String ,Object> map= new HashMap();
+        List<CasRsp> qualityParam=paramService.getQualityByLLPF();
+        map.put("quality",qualityParam);
+
+        List<CasRsp> sizeParam=paramService.getSizeByLLPF();
+        map.put("size",sizeParam);
+        List<CasRsp> passBandRangeParam=paramService.getPassBandRangeByLLPF();
+        map.put("passBandRange",passBandRangeParam);
+        return Response .ok(map);
+    }
+    //    LTCC低通滤波器 的参数
+    @PostMapping("/LBPF")
+    public Response  lbccParam() {
+        Map<String ,Object> map= new HashMap();
+        List<CasRsp> qualityParam=paramService.getQualityByLBPF();
+        map.put("quality",qualityParam);
+        List<CasRsp> cutOffFrequencyParam=paramService.getCutOffFrequencyByLBPF();
+        map.put("cutOffFrequency",cutOffFrequencyParam);
+
+        List<CasRsp> sizeParam=paramService.getSizeByLBPF();
+        map.put("size",sizeParam);
+
+        return Response .ok(map);
+    }
+    //    LTCC低通滤波器 的参数
+    @PostMapping("/LHPF")
+    public Response  lhccParam() {
+        Map<String ,Object> map= new HashMap();
+        List<CasRsp> sizeParam=paramService.getSizeByLHPF();
+        map.put("size",sizeParam);
+        List<CasRsp> qualityParam=paramService.getQualityByLHPF();
+        map.put("quality",qualityParam);
+        List<CasRsp> centerFrequencyParam=paramService.getCenterFrequencyByLHPF();
+
+        map.put("centerFrequency",centerFrequencyParam);
+        List<CasRsp> bandwidthParam=paramService.getBandwidthByLHPF();
+        map.put("bandwidth",bandwidthParam);
+        return Response .ok(map);
+    }
+
+//    滤波器(包含上面的接口的参数)
+    @PostMapping("/WaveFilter")
+    public Response  waveFilterParam() {
+        Map<String ,Object> map= new HashMap();
+        List<CasRsp> sizeParam=paramService.getSizeByLHPF();
+        map.put("size",sizeParam);
+        List<CasRsp> qualityParam=paramService.getQualityByLHPF();
+        map.put("quality",qualityParam);
+        List<CasRsp> centerFrequencyParam=paramService.getCenterFrequencyByLHPF();
+        map.put("centerFrequency",centerFrequencyParam);
+        List<CasRsp> bandwidthParam=paramService.getBandwidthByLHPF();
+        map.put("bandwidth",bandwidthParam);
+        List<CasRsp> cutOffFrequencyParam=paramService.getCutOffFrequencyByLBPF();
+        map.put("cutOffFrequency",cutOffFrequencyParam);
+        List<CasRsp> passBandRangeParam=paramService.getPassBandRangeByLLPF();
+        map.put("passBandRange",passBandRangeParam);
+
+        return Response .ok(map);
+    }
+
+//    根据搜索获取参数
+    @GetMapping("/getParamByPd/{type}")
+    public Response  getParamByPd(@PathVariable("type") Integer type){
+        Map<String ,Object> map= new HashMap();
+        List<CasRsp> centerFrequencyParam=paramService.getCenterFrequencyByLHPF();
+        map.put("centerFrequency",centerFrequencyParam);
+        List<CasRsp> bandwidthParam=paramService.getBandwidthByLHPF();
+        map.put("bandwidth",bandwidthParam);
+        List<CasRsp> cutOffFrequencyParam=paramService.getCutOffFrequencyByLBPF();
+        map.put("cutOffFrequency",cutOffFrequencyParam);
+        List<CasRsp> passBandRangeParam=paramService.getPassBandRangeByLLPF();
+        map.put("passBandRange",passBandRangeParam);
+        return Response .ok(map);
+    }
+
 }

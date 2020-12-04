@@ -179,19 +179,11 @@ public class FpdService {
         List<FpdSeries>  fpdSeriesList  = fpdSeriesDao.getSeriesMapper().getList();
         Map<Long,FpdSeries> fpdSeriesMap =new HashMap<>();
         Map<String, CasRsp> lev2Map = new LinkedHashMap<>();
-//        Map<String,String>  mapLev= new HashMap<>();
+
         Map<String,String>  mapLev2= new HashMap<>();
         Map<String,String>  mapLev3= new HashMap<>();
-//        List<CasRsp> rsp = new ArrayList<>();
 
         Set<String> factorySet= new HashSet<>();
-
-//        for (FpdSeries series :fpdSeriesList) {
-//            String factorys=series.getfFactorys();
-//            String fSeries=series.getfSeries();
-//            String HkSeries=series.getHkSeries();
-//            mapLev.put(factorys,factorys);
-//        }
 
         for (FpdSeries series :fpdSeriesList) {
             factorySet.add(series.getfFactorys());
@@ -321,7 +313,7 @@ public class FpdService {
         }
         //        电极材料代码  用，分割
         if(series.getElecCode()!=null&&series.getElecCode()!=""){
-            data.put("elecCode",buildTableRsp(series.getElecCode(),","));
+            data.put("eleCode",buildTableRsp(series.getElecCode(),","));
         }
         return  data;
 

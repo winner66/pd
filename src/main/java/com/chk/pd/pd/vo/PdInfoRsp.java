@@ -76,6 +76,95 @@ public class PdInfoRsp {
     @JsonIgnore
     private String pin;
 
+
+    //    介电常数 @1.9G
+    @JsonIgnore
+    private String permittivityBy1_9G;
+    //    介电常数 @15G
+    @JsonIgnore
+    private String permittivityBy15G;
+    //    介电损耗@1.9G
+    @JsonIgnore
+    private String dielectricLossBy1_9G;
+    //    介电常数 @15G
+    @JsonIgnore
+    private String dielectricLossBy20G;
+    //    抗弯强度
+    @JsonIgnore
+    private String flexureStrength;
+    //    绝缘电阻
+    @JsonIgnore
+    private String insulationResistance;
+    //    击穿电压
+    @JsonIgnore
+    private String breakdownVoltage;
+    //    通带损耗 （all）
+    @JsonIgnore
+    private String passBandInsertionLoss;
+    //3dB截止频率
+    @JsonIgnore
+    private String cutOffFrequency;
+    //    阻带(all)
+    @JsonIgnore
+    private  String stopBand;
+    //    电压驻波比 通带1.5:1
+    @JsonIgnore
+    private  String  vswrPassBand;
+    //    电压驻波比    阻带
+    @JsonIgnore
+    private String vswrStopBand;
+    //    频率范围
+    @JsonIgnore
+    private String frequencyRange;
+    //    隔离度 *
+    @JsonIgnore
+    private String isolation;
+    //    插入损耗
+    @JsonIgnore
+    private  String insertionLoss;
+    //    相位平衡度
+    @JsonIgnore
+    private String phaseBalance;
+    //    幅度平衡度
+    @JsonIgnore
+    private String  amplitudeBalance;
+    //   驻波*
+    @JsonIgnore
+    private  String  vswr;
+    //    功率容量
+    @JsonIgnore
+    private  String powerCapacity;
+    //    带内纹波
+    @JsonIgnore
+    private  String ripple;
+    //    带外抑制
+    @JsonIgnore
+    private  String  outOfBandRejection;
+    //    其他要求
+    @JsonIgnore
+    private  String other;
+    //    通带范围
+    @JsonIgnore
+    private  String passBandRange;
+    //       中心频率
+    @JsonIgnore
+    private  String centerFrequency;
+    //   带宽
+    @JsonIgnore
+    private  String bandwidth;
+    //    材料代码 陶瓷介质基片
+    @JsonIgnore
+    private String materialCode;
+    //    长宽代码 陶瓷介质基片
+    @JsonIgnore
+    private String lengthWidthCode;
+    //    厚度代码 陶瓷介质基片
+    @JsonIgnore
+    private String thicknessCode;
+    //    表面代码 陶瓷介质基片
+    @JsonIgnore
+    private String surfaceCode;
+
     private String title;
 
     private String desc;

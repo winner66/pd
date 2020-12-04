@@ -1,5 +1,6 @@
 package com.chk.pd.pd.service;
 
+import com.chk.pd.common.vo.ClassType;
 import com.chk.pd.common.vo.ParamType;
 import com.chk.pd.pd.dao.PdInfoDao;
 import com.chk.pd.pd.dao.PdParamDao;
@@ -8,6 +9,7 @@ import com.chk.pd.pd.vo.CasRsp;
 import com.chk.pd.pd.vo.PdInfoReq;
 import com.chk.pd.pd.vo.PdInfoReqFuzzyByIn;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -160,6 +162,76 @@ public class PdParamService {
     public List<CasRsp> listClass(PdInfoReq pdInfoReq) {
         return this.classService.listPdClass(pdInfoReq);
     }
+    public List<CasRsp> listLengthWidthCode(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listLengthWidthCode(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> listBandwidth(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listBandwidth(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> listFrequencyRange(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listFrequencyRange(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> listThicknessCode(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listThicknessCode(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> listMaterialCode(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listMaterialCode(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> listSurfaceCode(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listSurfaceCode(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }   public List<CasRsp> listCenterFrequency(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listCenterFrequency(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }   public List<CasRsp> listCutOffFrequency(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listCutOffFrequency(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }   public List<CasRsp> listPassBandRange(PdInfoReq pdInfoReq) {
+        List<PdParam> params = infoDao.getExtPdInfoMapper().listPassBandRange(pdInfoReq);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
+    }
+
 
 
 
@@ -293,6 +365,119 @@ public class PdParamService {
             }
         }
         return new ArrayList<>(cas.values());
+    }
+
+
+
+
+
+    public List<CasRsp> getSizeByLLPF() {
+        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LLPF.value());
+
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+//            0805[长宽高] ：0805_12345
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+        }
+        return cas;
+    }
+
+
+
+    public List<CasRsp> getQualityByLLPF() {
+        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LLPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            if ("GJB".equals(param.getCode())){
+
+                cas.add(new CasRsp(param.getName() == null ? param.getCode() : param.getName(), param.getCode(), false));
+            }else {
+                cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+            }
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getPassBandRangeByLLPF() {
+        List<PdParam> params =paramDao.list(ParamType.bandwidth.value(), ClassType.LLPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> getQualityByLHPF() {
+        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LHPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            if ("GJB".equals(param.getCode())){
+
+                cas.add(new CasRsp(param.getName() == null ? param.getCode() : param.getName(), param.getCode(), false));
+            }else {
+                cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+            }
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getCenterFrequencyByLHPF() {
+        List<PdParam> params =paramDao.list(ParamType.centerFrequency.value(), ClassType.LHPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getBandwidthByLHPF() {
+        List<PdParam> params =paramDao.list(ParamType.bandwidth.value(), ClassType.LHPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+        }
+        return cas;
+    }
+    public List<CasRsp> getSizeByLHPF() {
+        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LHPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+//            0805[长宽高] ：0805_12345
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getSizeByLBPF() {
+        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LBPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+//            0805[长宽高] ：0805_12345
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getCutOffFrequencyByLBPF() {
+        List<PdParam> params =paramDao.list(ParamType.cutOffFrequency.value(), ClassType.LBPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+        }
+        return cas;
+    }
+
+    public List<CasRsp> getQualityByLBPF() {
+        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LBPF.value());
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            if ("GJB".equals(param.getCode())){
+
+                cas.add(new CasRsp(param.getName() == null ? param.getCode() : param.getName(), param.getCode(), false));
+            }else {
+                cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
+            }
+        }
+        return cas;
     }
 
 //

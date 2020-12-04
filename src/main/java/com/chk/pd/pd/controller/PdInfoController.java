@@ -34,7 +34,17 @@ public class PdInfoController {
         log.info(pdInfoReq.toString() + "---" + pageReq.toString());
 
         List<PdInfoRsp> pdInfos = pdInfoService.getPdInfosByFuzzy(pdInfoReq, pageReq);
+
         return Response.ok(pdInfos);
+    }
+    @GetMapping("get-pd-count-fpd")
+    public Response<List<PdInfoRsp>> getPdCountByFpd(PdInfoReqFuzzyByIn pdInfoReq) {
+        log.info(pdInfoReq.toString() );
+        Integer c= pdInfoService.getPdCountByFuzzy(pdInfoReq);
+        Response resulet= new Response();
+        resulet.setCount(c);
+//       resulet.setCode();
+        return resulet;
     }
 
     @GetMapping("get-pd-detail")

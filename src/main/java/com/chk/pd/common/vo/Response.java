@@ -136,4 +136,12 @@ public class Response<T> {
     public void setPopMsg(String popMsg) {
         this.popMsg = popMsg;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

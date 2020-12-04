@@ -31,6 +31,8 @@ public class PdInfoReqFuzzyByIn {
     private List<String> tolerance  ;
     private List<String>  outlet ;
     private List<String>  capacityCode;
+//    电极材料
+    private List<String>  eleCode;
 
 
 

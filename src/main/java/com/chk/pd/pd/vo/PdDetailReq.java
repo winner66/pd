@@ -11,6 +11,5 @@ public class PdDetailReq {
     private String tolerance;
 
     private String outlet;
-
     private String capacityCode;
 }

@@ -35,6 +35,23 @@ public interface ExtPdInfoMapper {
 
     public List<PdClass> listLev3Class(@Param("pdInfoReq") PdInfoReq pdInfoReq);
 
+//    新增参数
+    public List<PdParam> listFrequencyRange(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listPassBandRange(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+
+    public List<PdParam> listCutOffFrequency(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listBandwidth(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listCenterFrequency(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listMaterialCode(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+
+    public List<PdParam> listLengthWidthCode(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listThicknessCode(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+    public List<PdParam> listSurfaceCode(@Param("pdInfoReq") PdInfoReq pdInfoReq);
+
+
+
+
+
 //  ~~~~  ~
     public List<PdInfoRsp>  getPdInfosByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
 
@@ -51,4 +68,6 @@ public interface ExtPdInfoMapper {
     public List<String> listOutletByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
 
     public List<Map<Integer, Integer>> listCapacityByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+    public Integer getPdCountByFuzzy(@Param("pdInfoReq") PdInfoReqFuzzyByIn pdInfoReq);
+
 }

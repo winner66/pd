@@ -19,7 +19,11 @@ public enum ParamType {
     elecSer("电流系列","电流系列"),
     socStr("端头结构","端头结构"),
     packType("包装方式","包装方式"),
-    pin("引脚形状","引脚形状");
+    pin("引脚形状","引脚形状"),
+    cutOffFrequency("3dB截止频率","3dB截止频率"),
+    bandwidth(" 带宽"," 带宽"),
+    centerFrequency("中心频率","中心频率"),
+    passBandRange("通带范围","通带范围");
 
     private String value;
 
