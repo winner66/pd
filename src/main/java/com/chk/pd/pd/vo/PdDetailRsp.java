@@ -75,13 +75,13 @@ public class PdDetailRsp {
             ss[i] = ss[i].replace("__", "");
             ss[i] += " ";
         }
-        ruleExp = StringUtils.join(ss, "");
+        this.ruleExp = StringUtils.join(ss, "");
     }
 
     public void setRuleDesc(){
         String rule = getOrderRule();
         String[] ss = OrderRuleUtil.getRuleDesc(rule);
-        ruleDesc = Arrays.asList(ss);
+        this.ruleDesc = Arrays.asList(ss);
     }
 
     private String getOrderRule() {

@@ -2,6 +2,7 @@ package com.chk.pd.pd.service;
 
 import com.chk.pd.common.vo.ClassType;
 import com.chk.pd.common.vo.ParamType;
+import com.chk.pd.common.vo.ParamTypeMaterial;
 import com.chk.pd.pd.dao.PdInfoDao;
 import com.chk.pd.pd.dao.PdParamDao;
 import com.chk.pd.pd.domain.PdParam;
@@ -372,7 +373,7 @@ public class PdParamService {
 
 
     public List<CasRsp> getSizeByLLPF() {
-        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LLPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.size.value(), ClassType.LLPF.value());
 
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
@@ -385,7 +386,7 @@ public class PdParamService {
 
 
     public List<CasRsp> getQualityByLLPF() {
-        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LLPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.quality.value(), ClassType.LLPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             if ("GJB".equals(param.getCode())){
@@ -399,7 +400,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getPassBandRangeByLLPF() {
-        List<PdParam> params =paramDao.list(ParamType.bandwidth.value(), ClassType.LLPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.bandwidth.value(), ClassType.LLPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
@@ -407,7 +408,7 @@ public class PdParamService {
         return cas;
     }
     public List<CasRsp> getQualityByLHPF() {
-        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LHPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.quality.value(), ClassType.LHPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             if ("GJB".equals(param.getCode())){
@@ -421,7 +422,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getCenterFrequencyByLHPF() {
-        List<PdParam> params =paramDao.list(ParamType.centerFrequency.value(), ClassType.LHPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.centerFrequency.value(), ClassType.LHPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
@@ -430,7 +431,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getBandwidthByLHPF() {
-        List<PdParam> params =paramDao.list(ParamType.bandwidth.value(), ClassType.LHPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.bandwidth.value(), ClassType.LHPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
@@ -438,7 +439,7 @@ public class PdParamService {
         return cas;
     }
     public List<CasRsp> getSizeByLHPF() {
-        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LHPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.size.value(), ClassType.LHPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
 //            0805[长宽高] ：0805_12345
@@ -448,7 +449,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getSizeByLBPF() {
-        List<PdParam> params =paramDao.list(ParamType.size.value(), ClassType.LBPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.size.value(), ClassType.LBPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
 //            0805[长宽高] ：0805_12345
@@ -458,7 +459,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getCutOffFrequencyByLBPF() {
-        List<PdParam> params =paramDao.list(ParamType.cutOffFrequency.value(), ClassType.LBPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.cutOffFrequency.value(), ClassType.LBPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             cas.add(new CasRsp(param.getName() == null ? "" + param.getCode() : param.getName() + " - " + param.getCode(), param.getCode(), false));
@@ -467,7 +468,7 @@ public class PdParamService {
     }
 
     public List<CasRsp> getQualityByLBPF() {
-        List<PdParam> params =paramDao.list(ParamType.quality.value(), ClassType.LBPF.value());
+        List<PdParam> params =paramDao.list(ParamTypeMaterial.quality.value(), ClassType.LBPF.value());
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
             if ("GJB".equals(param.getCode())){
