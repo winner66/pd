@@ -267,21 +267,6 @@ public class FpdService {
     private Map<String,List<TableRsp>> buildData(FpdSeries  series,Map<String,List<TableRsp>> data){
 
         data.put("key", buildTableRsp(series.getHkSeries()," "));
-//        private List<String> qas;
-//        private String key;
-//        private Long cm;
-//        private String modelCode;
-//        private String quality;
-//        private String size;
-//        private Long sizeId;
-//        private String temperature;
-//        private String voltage;
-//        private String capacity;
-//        private String tolerance;
-//        private String outlet;
-//        private String capacityCode;
-
-
         //            引出端形式
         if(series.getOutlet()!=null && series.getOutlet()!=""){
 
