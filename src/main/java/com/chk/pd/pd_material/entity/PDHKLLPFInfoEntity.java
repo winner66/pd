@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 //HKLLPE产品类型
 @Data
-public class PDHKLLPFInfoEntity implements Serializable {
+public class PDHKLLPFInfoEntity  extends baseMaterialEntiey implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,6 @@ public class PDHKLLPFInfoEntity implements Serializable {
 
     private  String insertionLoss;
 //3dB截止频率
-
     private  String cutOffFrequency;
 //    阻带(>=20dB)
 
@@ -41,16 +40,11 @@ public class PDHKLLPFInfoEntity implements Serializable {
 
     private  String stopBandOn20;
 //    电压驻波比
-
     private  String  vswr;
 //    功率容量
-
     private  String  powerCapacity;
-
-//    定制类低通
 //    带内纹波
     private  String ripple;
-
 //    带外抑制1
     private  String  outOfBandRejection1;
   //    带外抑制2
@@ -60,5 +54,7 @@ public class PDHKLLPFInfoEntity implements Serializable {
 //    其他要求
 
     private  String other;
+//额定电流
+  private  String ratedCurrent;
 
 }

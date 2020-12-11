@@ -1,5 +1,6 @@
 package com.chk.pd.pd.service;
 
+import com.chk.pd.pd.PdClassVo;
 import com.chk.pd.pd.dao.PdClassDao;
 import com.chk.pd.pd.dao.PdInfoDao;
 import com.chk.pd.pd.dao.PdParamDao;
@@ -41,17 +42,20 @@ public class PdClassService {
         }
         for (PdClass clz : lev2) {
             for (PdClassRsp vo : vos) {
-//                vo1,
-//                clz2
+
                 if (vo.getId().equals(clz.getpId())) {
                     PdClassRsp cr = new PdClassRsp(clz);
                     vo.getChildren().add(cr);
+//                   在目錄下打開文件 file
                     for (SysDict dict : dicts) {
                         if (clz.getName().equals(dict.getName())) {
                             cr.setOpera(PdClassRsp.OPERA_FILE);
                             cr.setFileUrl(dict.getValue());
                         }
                     }
+
+//                    沒有質量等級
+
                 }
             }
         }
@@ -66,6 +70,7 @@ public class PdClassService {
         for (SysDict dict : dicts) {
             pdfClz.put(dict.getName(), dict);
         }
+
 
         List<PdClass> lev2Clz = pdClassDao.getPdClasses(2);
         //level 2
@@ -204,4 +209,148 @@ public class PdClassService {
 //        }
 //        return rsp;
 //    }
+
+//    v2
+    public List<CasRsp> listPdClassV2(PdInfoReq pdInfoReq) {
+    List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+
+    Map<String, SysDict> pdfClz = new HashMap();
+    for (SysDict dict : dicts) {
+        pdfClz.put(dict.getName(), dict);
+    }
+
+
+    List<PdClassVo> clz1 = getClassVo();
+    Map<Long, String> lev1Map = new LinkedHashMap<>();
+        for(PdClassVo c1: clz1){
+            lev1Map.put(Long.valueOf(c1.getId()),c1.getName());
+        }
+    List<PdClass> lev2Clz = pdClassDao.getPdClasses(2);
+
+    //level 2
+    Map<Long, CasRsp> lev2Map = new LinkedHashMap<>();
+
+    for (PdClass c2 : lev2Clz) {
+
+                if(hasNextLevel(c2.getId().toString())|| (c2.getQaGp()!=null && StringUtils.isNotBlank(c2.getQaGp()))){
+//                    有三级--或者有--同等
+                    lev2Map.put(c2.getId(), new CasRsp(c2.getShowName(), c2.getId().toString(), true));
+                }else{
+//                    没有
+                    lev2Map.put(c2.getId(), new CasRsp(c2.getShowName(), c2.getId().toString(), false,CasRsp.OPERA_dir,lev1Map.get(c2.getpId())));
+                }
+
+
+
+    }
+
+    List<PdClass> lev3Clz;
+    if (pdInfoReq == null || pdInfoReq.isNull()) {
+        lev3Clz = pdClassDao.getPdClasses(3);
+    } else {
+        lev3Clz = infoDao.getExtPdInfoMapper().listLev3Class(pdInfoReq);
+    }
+    Map<String, CasRsp> lev2_2Map = new LinkedHashMap<>();
+
+//    在第三级找二级
+    for (PdClass lev3 : lev3Clz) {
+        CasRsp lev2 = lev2Map.get(lev3.getpId());
+        //有2级并列分类的，现放2_2,再放3
+        if (StringUtils.isNotBlank(lev3.getQaGp())) {
+            String key = lev2.getValue() + "_" + lev3.getQaGp();
+            CasRsp lev2_2 = lev2_2Map.get(key);
+            if (lev2 != null) {
+                if (lev2_2 == null) {
+                    lev2_2 = new CasRsp(lev3.getQaGp(), key, true);
+                    lev2.getChildren().add(lev2_2);
+                    lev2_2Map.put(key, lev2_2);
+                }
+                lev2_2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+            }
+        } else  {
+            //无2级并列分类, 直接放3级分类  如果第三级在字典中-》放file
+            if (pdfClz.containsKey(lev3.getName())) {
+                String file = pdfClz.get(lev3.getName()).getValue();
+                lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false, file));
+            } else {
+//
+                lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+            }
+        }
+    }
+    //过滤掉没有子分类，或者子分类是打开文件类型的二级类目, 用于搜索页
+    ArrayList<CasRsp> res = new ArrayList<>(lev2Map.values());
+    //pdInfoReq为null，是首页打开，首页打开的不过滤
+    if (pdInfoReq != null) {
+        for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+            CasRsp cas = i.next();
+            for (Iterator<CasRsp> j = cas.getChildren().iterator(); j.hasNext(); ) {
+                CasRsp next = j.next();
+                if (CasRsp.OPERA_FILE.equals(next.getOpera())) {
+                    j.remove();
+                }
+            }
+        }
+        for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+            CasRsp cas = i.next();
+            if (cas.getChildren().size() == 0) {
+                i.remove();
+            }
+        }
+    }
+    return res;
+}
+    public List<PdClassRsp> getClzTop2V2() {
+        List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+        List<PdClass> lev1 = pdClassDao.getPdClasses(1);
+        List<PdClass> lev2 = pdClassDao.getPdClasses(2);
+        List<PdClassRsp> vos = new ArrayList<>();
+        for (PdClass clz : lev1) {
+            PdClassRsp vo = new PdClassRsp(clz);
+            vos.add(vo);
+        }
+        for (PdClass clz : lev2) {
+            for (PdClassRsp vo : vos) {
+                if (vo.getId().equals(clz.getpId())) {
+//
+                    PdClassRsp cr = new PdClassRsp(clz);
+                    vo.getChildren().add(cr);
+                    if(!hasNextLevel(clz.getId().toString())){
+                        cr.setOpera(PdClassRsp.OPERA_dir);
+                    }
+//                   在目錄下打開文件 file
+                    for (SysDict dict : dicts) {
+                        if (clz.getName().equals(dict.getName())) {
+                            cr.setOpera(PdClassRsp.OPERA_FILE);
+                            cr.setFileUrl(dict.getValue());
+                        }
+                    }
+
+                }
+            }
+        }
+        return vos;
+    }
+    public boolean hasNextLevel(String pid){
+        boolean res= false;
+       List<PdClass> pdclass= pdClassDao.getExtClassMapper().NextLevel(pid);
+       if(pdclass!=null&&pdclass.size()>0){
+           res=true;
+       }
+       return res;
+    }
+
+    public    List<PdClassVo> getClassVo(){
+        List<PdClass> lev1Clz = pdClassDao.getPdClasses(1);
+
+        //level 1
+        List<PdClassVo> res= new ArrayList<>();
+        for (PdClass clz : lev1Clz) {
+            PdClassVo e=new PdClassVo(clz.getId().toString(),clz.getName());
+            res.add(e);
+        }
+        return res;
+    }
+
+
 }

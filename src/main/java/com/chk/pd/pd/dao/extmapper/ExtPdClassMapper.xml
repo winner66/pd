@@ -12,4 +12,8 @@
         -- join pd_param pp on pc
         group by qa.pd_class_id order by pc.idx asc
     </select>
+    <select id="NextLevel" resultType="com.chk.pd.pd.domain.PdClass">
+         select *
+        from pd_class where p_id=#{id}
+    </select>
 </mapper>

@@ -8,7 +8,7 @@ import java.io.Serializable;
  *生瓷带
  */
 @Data
-public class PDRawPorcelainWithInfoEntity implements Serializable {
+public class PDRawPorcelainWithInfoEntity extends baseMaterialEntiey  implements Serializable {
 //    生瓷带
 private static final long serialVersionUID = 1L;
     private String pdname;

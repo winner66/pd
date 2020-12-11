@@ -32,20 +32,6 @@ public class PdInfoReq {
     private String outlet;
     private String capacityCode;
 
-//    滤波器
-    private  String centerFrequency;
-    private  String bandwidth;
-    private  String passBandRange;
-    //3dB截止频率
-    private String cutOffFrequency;
-//    功分器
-private String frequencyRange;
-//    陶瓷介质
-    private String surfaceCode;
-    private String thicknessCode;
-    private String lengthWidthCode;
-    private String materialCode;
-
     public boolean isNull() {
         try {
             for (Field f : this.getClass().getDeclaredFields()) {

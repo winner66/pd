@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 //LTCC  一路功分器 二路功分器 三路功分器
 @Data
-public class PDJLTCInfoEntity  implements Serializable {
+public class PDJLTCInfoEntity extends baseMaterialEntiey  implements Serializable {
 //    JLTC
     private static final long serialVersionUID = 1L;
     private String pdname;

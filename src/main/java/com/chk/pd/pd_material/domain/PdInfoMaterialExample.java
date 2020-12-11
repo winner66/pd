@@ -1754,73 +1754,73 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andStopBandIsNull() {
-            addCriterion("stop_band is null");
+        public Criteria andStopBandBy20IsNull() {
+            addCriterion("stop_band_by20 is null");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandIsNotNull() {
-            addCriterion("stop_band is not null");
+        public Criteria andStopBandBy20IsNotNull() {
+            addCriterion("stop_band_by20 is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandEqualTo(String value) {
-            addCriterion("stop_band =", value, "stopBand");
+        public Criteria andStopBandBy20EqualTo(String value) {
+            addCriterion("stop_band_by20 =", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandNotEqualTo(String value) {
-            addCriterion("stop_band <>", value, "stopBand");
+        public Criteria andStopBandBy20NotEqualTo(String value) {
+            addCriterion("stop_band_by20 <>", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandGreaterThan(String value) {
-            addCriterion("stop_band >", value, "stopBand");
+        public Criteria andStopBandBy20GreaterThan(String value) {
+            addCriterion("stop_band_by20 >", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandGreaterThanOrEqualTo(String value) {
-            addCriterion("stop_band >=", value, "stopBand");
+        public Criteria andStopBandBy20GreaterThanOrEqualTo(String value) {
+            addCriterion("stop_band_by20 >=", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandLessThan(String value) {
-            addCriterion("stop_band <", value, "stopBand");
+        public Criteria andStopBandBy20LessThan(String value) {
+            addCriterion("stop_band_by20 <", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandLessThanOrEqualTo(String value) {
-            addCriterion("stop_band <=", value, "stopBand");
+        public Criteria andStopBandBy20LessThanOrEqualTo(String value) {
+            addCriterion("stop_band_by20 <=", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandLike(String value) {
-            addCriterion("stop_band like", value, "stopBand");
+        public Criteria andStopBandBy20Like(String value) {
+            addCriterion("stop_band_by20 like", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandNotLike(String value) {
-            addCriterion("stop_band not like", value, "stopBand");
+        public Criteria andStopBandBy20NotLike(String value) {
+            addCriterion("stop_band_by20 not like", value, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandIn(List<String> values) {
-            addCriterion("stop_band in", values, "stopBand");
+        public Criteria andStopBandBy20In(List<String> values) {
+            addCriterion("stop_band_by20 in", values, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandNotIn(List<String> values) {
-            addCriterion("stop_band not in", values, "stopBand");
+        public Criteria andStopBandBy20NotIn(List<String> values) {
+            addCriterion("stop_band_by20 not in", values, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandBetween(String value1, String value2) {
-            addCriterion("stop_band between", value1, value2, "stopBand");
+        public Criteria andStopBandBy20Between(String value1, String value2) {
+            addCriterion("stop_band_by20 between", value1, value2, "stopBandBy20");
             return (Criteria) this;
         }
 
-        public Criteria andStopBandNotBetween(String value1, String value2) {
-            addCriterion("stop_band not between", value1, value2, "stopBand");
+        public Criteria andStopBandBy20NotBetween(String value1, String value2) {
+            addCriterion("stop_band_by20 not between", value1, value2, "stopBandBy20");
             return (Criteria) this;
         }
 
@@ -1891,76 +1891,6 @@ public class PdInfoMaterialExample {
 
         public Criteria andCutOffFrequencyNotBetween(String value1, String value2) {
             addCriterion("cut_off_frequency not between", value1, value2, "cutOffFrequency");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossIsNull() {
-            addCriterion("pass_band_insertion_loss is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossIsNotNull() {
-            addCriterion("pass_band_insertion_loss is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossEqualTo(String value) {
-            addCriterion("pass_band_insertion_loss =", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossNotEqualTo(String value) {
-            addCriterion("pass_band_insertion_loss <>", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossGreaterThan(String value) {
-            addCriterion("pass_band_insertion_loss >", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossGreaterThanOrEqualTo(String value) {
-            addCriterion("pass_band_insertion_loss >=", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossLessThan(String value) {
-            addCriterion("pass_band_insertion_loss <", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossLessThanOrEqualTo(String value) {
-            addCriterion("pass_band_insertion_loss <=", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossLike(String value) {
-            addCriterion("pass_band_insertion_loss like", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossNotLike(String value) {
-            addCriterion("pass_band_insertion_loss not like", value, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossIn(List<String> values) {
-            addCriterion("pass_band_insertion_loss in", values, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossNotIn(List<String> values) {
-            addCriterion("pass_band_insertion_loss not in", values, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossBetween(String value1, String value2) {
-            addCriterion("pass_band_insertion_loss between", value1, value2, "passBandInsertionLoss");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossNotBetween(String value1, String value2) {
-            addCriterion("pass_band_insertion_loss not between", value1, value2, "passBandInsertionLoss");
             return (Criteria) this;
         }
 
@@ -3854,133 +3784,763 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andMaterialIsNull() {
-            addCriterion("material is null");
+        public Criteria andMaterialTypeIsNull() {
+            addCriterion("material_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialIsNotNull() {
-            addCriterion("material is not null");
+        public Criteria andMaterialTypeIsNotNull() {
+            addCriterion("material_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialEqualTo(Integer value) {
-            addCriterion("material =", value, "material");
+        public Criteria andMaterialTypeEqualTo(Integer value) {
+            addCriterion("material_type =", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialNotEqualTo(Integer value) {
-            addCriterion("material <>", value, "material");
+        public Criteria andMaterialTypeNotEqualTo(Integer value) {
+            addCriterion("material_type <>", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialGreaterThan(Integer value) {
-            addCriterion("material >", value, "material");
+        public Criteria andMaterialTypeGreaterThan(Integer value) {
+            addCriterion("material_type >", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialGreaterThanOrEqualTo(Integer value) {
-            addCriterion("material >=", value, "material");
+        public Criteria andMaterialTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("material_type >=", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialLessThan(Integer value) {
-            addCriterion("material <", value, "material");
+        public Criteria andMaterialTypeLessThan(Integer value) {
+            addCriterion("material_type <", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialLessThanOrEqualTo(Integer value) {
-            addCriterion("material <=", value, "material");
+        public Criteria andMaterialTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("material_type <=", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialIn(List<Integer> values) {
-            addCriterion("material in", values, "material");
+        public Criteria andMaterialTypeIn(List<Integer> values) {
+            addCriterion("material_type in", values, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialNotIn(List<Integer> values) {
-            addCriterion("material not in", values, "material");
+        public Criteria andMaterialTypeNotIn(List<Integer> values) {
+            addCriterion("material_type not in", values, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialBetween(Integer value1, Integer value2) {
-            addCriterion("material between", value1, value2, "material");
+        public Criteria andMaterialTypeBetween(Integer value1, Integer value2) {
+            addCriterion("material_type between", value1, value2, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialNotBetween(Integer value1, Integer value2) {
-            addCriterion("material not between", value1, value2, "material");
+        public Criteria andMaterialTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("material_type not between", value1, value2, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameIsNull() {
-            addCriterion("pd_name is null");
+        public Criteria andRatedCurrentIsNull() {
+            addCriterion("rated_current is null");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameIsNotNull() {
-            addCriterion("pd_name is not null");
+        public Criteria andRatedCurrentIsNotNull() {
+            addCriterion("rated_current is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameEqualTo(String value) {
-            addCriterion("pd_name =", value, "pdName");
+        public Criteria andRatedCurrentEqualTo(String value) {
+            addCriterion("rated_current =", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameNotEqualTo(String value) {
-            addCriterion("pd_name <>", value, "pdName");
+        public Criteria andRatedCurrentNotEqualTo(String value) {
+            addCriterion("rated_current <>", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameGreaterThan(String value) {
-            addCriterion("pd_name >", value, "pdName");
+        public Criteria andRatedCurrentGreaterThan(String value) {
+            addCriterion("rated_current >", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameGreaterThanOrEqualTo(String value) {
-            addCriterion("pd_name >=", value, "pdName");
+        public Criteria andRatedCurrentGreaterThanOrEqualTo(String value) {
+            addCriterion("rated_current >=", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameLessThan(String value) {
-            addCriterion("pd_name <", value, "pdName");
+        public Criteria andRatedCurrentLessThan(String value) {
+            addCriterion("rated_current <", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameLessThanOrEqualTo(String value) {
-            addCriterion("pd_name <=", value, "pdName");
+        public Criteria andRatedCurrentLessThanOrEqualTo(String value) {
+            addCriterion("rated_current <=", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameLike(String value) {
-            addCriterion("pd_name like", value, "pdName");
+        public Criteria andRatedCurrentLike(String value) {
+            addCriterion("rated_current like", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameNotLike(String value) {
-            addCriterion("pd_name not like", value, "pdName");
+        public Criteria andRatedCurrentNotLike(String value) {
+            addCriterion("rated_current not like", value, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameIn(List<String> values) {
-            addCriterion("pd_name in", values, "pdName");
+        public Criteria andRatedCurrentIn(List<String> values) {
+            addCriterion("rated_current in", values, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameNotIn(List<String> values) {
-            addCriterion("pd_name not in", values, "pdName");
+        public Criteria andRatedCurrentNotIn(List<String> values) {
+            addCriterion("rated_current not in", values, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameBetween(String value1, String value2) {
-            addCriterion("pd_name between", value1, value2, "pdName");
+        public Criteria andRatedCurrentBetween(String value1, String value2) {
+            addCriterion("rated_current between", value1, value2, "ratedCurrent");
             return (Criteria) this;
         }
 
-        public Criteria andPdNameNotBetween(String value1, String value2) {
-            addCriterion("pd_name not between", value1, value2, "pdName");
+        public Criteria andRatedCurrentNotBetween(String value1, String value2) {
+            addCriterion("rated_current not between", value1, value2, "ratedCurrent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthIsNull() {
+            addCriterion("bandwidth is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthIsNotNull() {
+            addCriterion("bandwidth is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthEqualTo(String value) {
+            addCriterion("bandwidth =", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthNotEqualTo(String value) {
+            addCriterion("bandwidth <>", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthGreaterThan(String value) {
+            addCriterion("bandwidth >", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthGreaterThanOrEqualTo(String value) {
+            addCriterion("bandwidth >=", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthLessThan(String value) {
+            addCriterion("bandwidth <", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthLessThanOrEqualTo(String value) {
+            addCriterion("bandwidth <=", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthLike(String value) {
+            addCriterion("bandwidth like", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthNotLike(String value) {
+            addCriterion("bandwidth not like", value, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthIn(List<String> values) {
+            addCriterion("bandwidth in", values, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthNotIn(List<String> values) {
+            addCriterion("bandwidth not in", values, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthBetween(String value1, String value2) {
+            addCriterion("bandwidth between", value1, value2, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthNotBetween(String value1, String value2) {
+            addCriterion("bandwidth not between", value1, value2, "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40IsNull() {
+            addCriterion("stop_band_by40 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40IsNotNull() {
+            addCriterion("stop_band_by40 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40EqualTo(String value) {
+            addCriterion("stop_band_by40 =", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40NotEqualTo(String value) {
+            addCriterion("stop_band_by40 <>", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40GreaterThan(String value) {
+            addCriterion("stop_band_by40 >", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40GreaterThanOrEqualTo(String value) {
+            addCriterion("stop_band_by40 >=", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40LessThan(String value) {
+            addCriterion("stop_band_by40 <", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40LessThanOrEqualTo(String value) {
+            addCriterion("stop_band_by40 <=", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40Like(String value) {
+            addCriterion("stop_band_by40 like", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40NotLike(String value) {
+            addCriterion("stop_band_by40 not like", value, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40In(List<String> values) {
+            addCriterion("stop_band_by40 in", values, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40NotIn(List<String> values) {
+            addCriterion("stop_band_by40 not in", values, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40Between(String value1, String value2) {
+            addCriterion("stop_band_by40 between", value1, value2, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40NotBetween(String value1, String value2) {
+            addCriterion("stop_band_by40 not between", value1, value2, "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13IsNull() {
+            addCriterion("pass_band_insertion_loss_by1_3 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13IsNotNull() {
+            addCriterion("pass_band_insertion_loss_by1_3 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13EqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 =", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13NotEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 <>", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13GreaterThan(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 >", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13GreaterThanOrEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 >=", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13LessThan(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 <", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13LessThanOrEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 <=", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13Like(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 like", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13NotLike(String value) {
+            addCriterion("pass_band_insertion_loss_by1_3 not like", value, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13In(List<String> values) {
+            addCriterion("pass_band_insertion_loss_by1_3 in", values, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13NotIn(List<String> values) {
+            addCriterion("pass_band_insertion_loss_by1_3 not in", values, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13Between(String value1, String value2) {
+            addCriterion("pass_band_insertion_loss_by1_3 between", value1, value2, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13NotBetween(String value1, String value2) {
+            addCriterion("pass_band_insertion_loss_by1_3 not between", value1, value2, "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typIsNull() {
+            addCriterion("pass_band_insertion_loss_by2_0Typ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typIsNotNull() {
+            addCriterion("pass_band_insertion_loss_by2_0Typ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ =", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typNotEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ <>", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typGreaterThan(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ >", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typGreaterThanOrEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ >=", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typLessThan(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ <", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typLessThanOrEqualTo(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ <=", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typLike(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ like", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typNotLike(String value) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ not like", value, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typIn(List<String> values) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ in", values, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typNotIn(List<String> values) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ not in", values, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typBetween(String value1, String value2) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ between", value1, value2, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typNotBetween(String value1, String value2) {
+            addCriterion("pass_band_insertion_loss_by2_0Typ not between", value1, value2, "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2IsNull() {
+            addCriterion("material_type2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2IsNotNull() {
+            addCriterion("material_type2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2EqualTo(String value) {
+            addCriterion("material_type2 =", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2NotEqualTo(String value) {
+            addCriterion("material_type2 <>", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2GreaterThan(String value) {
+            addCriterion("material_type2 >", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2GreaterThanOrEqualTo(String value) {
+            addCriterion("material_type2 >=", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2LessThan(String value) {
+            addCriterion("material_type2 <", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2LessThanOrEqualTo(String value) {
+            addCriterion("material_type2 <=", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2Like(String value) {
+            addCriterion("material_type2 like", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2NotLike(String value) {
+            addCriterion("material_type2 not like", value, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2In(List<String> values) {
+            addCriterion("material_type2 in", values, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2NotIn(List<String> values) {
+            addCriterion("material_type2 not in", values, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2Between(String value1, String value2) {
+            addCriterion("material_type2 between", value1, value2, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2NotBetween(String value1, String value2) {
+            addCriterion("material_type2 not between", value1, value2, "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialIsNull() {
+            addCriterion("basis_material is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialIsNotNull() {
+            addCriterion("basis_material is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialEqualTo(String value) {
+            addCriterion("basis_material =", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialNotEqualTo(String value) {
+            addCriterion("basis_material <>", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialGreaterThan(String value) {
+            addCriterion("basis_material >", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialGreaterThanOrEqualTo(String value) {
+            addCriterion("basis_material >=", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialLessThan(String value) {
+            addCriterion("basis_material <", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialLessThanOrEqualTo(String value) {
+            addCriterion("basis_material <=", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialLike(String value) {
+            addCriterion("basis_material like", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialNotLike(String value) {
+            addCriterion("basis_material not like", value, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialIn(List<String> values) {
+            addCriterion("basis_material in", values, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialNotIn(List<String> values) {
+            addCriterion("basis_material not in", values, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialBetween(String value1, String value2) {
+            addCriterion("basis_material between", value1, value2, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialNotBetween(String value1, String value2) {
+            addCriterion("basis_material not between", value1, value2, "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletIsNull() {
+            addCriterion("outlet is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletIsNotNull() {
+            addCriterion("outlet is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletEqualTo(String value) {
+            addCriterion("outlet =", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletNotEqualTo(String value) {
+            addCriterion("outlet <>", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletGreaterThan(String value) {
+            addCriterion("outlet >", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletGreaterThanOrEqualTo(String value) {
+            addCriterion("outlet >=", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletLessThan(String value) {
+            addCriterion("outlet <", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletLessThanOrEqualTo(String value) {
+            addCriterion("outlet <=", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletLike(String value) {
+            addCriterion("outlet like", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletNotLike(String value) {
+            addCriterion("outlet not like", value, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletIn(List<String> values) {
+            addCriterion("outlet in", values, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletNotIn(List<String> values) {
+            addCriterion("outlet not in", values, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletBetween(String value1, String value2) {
+            addCriterion("outlet between", value1, value2, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletNotBetween(String value1, String value2) {
+            addCriterion("outlet not between", value1, value2, "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeIsNull() {
+            addCriterion("evaluating_scope is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeIsNotNull() {
+            addCriterion("evaluating_scope is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeEqualTo(String value) {
+            addCriterion("evaluating_scope =", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeNotEqualTo(String value) {
+            addCriterion("evaluating_scope <>", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeGreaterThan(String value) {
+            addCriterion("evaluating_scope >", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeGreaterThanOrEqualTo(String value) {
+            addCriterion("evaluating_scope >=", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeLessThan(String value) {
+            addCriterion("evaluating_scope <", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeLessThanOrEqualTo(String value) {
+            addCriterion("evaluating_scope <=", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeLike(String value) {
+            addCriterion("evaluating_scope like", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeNotLike(String value) {
+            addCriterion("evaluating_scope not like", value, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeIn(List<String> values) {
+            addCriterion("evaluating_scope in", values, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeNotIn(List<String> values) {
+            addCriterion("evaluating_scope not in", values, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeBetween(String value1, String value2) {
+            addCriterion("evaluating_scope between", value1, value2, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeNotBetween(String value1, String value2) {
+            addCriterion("evaluating_scope not between", value1, value2, "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceIsNull() {
+            addCriterion("appearance is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceIsNotNull() {
+            addCriterion("appearance is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceEqualTo(String value) {
+            addCriterion("appearance =", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceNotEqualTo(String value) {
+            addCriterion("appearance <>", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceGreaterThan(String value) {
+            addCriterion("appearance >", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceGreaterThanOrEqualTo(String value) {
+            addCriterion("appearance >=", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceLessThan(String value) {
+            addCriterion("appearance <", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceLessThanOrEqualTo(String value) {
+            addCriterion("appearance <=", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceLike(String value) {
+            addCriterion("appearance like", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceNotLike(String value) {
+            addCriterion("appearance not like", value, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceIn(List<String> values) {
+            addCriterion("appearance in", values, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceNotIn(List<String> values) {
+            addCriterion("appearance not in", values, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceBetween(String value1, String value2) {
+            addCriterion("appearance between", value1, value2, "appearance");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceNotBetween(String value1, String value2) {
+            addCriterion("appearance not between", value1, value2, "appearance");
             return (Criteria) this;
         }
 
@@ -4089,18 +4649,13 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andStopBandLikeInsensitive(String value) {
-            addCriterion("upper(stop_band) like", value.toUpperCase(), "stopBand");
+        public Criteria andStopBandBy20LikeInsensitive(String value) {
+            addCriterion("upper(stop_band_by20) like", value.toUpperCase(), "stopBandBy20");
             return (Criteria) this;
         }
 
         public Criteria andCutOffFrequencyLikeInsensitive(String value) {
             addCriterion("upper(cut_off_frequency) like", value.toUpperCase(), "cutOffFrequency");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassBandInsertionLossLikeInsensitive(String value) {
-            addCriterion("upper(pass_band_insertion_loss) like", value.toUpperCase(), "passBandInsertionLoss");
             return (Criteria) this;
         }
 
@@ -4239,8 +4794,53 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andPdNameLikeInsensitive(String value) {
-            addCriterion("upper(pd_name) like", value.toUpperCase(), "pdName");
+        public Criteria andRatedCurrentLikeInsensitive(String value) {
+            addCriterion("upper(rated_current) like", value.toUpperCase(), "ratedCurrent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBandwidthLikeInsensitive(String value) {
+            addCriterion("upper(bandwidth) like", value.toUpperCase(), "bandwidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopBandBy40LikeInsensitive(String value) {
+            addCriterion("upper(stop_band_by40) like", value.toUpperCase(), "stopBandBy40");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy13LikeInsensitive(String value) {
+            addCriterion("upper(pass_band_insertion_loss_by1_3) like", value.toUpperCase(), "passBandInsertionLossBy13");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBandInsertionLossBy20typLikeInsensitive(String value) {
+            addCriterion("upper(pass_band_insertion_loss_by2_0Typ) like", value.toUpperCase(), "passBandInsertionLossBy20typ");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialType2LikeInsensitive(String value) {
+            addCriterion("upper(material_type2) like", value.toUpperCase(), "materialType2");
+            return (Criteria) this;
+        }
+
+        public Criteria andBasisMaterialLikeInsensitive(String value) {
+            addCriterion("upper(basis_material) like", value.toUpperCase(), "basisMaterial");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutletLikeInsensitive(String value) {
+            addCriterion("upper(outlet) like", value.toUpperCase(), "outlet");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvaluatingScopeLikeInsensitive(String value) {
+            addCriterion("upper(evaluating_scope) like", value.toUpperCase(), "evaluatingScope");
+            return (Criteria) this;
+        }
+
+        public Criteria andAppearanceLikeInsensitive(String value) {
+            addCriterion("upper(appearance) like", value.toUpperCase(), "appearance");
             return (Criteria) this;
         }
     }

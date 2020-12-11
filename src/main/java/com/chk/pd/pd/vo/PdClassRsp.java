@@ -14,7 +14,8 @@ public class PdClassRsp {
     public static String OPERA_WX = "wx";
     @JsonIgnore
     public static String OPERA_FILE = "file";
-
+    @JsonIgnore
+    public static String OPERA_dir = "noDir";
     private Long id;
 
     private String name;

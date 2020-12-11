@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class PDLHPFInfoEntity implements Serializable {
+public class PDHKLHPFInfoEntity  extends baseMaterialEntiey implements Serializable  {
     private static final long serialVersionUID = 1L;
 //    LHPF
 
@@ -31,4 +31,6 @@ public class PDLHPFInfoEntity implements Serializable {
     private String vswrStopBand;
     //封装类型
     private  String size;
+
+
 }

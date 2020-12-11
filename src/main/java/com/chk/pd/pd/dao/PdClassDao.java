@@ -47,4 +47,9 @@ public class PdClassDao {
         List<PdClass> pdClasses = pdClassMapper.selectByExample(exp);
         return pdClasses;
     }
+    public void getPdClassById(Integer id){
+//        return
+    }
+
+
 }

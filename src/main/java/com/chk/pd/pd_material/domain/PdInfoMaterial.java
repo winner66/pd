@@ -51,11 +51,9 @@ public class PdInfoMaterial implements Serializable {
 
     private String vswrPassBand;
 
-    private String stopBand;
+    private String stopBandBy20;
 
     private String cutOffFrequency;
-
-    private String passBandInsertionLoss;
 
     private String breakdownVoltage;
 
@@ -111,9 +109,27 @@ public class PdInfoMaterial implements Serializable {
 
     private String outOfBandRejection5;
 
-    private Integer material;
+    private Integer materialType;
 
-    private String pdName;
+    private String ratedCurrent;
+
+    private String bandwidth;
+
+    private String stopBandBy40;
+
+    private String passBandInsertionLossBy13;
+
+    private String passBandInsertionLossBy20typ;
+
+    private String materialType2;
+
+    private String basisMaterial;
+
+    private String outlet;
+
+    private String evaluatingScope;
+
+    private String appearance;
 
     private static final long serialVersionUID = 1L;
 
@@ -309,12 +325,12 @@ public class PdInfoMaterial implements Serializable {
         this.vswrPassBand = vswrPassBand == null ? null : vswrPassBand.trim();
     }
 
-    public String getStopBand() {
-        return stopBand;
+    public String getStopBandBy20() {
+        return stopBandBy20;
     }
 
-    public void setStopBand(String stopBand) {
-        this.stopBand = stopBand == null ? null : stopBand.trim();
+    public void setStopBandBy20(String stopBandBy20) {
+        this.stopBandBy20 = stopBandBy20 == null ? null : stopBandBy20.trim();
     }
 
     public String getCutOffFrequency() {
@@ -323,14 +339,6 @@ public class PdInfoMaterial implements Serializable {
 
     public void setCutOffFrequency(String cutOffFrequency) {
         this.cutOffFrequency = cutOffFrequency == null ? null : cutOffFrequency.trim();
-    }
-
-    public String getPassBandInsertionLoss() {
-        return passBandInsertionLoss;
-    }
-
-    public void setPassBandInsertionLoss(String passBandInsertionLoss) {
-        this.passBandInsertionLoss = passBandInsertionLoss == null ? null : passBandInsertionLoss.trim();
     }
 
     public String getBreakdownVoltage() {
@@ -549,20 +557,92 @@ public class PdInfoMaterial implements Serializable {
         this.outOfBandRejection5 = outOfBandRejection5 == null ? null : outOfBandRejection5.trim();
     }
 
-    public Integer getMaterial() {
-        return material;
+    public Integer getMaterialType() {
+        return materialType;
     }
 
-    public void setMaterial(Integer material) {
-        this.material = material;
+    public void setMaterialType(Integer materialType) {
+        this.materialType = materialType;
     }
 
-    public String getPdName() {
-        return pdName;
+    public String getRatedCurrent() {
+        return ratedCurrent;
     }
 
-    public void setPdName(String pdName) {
-        this.pdName = pdName == null ? null : pdName.trim();
+    public void setRatedCurrent(String ratedCurrent) {
+        this.ratedCurrent = ratedCurrent == null ? null : ratedCurrent.trim();
+    }
+
+    public String getBandwidth() {
+        return bandwidth;
+    }
+
+    public void setBandwidth(String bandwidth) {
+        this.bandwidth = bandwidth == null ? null : bandwidth.trim();
+    }
+
+    public String getStopBandBy40() {
+        return stopBandBy40;
+    }
+
+    public void setStopBandBy40(String stopBandBy40) {
+        this.stopBandBy40 = stopBandBy40 == null ? null : stopBandBy40.trim();
+    }
+
+    public String getPassBandInsertionLossBy13() {
+        return passBandInsertionLossBy13;
+    }
+
+    public void setPassBandInsertionLossBy13(String passBandInsertionLossBy13) {
+        this.passBandInsertionLossBy13 = passBandInsertionLossBy13 == null ? null : passBandInsertionLossBy13.trim();
+    }
+
+    public String getPassBandInsertionLossBy20typ() {
+        return passBandInsertionLossBy20typ;
+    }
+
+    public void setPassBandInsertionLossBy20typ(String passBandInsertionLossBy20typ) {
+        this.passBandInsertionLossBy20typ = passBandInsertionLossBy20typ == null ? null : passBandInsertionLossBy20typ.trim();
+    }
+
+    public String getMaterialType2() {
+        return materialType2;
+    }
+
+    public void setMaterialType2(String materialType2) {
+        this.materialType2 = materialType2 == null ? null : materialType2.trim();
+    }
+
+    public String getBasisMaterial() {
+        return basisMaterial;
+    }
+
+    public void setBasisMaterial(String basisMaterial) {
+        this.basisMaterial = basisMaterial == null ? null : basisMaterial.trim();
+    }
+
+    public String getOutlet() {
+        return outlet;
+    }
+
+    public void setOutlet(String outlet) {
+        this.outlet = outlet == null ? null : outlet.trim();
+    }
+
+    public String getEvaluatingScope() {
+        return evaluatingScope;
+    }
+
+    public void setEvaluatingScope(String evaluatingScope) {
+        this.evaluatingScope = evaluatingScope == null ? null : evaluatingScope.trim();
+    }
+
+    public String getAppearance() {
+        return appearance;
+    }
+
+    public void setAppearance(String appearance) {
+        this.appearance = appearance == null ? null : appearance.trim();
     }
 
     @Override
@@ -595,9 +675,8 @@ public class PdInfoMaterial implements Serializable {
         sb.append(", frequencyRange=").append(frequencyRange);
         sb.append(", vswrStopBand=").append(vswrStopBand);
         sb.append(", vswrPassBand=").append(vswrPassBand);
-        sb.append(", stopBand=").append(stopBand);
+        sb.append(", stopBandBy20=").append(stopBandBy20);
         sb.append(", cutOffFrequency=").append(cutOffFrequency);
-        sb.append(", passBandInsertionLoss=").append(passBandInsertionLoss);
         sb.append(", breakdownVoltage=").append(breakdownVoltage);
         sb.append(", insulationResistance=").append(insulationResistance);
         sb.append(", flexureStrength=").append(flexureStrength);
@@ -625,8 +704,17 @@ public class PdInfoMaterial implements Serializable {
         sb.append(", outOfBandRejection3=").append(outOfBandRejection3);
         sb.append(", outOfBandRejection4=").append(outOfBandRejection4);
         sb.append(", outOfBandRejection5=").append(outOfBandRejection5);
-        sb.append(", material=").append(material);
-        sb.append(", pdName=").append(pdName);
+        sb.append(", materialType=").append(materialType);
+        sb.append(", ratedCurrent=").append(ratedCurrent);
+        sb.append(", bandwidth=").append(bandwidth);
+        sb.append(", stopBandBy40=").append(stopBandBy40);
+        sb.append(", passBandInsertionLossBy13=").append(passBandInsertionLossBy13);
+        sb.append(", passBandInsertionLossBy20typ=").append(passBandInsertionLossBy20typ);
+        sb.append(", materialType2=").append(materialType2);
+        sb.append(", basisMaterial=").append(basisMaterial);
+        sb.append(", outlet=").append(outlet);
+        sb.append(", evaluatingScope=").append(evaluatingScope);
+        sb.append(", appearance=").append(appearance);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
@@ -668,9 +756,8 @@ public class PdInfoMaterial implements Serializable {
             && (this.getFrequencyRange() == null ? other.getFrequencyRange() == null : this.getFrequencyRange().equals(other.getFrequencyRange()))
             && (this.getVswrStopBand() == null ? other.getVswrStopBand() == null : this.getVswrStopBand().equals(other.getVswrStopBand()))
             && (this.getVswrPassBand() == null ? other.getVswrPassBand() == null : this.getVswrPassBand().equals(other.getVswrPassBand()))
-            && (this.getStopBand() == null ? other.getStopBand() == null : this.getStopBand().equals(other.getStopBand()))
+            && (this.getStopBandBy20() == null ? other.getStopBandBy20() == null : this.getStopBandBy20().equals(other.getStopBandBy20()))
             && (this.getCutOffFrequency() == null ? other.getCutOffFrequency() == null : this.getCutOffFrequency().equals(other.getCutOffFrequency()))
-            && (this.getPassBandInsertionLoss() == null ? other.getPassBandInsertionLoss() == null : this.getPassBandInsertionLoss().equals(other.getPassBandInsertionLoss()))
             && (this.getBreakdownVoltage() == null ? other.getBreakdownVoltage() == null : this.getBreakdownVoltage().equals(other.getBreakdownVoltage()))
             && (this.getInsulationResistance() == null ? other.getInsulationResistance() == null : this.getInsulationResistance().equals(other.getInsulationResistance()))
             && (this.getFlexureStrength() == null ? other.getFlexureStrength() == null : this.getFlexureStrength().equals(other.getFlexureStrength()))
@@ -698,8 +785,17 @@ public class PdInfoMaterial implements Serializable {
             && (this.getOutOfBandRejection3() == null ? other.getOutOfBandRejection3() == null : this.getOutOfBandRejection3().equals(other.getOutOfBandRejection3()))
             && (this.getOutOfBandRejection4() == null ? other.getOutOfBandRejection4() == null : this.getOutOfBandRejection4().equals(other.getOutOfBandRejection4()))
             && (this.getOutOfBandRejection5() == null ? other.getOutOfBandRejection5() == null : this.getOutOfBandRejection5().equals(other.getOutOfBandRejection5()))
-            && (this.getMaterial() == null ? other.getMaterial() == null : this.getMaterial().equals(other.getMaterial()))
-            && (this.getPdName() == null ? other.getPdName() == null : this.getPdName().equals(other.getPdName()));
+            && (this.getMaterialType() == null ? other.getMaterialType() == null : this.getMaterialType().equals(other.getMaterialType()))
+            && (this.getRatedCurrent() == null ? other.getRatedCurrent() == null : this.getRatedCurrent().equals(other.getRatedCurrent()))
+            && (this.getBandwidth() == null ? other.getBandwidth() == null : this.getBandwidth().equals(other.getBandwidth()))
+            && (this.getStopBandBy40() == null ? other.getStopBandBy40() == null : this.getStopBandBy40().equals(other.getStopBandBy40()))
+            && (this.getPassBandInsertionLossBy13() == null ? other.getPassBandInsertionLossBy13() == null : this.getPassBandInsertionLossBy13().equals(other.getPassBandInsertionLossBy13()))
+            && (this.getPassBandInsertionLossBy20typ() == null ? other.getPassBandInsertionLossBy20typ() == null : this.getPassBandInsertionLossBy20typ().equals(other.getPassBandInsertionLossBy20typ()))
+            && (this.getMaterialType2() == null ? other.getMaterialType2() == null : this.getMaterialType2().equals(other.getMaterialType2()))
+            && (this.getBasisMaterial() == null ? other.getBasisMaterial() == null : this.getBasisMaterial().equals(other.getBasisMaterial()))
+            && (this.getOutlet() == null ? other.getOutlet() == null : this.getOutlet().equals(other.getOutlet()))
+            && (this.getEvaluatingScope() == null ? other.getEvaluatingScope() == null : this.getEvaluatingScope().equals(other.getEvaluatingScope()))
+            && (this.getAppearance() == null ? other.getAppearance() == null : this.getAppearance().equals(other.getAppearance()));
     }
 
     @Override
@@ -730,9 +826,8 @@ public class PdInfoMaterial implements Serializable {
         result = prime * result + ((getFrequencyRange() == null) ? 0 : getFrequencyRange().hashCode());
         result = prime * result + ((getVswrStopBand() == null) ? 0 : getVswrStopBand().hashCode());
         result = prime * result + ((getVswrPassBand() == null) ? 0 : getVswrPassBand().hashCode());
-        result = prime * result + ((getStopBand() == null) ? 0 : getStopBand().hashCode());
+        result = prime * result + ((getStopBandBy20() == null) ? 0 : getStopBandBy20().hashCode());
         result = prime * result + ((getCutOffFrequency() == null) ? 0 : getCutOffFrequency().hashCode());
-        result = prime * result + ((getPassBandInsertionLoss() == null) ? 0 : getPassBandInsertionLoss().hashCode());
         result = prime * result + ((getBreakdownVoltage() == null) ? 0 : getBreakdownVoltage().hashCode());
         result = prime * result + ((getInsulationResistance() == null) ? 0 : getInsulationResistance().hashCode());
         result = prime * result + ((getFlexureStrength() == null) ? 0 : getFlexureStrength().hashCode());
@@ -760,8 +855,17 @@ public class PdInfoMaterial implements Serializable {
         result = prime * result + ((getOutOfBandRejection3() == null) ? 0 : getOutOfBandRejection3().hashCode());
         result = prime * result + ((getOutOfBandRejection4() == null) ? 0 : getOutOfBandRejection4().hashCode());
         result = prime * result + ((getOutOfBandRejection5() == null) ? 0 : getOutOfBandRejection5().hashCode());
-        result = prime * result + ((getMaterial() == null) ? 0 : getMaterial().hashCode());
-        result = prime * result + ((getPdName() == null) ? 0 : getPdName().hashCode());
+        result = prime * result + ((getMaterialType() == null) ? 0 : getMaterialType().hashCode());
+        result = prime * result + ((getRatedCurrent() == null) ? 0 : getRatedCurrent().hashCode());
+        result = prime * result + ((getBandwidth() == null) ? 0 : getBandwidth().hashCode());
+        result = prime * result + ((getStopBandBy40() == null) ? 0 : getStopBandBy40().hashCode());
+        result = prime * result + ((getPassBandInsertionLossBy13() == null) ? 0 : getPassBandInsertionLossBy13().hashCode());
+        result = prime * result + ((getPassBandInsertionLossBy20typ() == null) ? 0 : getPassBandInsertionLossBy20typ().hashCode());
+        result = prime * result + ((getMaterialType2() == null) ? 0 : getMaterialType2().hashCode());
+        result = prime * result + ((getBasisMaterial() == null) ? 0 : getBasisMaterial().hashCode());
+        result = prime * result + ((getOutlet() == null) ? 0 : getOutlet().hashCode());
+        result = prime * result + ((getEvaluatingScope() == null) ? 0 : getEvaluatingScope().hashCode());
+        result = prime * result + ((getAppearance() == null) ? 0 : getAppearance().hashCode());
         return result;
     }
 }

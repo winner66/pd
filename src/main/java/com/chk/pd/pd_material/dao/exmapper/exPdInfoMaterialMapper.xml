@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chk.pd.pd_material.dao.exmapper.exPdInfoMaterialMapper">
+  <resultMap id="BaseResultMap" type="com.chk.pd.pd_material.domain.PdInfoMaterial">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pd_model_id" jdbcType="INTEGER" property="pdModelId" />
+    <result column="std" jdbcType="VARCHAR" property="std" />
+    <result column="quality" jdbcType="VARCHAR" property="quality" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="size" jdbcType="DOUBLE" property="size" />
+    <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
+    <result column="surface_code" jdbcType="VARCHAR" property="surfaceCode" />
+    <result column="thickness_code" jdbcType="VARCHAR" property="thicknessCode" />
+    <result column="length_width_code" jdbcType="VARCHAR" property="lengthWidthCode" />
+    <result column="material_code" jdbcType="VARCHAR" property="materialCode" />
+    <result column="center_frequency" jdbcType="VARCHAR" property="centerFrequency" />
+    <result column="pass_band_range" jdbcType="VARCHAR" property="passBandRange" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="ripple" jdbcType="VARCHAR" property="ripple" />
+    <result column="power_capacity" jdbcType="VARCHAR" property="powerCapacity" />
+    <result column="vswr" jdbcType="VARCHAR" property="vswr" />
+    <result column="amplitude_balance" jdbcType="VARCHAR" property="amplitudeBalance" />
+    <result column="phase_balance" jdbcType="VARCHAR" property="phaseBalance" />
+    <result column="insertion_loss" jdbcType="VARCHAR" property="insertionLoss" />
+    <result column="isolation" jdbcType="VARCHAR" property="isolation" />
+    <result column="frequency_range" jdbcType="VARCHAR" property="frequencyRange" />
+    <result column="vswr_stop_band" jdbcType="VARCHAR" property="vswrStopBand" />
+    <result column="vswr_pass_Band" jdbcType="VARCHAR" property="vswrPassBand" />
+    <result column="stop_band_by20" jdbcType="VARCHAR" property="stopBandBy20" />
+    <result column="cut_off_frequency" jdbcType="VARCHAR" property="cutOffFrequency" />
+    <result column="breakdown_voltage" jdbcType="VARCHAR" property="breakdownVoltage" />
+    <result column="insulation_resistance" jdbcType="VARCHAR" property="insulationResistance" />
+    <result column="flexure_strength" jdbcType="VARCHAR" property="flexureStrength" />
+    <result column="dielectric_loss_by20G" jdbcType="VARCHAR" property="dielectricLossBy20g" />
+    <result column="dielectric_loss_by1_9G" jdbcType="VARCHAR" property="dielectricLossBy19g" />
+    <result column="permittivity_by15G" jdbcType="VARCHAR" property="permittivityBy15g" />
+    <result column="permittivity_by1_9G" jdbcType="VARCHAR" property="permittivityBy19g" />
+    <result column="dielectric_strength" jdbcType="VARCHAR" property="dielectricStrength" />
+    <result column="insulation_resistance_by125" jdbcType="VARCHAR" property="insulationResistanceBy125" />
+    <result column="insulation_resistance_by25" jdbcType="VARCHAR" property="insulationResistanceBy25" />
+    <result column="temperature_alteration_ratio" jdbcType="VARCHAR" property="temperatureAlterationRatio" />
+    <result column="dielectric_loss_by1MHz" jdbcType="VARCHAR" property="dielectricLossBy1mhz" />
+    <result column="permittivity" jdbcType="VARCHAR" property="permittivity" />
+    <result column="powder_density" jdbcType="VARCHAR" property="powderDensity" />
+    <result column="specific_surfaceArea" jdbcType="VARCHAR" property="specificSurfacearea" />
+    <result column="d90" jdbcType="VARCHAR" property="d90" />
+    <result column="d50" jdbcType="VARCHAR" property="d50" />
+    <result column="d10" jdbcType="VARCHAR" property="d10" />
+    <result column="sintering_temperature" jdbcType="VARCHAR" property="sinteringTemperature" />
+    <result column="soaking_time" jdbcType="VARCHAR" property="soakingTime" />
+    <result column="performance" jdbcType="VARCHAR" property="performance" />
+    <result column="pad_metallurgy" jdbcType="VARCHAR" property="padMetallurgy" />
+    <result column="out_of_band_rejection1" jdbcType="VARCHAR" property="outOfBandRejection1" />
+    <result column="out_of_band_rejection2" jdbcType="VARCHAR" property="outOfBandRejection2" />
+    <result column="out_of_band_rejection3" jdbcType="VARCHAR" property="outOfBandRejection3" />
+    <result column="out_of_band_rejection4" jdbcType="VARCHAR" property="outOfBandRejection4" />
+    <result column="out_of_band_rejection5" jdbcType="VARCHAR" property="outOfBandRejection5" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="rated_current" jdbcType="VARCHAR" property="ratedCurrent" />
+
+    <result column="bandwidth" jdbcType="VARCHAR" property="bandwidth" />
+    <result column="stop_band_by40" jdbcType="VARCHAR" property="stopBandBy40" />
+    <result column="pass_band_insertion_loss_by1_3" jdbcType="VARCHAR" property="passBandInsertionLossBy13" />
+    <result column="pass_band_insertion_loss_by2_0Typ" jdbcType="VARCHAR" property="passBandInsertionLossBy20typ" />
+    <result column="sizing_material_type" jdbcType="VARCHAR" property="sizingMaterialType" />
+    <result column="basis_material" jdbcType="VARCHAR" property="basisMaterial" />
+  </resultMap>
+  <select id="list">
+    select * from  pd_info_material ;
+  </select>
+
+  <sql id="where_clause">
+    <if test="materRsp.quality != null">
+      AND pi.quality = #{materRsp.quality}
+    </if>
+    <if test="materRsp.size != null">
+      AND pi.size = #{materRsp.size}
+    </if>
+    <if test="materRsp.std != null">
+      AND pi.std = #{materRsp.std}
+    </if>
+    <if test="materRsp.surfaceCode != null">
+      AND pi.surface_code = #{materRsp.surfaceCode}
+    </if>
+    <if test="materRsp.thicknessCode != null">
+      AND pi.thickness_code = #{materRsp.thicknessCode}
+    </if>
+    <if test="materRsp.lengthWidthCode != null">
+      AND pi.length_width_code= #{materRsp.lengthWidthCode}
+    </if>
+    <if test="materRsp.materialCode != null">
+      AND pi.material_code = #{materRsp.materialCode}
+    </if>
+    <if test="materRsp.centerFrequency != null">
+      AND pi.center_frequency = #{materRsp.centerFrequency}
+    </if>
+     <if test="materRsp.passBandRange != null">
+    AND pi.pass_band_range = #{materRsp.passBandRange}
+     </if>
+    <if test="materRsp.ripple != null">
+      AND pi.ripple = #{materRsp.ripple}
+    </if>
+    <if test="materRsp.powerCapacity != null">
+      AND pi.power_capacity = #{materRsp.powerCapacity}
+    </if>
+    <if test="materRsp.frequencyRange != null">
+      AND pi.frequency_range = #{materRsp.frequencyRange}
+    </if>
+    <if test="materRsp.cutOffFrequency != null">
+      AND pi.cut_off_frequency = #{materRsp.cutOffFrequency}
+    </if>
+    <if test="materRsp.materialType != null">
+      AND pi.material_type = #{materRsp.materialType}
+    </if>
+    <if test="materRsp.bandwidth != null">
+      AND pi.bandwidth = #{materRsp.bandwidth}
+    </if>
+
+
+
+  </sql>
+  <select id="listSize" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.name, pp.code, pp.rel, pp.id  from
+    (select pi.std as std, pi.size as size
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.std, pi.size) p
+    join pd_param pp on p.std = pp.rel and p.size = pp.code
+    where pp.type = #{materRsp.filterType}
+    --         group by pp.name,pp.code
+    order by idx
+  </select>
+
+  <select id="listQuality" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select quality
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.quality) p
+    join pd_param pp on p.quality = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+
+  <select id="listLengthWidthCode" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select length_width_code
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.length_width_code) p
+    join pd_param pp on p.length_width_code = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listBandwidth" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select bandwidth
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.bandwidth) p
+    join pd_param pp on p.bandwidth = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listFrequencyRange" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select frequency_range
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.frequency_range) p
+    join pd_param pp on p.frequency_range = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listThicknessCode" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select thickness_code
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.thickness_code) p
+    join pd_param pp on p.thickness_code = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listMaterialCode" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select material_code
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.material_code) p
+    join pd_param pp on p.material_code = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listSurfaceCode" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select surface_code
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.surface_code) p
+    join pd_param pp on p.surface_code = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listCenterFrequency" resultType="com.chk.pd.pd.domain.PdParam">
+  select pp.gp, pp.name, pp.code from
+  (select center_frequency
+  from  pd_info_material  pi
+  where 1=1
+  <include refid="where_clause" />
+  group by pi.center_frequency) p
+  join pd_param pp on p.center_frequency= pp.code where pp.type = #{materRsp.filterType} order  by idx
+</select>
+  <select id="listCutOffFrequency" resultType="com.chk.pd.pd.domain.PdParam">
+  select pp.gp, pp.name, pp.code from
+  (select cut_off_frequency
+  from  pd_info_material  pi
+  where 1=1
+  <include refid="where_clause" />
+  group by pi.cut_off_frequency) p
+  join pd_param pp on p.cut_off_frequency = pp.code where pp.type = #{materRsp.filterType} order  by idx
+</select>
+  <select id="listPassBandRange" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select pass_band_range
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.pass_band_range) p
+    join pd_param pp on p.pass_band_range = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listOutlet" resultType="com.chk.pd.pd.domain.PdParam">
+  select pp.gp, pp.name, pp.code from
+  (select outlet
+  from  pd_info_material  pi
+  where 1=1
+  <include refid="where_clause" />
+  group by pi.outlet) p
+  join pd_param pp on p.outlet = pp.code where pp.type = #{materRsp.filterType} order  by idx
+</select>
+  <select id="listStd" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select std
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.std) p
+    join pd_param pp on p.std = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listPadMetallurgy" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select pad_metallurgy
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.pad_metallurgy) p
+    join pd_param pp on p.pad_metallurgy = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listRipple" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select ripple
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.ripple) p
+    join pd_param pp on p.ripple = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+  <select id="listPowerCapacity" resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select power_capacity
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.power_capacity) p
+    join pd_param pp on p.power_capacity = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
+
+
+
+
+</mapper>

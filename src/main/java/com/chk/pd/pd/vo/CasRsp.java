@@ -19,10 +19,15 @@ public class CasRsp {
     public static String OPERA_WX = "wx";
     @JsonIgnore
     public static String OPERA_FILE = "file";
+    @JsonIgnore
+    public static String OPERA_dir = "noDir";
 
     private String opera;
 
     private String fileUrl;
+//
+    private String type;
+
     private HashMap<String,List<TableRsp>> data= new HashMap<>();
 
 
@@ -32,6 +37,15 @@ public class CasRsp {
         this.label = label;
         this.value = value;
         this.opera = OPERA_WX;
+        if (createList) {
+            this.children = new ArrayList<>();
+        }
+    }
+    public CasRsp(String label, String value, boolean createList,String opera,String type) {
+        this.label = label;
+        this.value = value;
+        this.opera = opera;
+        this.type=type;
         if (createList) {
             this.children = new ArrayList<>();
         }

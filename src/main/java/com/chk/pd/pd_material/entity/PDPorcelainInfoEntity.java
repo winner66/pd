@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 //瓷料
 @Data
-public class PDPorcelainInfoEntity implements Serializable {
+public class PDPorcelainInfoEntity  extends baseMaterialEntiey implements Serializable  {
 //瓷料
 private static final long serialVersionUID = 1L;
     private String pdname;
