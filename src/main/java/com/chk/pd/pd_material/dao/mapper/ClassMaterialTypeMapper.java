@@ -1,4 +1,4 @@
-package com.chk.pd.pd_material.dao;
+package com.chk.pd.pd_material.dao.mapper;
 
 import com.chk.pd.pd_material.domain.ClassMaterialType;
 import com.chk.pd.pd_material.domain.ClassMaterialTypeExample;

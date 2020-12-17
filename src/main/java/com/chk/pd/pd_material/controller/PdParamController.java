@@ -144,7 +144,14 @@ public class PdParamController {
             List<CasRsp> cas = paramService.listBandwidth(rsp);
             return Response.ok(cas);
         }
+        else  if (materialSearchParamEnum.model.value().equals(rsp.getFilterType())) {
 
+
+            rsp.setFilterType(materialSearchParamEnum.model.title());
+
+            List<CasRsp> cas = paramService.listModel(rsp);
+            return Response.ok(cas);
+        }
         else {
             return Response.ok();
         }

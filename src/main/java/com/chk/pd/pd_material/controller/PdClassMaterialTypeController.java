@@ -18,7 +18,7 @@ public class PdClassMaterialTypeController {
 
     @GetMapping("/getMatrialtypeByclassId/{id}")
     public Response getMatrialtypeByclassIds(@PathVariable("id") Integer id){
-        Integer res=materialTypeService.getMatrialtypeByclassId(id);
+       String res=materialTypeService.getMatrialtypeByclassId(id);
         return Response.ok(res);
     }
 }

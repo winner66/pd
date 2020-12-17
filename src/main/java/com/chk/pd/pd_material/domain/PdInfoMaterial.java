@@ -13,7 +13,7 @@ public class PdInfoMaterial implements Serializable {
 
     private String model;
 
-    private Double size;
+    private String  size;
 
     private String searchKey;
 
@@ -109,7 +109,7 @@ public class PdInfoMaterial implements Serializable {
 
     private String outOfBandRejection5;
 
-    private Integer materialType;
+    private String materialType;
 
     private String ratedCurrent;
 
@@ -173,11 +173,11 @@ public class PdInfoMaterial implements Serializable {
         this.model = model == null ? null : model.trim();
     }
 
-    public Double getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Double size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -557,11 +557,11 @@ public class PdInfoMaterial implements Serializable {
         this.outOfBandRejection5 = outOfBandRejection5 == null ? null : outOfBandRejection5.trim();
     }
 
-    public Integer getMaterialType() {
+    public String getMaterialType() {
         return materialType;
     }
 
-    public void setMaterialType(Integer materialType) {
+    public void setMaterialType(String materialType) {
         this.materialType = materialType;
     }
 

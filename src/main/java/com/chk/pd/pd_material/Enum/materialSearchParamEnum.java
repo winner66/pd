@@ -5,96 +5,94 @@ public enum materialSearchParamEnum {
     filterType("filterType","搜索参数类型"),
     std("std","执行标准"),
     clzqa("clzqa","分类"),
-
     quality("quality","质量等级"),
 
-    model("model",""),
+    model("model","型号"),
 
-    size("size",""),
+    size("size","封装及外形尺寸"),
 
-    searchKey("searchKey",""),
+    surfaceCode("surfaceCode","陶瓷基片的表面代码"),
 
-    surfaceCode("surfaceCode",""),
+    thicknessCode("thicknessCode","陶瓷基片的厚度代码"),
 
-    thicknessCode("thicknessCode",""),
+    lengthWidthCode("lengthWidthCode","陶瓷基片的长宽代码"),
 
-    lengthWidthCode("lengthWidthCode",""),
+    materialCode("materialCode","陶瓷基片的材料代码"),
 
-    materialCode("materialCode",""),
+    centerFrequency("centerFrequency","中心频率"),
 
-    centerFrequency("centerFrequency",""),
+    passBandRange("passBandRange","通带范围"),
 
-    passBandRange("passBandRange",""),
+    other("other","其他要求"),
 
-    other("other",""),
+    ripple("ripple","带内纹波"),
 
-    ripple("ripple",""),
+    powerCapacity("powerCapacity","功率容量"),
 
-    powerCapacity("powerCapacity",""),
+    vswr("vswr","驻波"),
 
-    vswr("vswr",""),
+    amplitudeBalance("amplitudeBalance","幅度平衡度"),
 
-    amplitudeBalance("amplitudeBalance",""),
+    phaseBalance("phaseBalance","相位平衡度"),
 
-    phaseBalance("phaseBalance",""),
+    insertionLoss("insertionLoss","插入损耗"),
 
-    insertionLoss("insertionLoss",""),
+    isolation("isolation","隔离度"),
 
-    isolation("isolation",""),
+    frequencyRange("frequencyRange","频率范围"),
 
-    frequencyRange("frequencyRange",""),
+    vswrStopBand("vswrStopBand","电压驻波比阻带"),
 
-    vswrStopBand("vswrStopBand",""),
+    vswrPassBand("vswrPassBand","电压驻波比通带1.5:1"),
 
-    vswrPassBand("vswrPassBand",""),
+    stopBandBy20("stopBandBy20","阻带损耗(≥20dB）MHz"),
 
-    stopBandBy20("stopBandBy20",""),
+    cutOffFrequency("cutOffFrequency","3dB截止频率"),
 
-    cutOffFrequency("cutOffFrequency",""),
+    breakdownVoltage("breakdownVoltage","击穿电压"),
 
-    breakdownVoltage("breakdownVoltage",""),
+    insulationResistance("insulationResistance","绝缘电阻"),
 
-    insulationResistance("insulationResistance",""),
+    flexureStrength("flexureStrength","抗弯强度"),
 
-    flexureStrength("flexureStrength",""),
-
-    dielectricStrength("dielectricStrength",""),
+    dielectricStrength("dielectricStrength","绝缘强度"),
 
 
-    temperatureAlterationRatio("temperatureAlterationRatio",""),
+    temperatureAlterationRatio("temperatureAlterationRatio","温度变化率"),
 
-    dielectricLossBy1mhz("dielectricLossBy1mhz",""),
+    dielectricLossBy1mhz("dielectricLossBy1mhz","介电损耗@1MHZ"),
 
-    permittivity("permittivity",""),
+    permittivity("permittivity","介电常数"),
 
-    powderDensity("powderDensity",""),
+    powderDensity("powderDensity","粉体密度"),
 
     specificSurfacearea("specificSurfacearea",""),
+
     sinteringTemperature("sinteringTemperature",""),
 
-    soakingTime("soakingTime",""),
+    soakingTime("soakingTime","烧结温度"),
 
-    performance("performance",""),
+    performance("performance","产品性能"),
 
-    padMetallurgy("padMetallurgy",""),
+    padMetallurgy("padMetallurgy","金属成分"),
 
     materialType("materialType",""),
 
-    ratedCurrent("ratedCurrent",""),
+    ratedCurrent("ratedCurrent","额定电流"),
 
-    bandwidth("bandwidth",""),
+    bandwidth("bandwidth","带宽"),
 
     stopBandBy40("stopBandBy40",""),
 
     materialType2("materialType2",""),
 
-    basisMaterial("basisMaterial",""),
+    basisMaterial("basisMaterial","适配基体材料"),
 
-    outlet("outlet",""),
+    outlet("outlet","引出形式"),
 
-    evaluatingScope("evaluatingScope",""),
+    evaluatingScope("evaluatingScope","指标范围"),
 
-    appearance("appearance","");
+    appearance("appearance","外形url");
 
     private String value;
 

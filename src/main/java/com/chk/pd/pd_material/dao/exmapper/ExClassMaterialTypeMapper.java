@@ -6,6 +6,6 @@ import com.chk.pd.pd_material.domain.ClassMaterialType;
 
 import java.util.List;
 
-public interface exClassMaterialTypeMapper {
+public interface ExClassMaterialTypeMapper {
     List<ClassMaterialType> List();
 }

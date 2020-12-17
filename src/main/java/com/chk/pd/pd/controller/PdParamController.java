@@ -61,7 +61,7 @@ public class PdParamController {
             List<CasRsp> cas = paramService.listCapacity(pdInfoReq);
             return Response.ok(cas);
         }else if ("clzqa".equals(pdInfoReq.getFilterType())) {
-            List<CasRsp> cas = paramService.listClass(pdInfoReq);
+            List<CasRsp> cas = paramService.listPdClass(pdInfoReq);
             return Response.ok(cas);
         }
         else if("frequencyRange".equals(pdInfoReq.getFilterType())){

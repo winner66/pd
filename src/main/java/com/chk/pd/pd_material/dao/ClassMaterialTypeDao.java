@@ -1,7 +1,7 @@
-package com.chk.pd.pd_material.dao.dao;
+package com.chk.pd.pd_material.dao;
 
-import com.chk.pd.pd_material.dao.ClassMaterialTypeMapper;
-import com.chk.pd.pd_material.dao.exmapper.exClassMaterialTypeMapper;
+import com.chk.pd.pd_material.dao.mapper.ClassMaterialTypeMapper;
+import com.chk.pd.pd_material.dao.exmapper.ExClassMaterialTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("all")
 public class ClassMaterialTypeDao {
     @Autowired
-    private exClassMaterialTypeMapper exClassMaterialmapper;
+    private ExClassMaterialTypeMapper exClassMaterialmapper;
     @Autowired
     private ClassMaterialTypeMapper  ClassMaterialmapper;
 
@@ -17,7 +17,7 @@ public class ClassMaterialTypeDao {
         return ClassMaterialmapper;
     }
 
-    public exClassMaterialTypeMapper getExClassMaterialmapper() {
+    public ExClassMaterialTypeMapper getExClassMaterialmapper() {
         return exClassMaterialmapper;
     }
 }

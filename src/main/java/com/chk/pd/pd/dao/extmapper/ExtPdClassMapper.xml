@@ -16,4 +16,17 @@
          select *
         from pd_class where p_id=#{id}
     </select>
+
+
+    <select id="getClassById" resultType="com.chk.pd.pd.domain.PdClass">
+        select * from pd_class where id=#{id}
+    </select>
+
+    <select id="getClassByIds"  parameterType="list" resultType="com.chk.pd.pd.domain.PdClass">
+        select * from pd_class where id in
+        <foreach collection="list" item="r" open="(" separator="," close=")">
+            #{r}
+        </foreach>
+    </select>
+
 </mapper>

@@ -8,8 +8,13 @@ import com.chk.pd.pd.domain.PdClass;
 import com.chk.pd.pd.vo.CasRsp;
 import com.chk.pd.pd.vo.PdClassRsp;
 import com.chk.pd.pd.vo.PdInfoReq;
+import com.chk.pd.pd_material.Dto.materialRsp;
+import com.chk.pd.pd_material.dao.pdInfoMaterialDao;
+import com.chk.pd.pd_microware.Dao.pdInfoMicrowareDao;
+import com.chk.pd.pd_microware.Dto.microwareRsp;
 import com.chk.pd.pub.dao.SysDictDao;
 import com.chk.pd.pub.domain.SysDict;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +22,16 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
+@SuppressWarnings("all")
 public class PdClassService {
 
     @Autowired
     private PdInfoDao infoDao;
+    @Autowired
+    private pdInfoMaterialDao materialDao;
 
+//    @Autowired
+//    private pdInfoMicrowareDao microwareDao;
     @Autowired
     private PdClassDao pdClassDao;
 
@@ -62,8 +72,7 @@ public class PdClassService {
         return vos;
     }
 
-
-    public List<CasRsp> listPdClass(PdInfoReq pdInfoReq) {
+    public List<CasRsp> listAllPdClass(PdInfoReq pdInfoReq) {
         List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
 
         Map<String, SysDict> pdfClz = new HashMap();
@@ -134,6 +143,283 @@ public class PdClassService {
         }
         return res;
     }
+    public List<CasRsp> listPdClass(PdInfoReq pdInfoReq) {
+        List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+
+        Map<String, SysDict> pdfClz = new HashMap();
+        for (SysDict dict : dicts) {
+            pdfClz.put(dict.getName(), dict);
+        }
+
+
+        List<PdClass> lev2Clz = pdClassDao.getPdClasses(2);
+        //level 2
+        Long id1=1L,id2=2L;
+        Map<Long, CasRsp> lev2Map = new LinkedHashMap<>();
+        for (PdClass clz : lev2Clz) {
+            if (clz.getpId()==id1||clz.getpId()==id2) {
+            lev2Map.put(clz.getId(), new CasRsp(clz.getShowName(), clz.getId().toString(), true));
+            }
+        }
+
+        List<PdClass> lev3Clz;
+        if (pdInfoReq == null || pdInfoReq.isNull()) {
+            lev3Clz = pdClassDao.getPdClasses(3);
+        } else {
+            lev3Clz = infoDao.getExtPdInfoMapper().listLev3Class(pdInfoReq);
+        }
+        Map<String, CasRsp> lev2_2Map = new LinkedHashMap<>();
+        for (PdClass lev3 : lev3Clz) {
+            CasRsp lev2 = lev2Map.get(lev3.getpId());
+            if(lev2!=null){
+                //有2级并列分类的，现放2_2,再放3
+                if (StringUtils.isNotBlank(lev3.getQaGp())) {
+                    String key = lev2.getValue() + "_" + lev3.getQaGp();
+                    CasRsp lev2_2 = lev2_2Map.get(key);
+                    if (lev2 != null) {
+                        if (lev2_2 == null) {
+                            lev2_2 = new CasRsp(lev3.getQaGp(), key, true);
+                            lev2.getChildren().add(lev2_2);
+                            lev2_2Map.put(key, lev2_2);
+                        }
+                        lev2_2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+                    }
+                } else {
+                    //无2级并列分类, 直接放3级分类
+                    if (pdfClz.containsKey(lev3.getName())) {
+                        String file = pdfClz.get(lev3.getName()).getValue();
+                        lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false, file));
+                    } else {
+                        lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+                    }
+                }
+            }
+        }
+        //过滤掉没有子分类，或者子分类是打开文件类型的二级类目, 用于搜索页
+        ArrayList<CasRsp> res = new ArrayList<>(lev2Map.values());
+        //pdInfoReq为null，是首页打开，首页打开的不过滤
+        if (pdInfoReq != null) {
+            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+                CasRsp cas = i.next();
+                for (Iterator<CasRsp> j = cas.getChildren().iterator(); j.hasNext(); ) {
+                    CasRsp next = j.next();
+                    if (CasRsp.OPERA_FILE.equals(next.getOpera())) {
+                        j.remove();
+                    }
+                }
+            }
+            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+                CasRsp cas = i.next();
+                if (cas.getChildren().size() == 0) {
+                    i.remove();
+                }
+            }
+        }
+        return res;
+    }
+
+
+    public List<CasRsp> listMaterialPdClass(materialRsp pdInfoReq) {
+        List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+//        材料器件id
+        Long id=3L;
+        Map<String, SysDict> pdfClz = new HashMap();
+        for (SysDict dict : dicts) {
+            pdfClz.put(dict.getName(), dict);
+        }
+
+        List<PdClass> lev2Clz = pdClassDao.getPdClasses(2);
+        //level 2
+        Map<Long, CasRsp> lev2Map = new LinkedHashMap<>();
+        for (PdClass clz : lev2Clz) {
+            if (clz.getpId()==id) {
+            lev2Map.put(clz.getId(), new CasRsp(clz.getShowName(), clz.getId().toString(), true));
+            }
+        }
+
+        List<PdClass> lev3Clz;
+        if (pdInfoReq == null || pdInfoReq.isNull()) {
+            lev3Clz = pdClassDao.getPdClasses(3);
+        } else {
+            lev3Clz = materialDao.getExmaterialMapper().listLev3Class(pdInfoReq);
+        }
+        Map<String, CasRsp> lev2_2Map = new LinkedHashMap<>();
+        for (PdClass lev3 : lev3Clz) {
+            CasRsp lev2 = lev2Map.get(lev3.getpId());
+            if(lev2!=null){
+                //有2级并列分类的，现放2_2,再放3
+                if (StringUtils.isNotBlank(lev3.getQaGp())) {
+                    String key = lev2.getValue() + "_" + lev3.getQaGp();
+                    CasRsp lev2_2 = lev2_2Map.get(key);
+                    if (lev2 != null) {
+                        if (lev2_2 == null) {
+                            lev2_2 = new CasRsp(lev3.getQaGp(), key, true);
+                            lev2.getChildren().add(lev2_2);
+                            lev2_2Map.put(key, lev2_2);
+                        }
+                        lev2_2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+                    }
+                } else {
+                    //无2级并列分类, 直接放3级分类
+                    if (pdfClz.containsKey(lev3.getName())) {
+                        String file = pdfClz.get(lev3.getName()).getValue();
+                        lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false, file));
+                    } else {
+                        lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+                    }
+                }
+            }
+
+        }
+        //过滤掉没有子分类，或者子分类是打开文件类型的二级类目, 用于搜索页
+        ArrayList<CasRsp> res = new ArrayList<>(lev2Map.values());
+        //pdInfoReq为null，是首页打开，首页打开的不过滤
+        if (pdInfoReq != null) {
+            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+                CasRsp cas = i.next();
+                for (Iterator<CasRsp> j = cas.getChildren().iterator(); j.hasNext(); ) {
+                    CasRsp next = j.next();
+                    if (CasRsp.OPERA_FILE.equals(next.getOpera())) {
+                        j.remove();
+                    }
+                }
+            }
+            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+                CasRsp cas = i.next();
+                if (cas.getChildren().size() == 0) {
+                    i.remove();
+                }
+            }
+        }
+        return res;
+    }
+
+//    public List<CasRsp> listMicrowarePdClass(microwareRsp pdInfoReq) {
+//        List<SysDict> dicts = dictDao.listByType("打开PDF的产品分类");
+//
+//        Map<String, SysDict> pdfClz = new HashMap();
+//        for (SysDict dict : dicts) {
+//            pdfClz.put(dict.getName(), dict);
+//        }
+//
+////        微波id
+//        Long id=4L;
+//        List<PdClass> lev2Clz = pdClassDao.getPdClasses(2);
+//        //level 2
+//        Map<Long, CasRsp> lev2Map = new LinkedHashMap<>();
+//        for (PdClass clz : lev2Clz) {
+//            if (id==clz.getpId()) {
+//            lev2Map.put(clz.getId(), new CasRsp(clz.getShowName(), clz.getId().toString(), true));
+//            }
+//        }
+//
+//        List<PdClass> lev3Clz;
+//        if (pdInfoReq == null || pdInfoReq.isNull()) {
+//            lev3Clz = pdClassDao.getPdClasses(3);
+//        } else {
+//            lev3Clz = microwareDao.getExtPdInfoMapper().listLev3Class(pdInfoReq);
+//        }
+//        Map<String, CasRsp> lev2_2Map = new LinkedHashMap<>();
+//        for (PdClass lev3 : lev3Clz) {
+//            CasRsp lev2 = lev2Map.get(lev3.getpId());
+//           if(lev2!=null){
+    //            //有2级并列分类的，现放2_2,再放3
+//            if (StringUtils.isNotBlank(lev3.getQaGp())) {
+//                String key = lev2.getValue() + "_" + lev3.getQaGp();
+//                CasRsp lev2_2 = lev2_2Map.get(key);
+//                if (lev2 != null) {
+//                    if (lev2_2 == null) {
+//                        lev2_2 = new CasRsp(lev3.getQaGp(), key, true);
+//                        lev2.getChildren().add(lev2_2);
+//                        lev2_2Map.put(key, lev2_2);
+//                    }
+//                    lev2_2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+//                }
+//            } else {
+//                //无2级并列分类, 直接放3级分类
+//                if (pdfClz.containsKey(lev3.getName())) {
+//                    String file = pdfClz.get(lev3.getName()).getValue();
+//                    lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false, file));
+//                } else {
+//                    lev2.getChildren().add(new CasRsp(lev3.getShowName(), lev3.getId().toString(), false));
+//                }
+//            }
+//           }
+
+//        }
+//        //过滤掉没有子分类，或者子分类是打开文件类型的二级类目, 用于搜索页
+//        ArrayList<CasRsp> res = new ArrayList<>(lev2Map.values());
+//        //pdInfoReq为null，是首页打开，首页打开的不过滤
+//        if (pdInfoReq != null) {
+//            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+//                CasRsp cas = i.next();
+//                for (Iterator<CasRsp> j = cas.getChildren().iterator(); j.hasNext(); ) {
+//                    CasRsp next = j.next();
+//                    if (CasRsp.OPERA_FILE.equals(next.getOpera())) {
+//                        j.remove();
+//                    }
+//                }
+//            }
+//            for (Iterator<CasRsp> i = res.iterator(); i.hasNext(); ) {
+//                CasRsp cas = i.next();
+//                if (cas.getChildren().size() == 0) {
+//                    i.remove();
+//                }
+//            }
+//        }
+//        return res;
+//    }
+
+    /**
+     * 查询某class下所有的class
+     * @param id
+     * @return
+     */
+    public List<PdClass>  listClass(Long id){
+        List<PdClass> pdClasses =  this.list(id);
+        List<PdClass> resulet =this.list(id);
+        for (PdClass pd:pdClasses             ) {
+            List<PdClass> chil= this.list2(pd.getId());
+            resulet.addAll(chil);
+        }
+        return resulet;
+//
+    }
+    //    查询一级class所有的子class（页）  (得到三级class)
+    public List<PdClass> list(Long id) {
+        PdClass Class = pdClassDao.getPdClassMapper().selectByPrimaryKey(id);
+
+        List<PdClass> pdClasses = pdClassDao.getExtClassMapper().list();
+        List<PdClass> resulet = new ArrayList<>();
+        Set<Long> set = new HashSet<>();
+        for (PdClass pdClass : pdClasses) {
+            if (pdClass.getLevel() == 2&&pdClass.getpId()==id) {
+                set.add(pdClass.getId());
+            }
+        }
+        for (PdClass pdClass : pdClasses) {
+            if (pdClass.getLevel() == 3&&set.contains(pdClass.getpId())) {
+                resulet.add(pdClass);
+            }
+        }
+        return resulet;
+    }
+
+    //    查询二级class所有的子class（页）
+    public List<PdClass> list2(Long id) {
+        PdClass Class = pdClassDao.getPdClassMapper().selectByPrimaryKey(id);
+        List<PdClass> pdClasses = pdClassDao.getExtClassMapper().list();
+        List<PdClass> resulet = new ArrayList<>();
+        Set<Long> set = new HashSet<>();
+
+        for (PdClass pdClass : pdClasses) {
+            if (pdClass.getLevel() == 3&&pdClass.getpId()==id) {
+                resulet.add(pdClass);
+            }
+        }
+        return resulet;
+    }
+
 
 //    public List<PdClassRsp> listManualTop2() {
 //        List<SysDict> dicts = dictDao.listByType("应用指南");
@@ -156,59 +442,7 @@ public class PdClassService {
         return rsp;
     }
 
-//    public List<CasRsp> listPdClass(PdInfoReq pdInfoReq) {
-//        List<CasRsp> rsp = new ArrayList<>();
-//        List<PdClass> pdClasses = pdClassDao.getPdClasses(2);
-//        //level 2
-//        Map<Long, PdClass> pdMap = new HashMap<>();
-//        for (PdClass clz : pdClasses) {
-//            if (clz.getLevel() == 2) {
-//                rsp.add(new CasRsp(clz.getShowName(), clz.getId().toString(), true));
-//                pdMap.put(clz.getId(), clz);
-//            }
-//        }
-//
-//        //level 3
-//        List<PdClassQaVo> qas;
-//        if (pdInfoReq == null || pdInfoReq.isNull()){
-//            qas = pdClassDao.getExtClassMapper().listClass();
-//        }else{
-//            qas = infoDao.getExtPdInfoMapper().listClass(pdInfoReq);
-//        }
-//        for (CasRsp lev2 : rsp) {
-//            //电容器 有3级
-////            if (pdMap.get(Long.valueOf(lev2.getValue())).getpId() == 1000) {
-//                Map<String, CasRsp> map = new HashMap<>();
-//                for (PdClassQaVo qa : qas) {
-//                    if (qa.getPId().toString().equals(lev2.getValue())) {
-//                        String value = lev2.getValue() + "_" + qa.getQaGp();
-//                        CasRsp lev3 = map.get(value);
-//                        if (lev3 == null) {
-//                            lev3 = new CasRsp(qa.getQaGp(), value, true);
-//                            lev2.getChildren().add(lev3);
-//                            map.put(value, lev3);
-//                        }
-//                        lev3.getChildren().add(new CasRsp(qa.getName(), qa.getPdClassId() + "__" + qa.getQaCodes(), false));
-//                    }
-//                }
-////            }else{
-////                //滤波器有2级
-////                for (PdClassQaVo qa : qas) {
-////                    if (qa.getPdClassId().toString().equals(lev2.getValue())) {
-////                        lev2.getChildren().add(new CasRsp(qa.getQaGp(), qa.getPdClassId() + "__" + qa.getQaCodes(), false));
-////                    }
-////                }
-////            }
-//        }
-//
-//        for(Iterator<CasRsp> i = rsp.iterator(); i.hasNext();){
-//            CasRsp cas = i.next();
-//            if (cas.getChildren().size() == 0){
-//                i.remove();
-//            }
-//        }
-//        return rsp;
-//    }
+
 
 //    v2
     public List<CasRsp> listPdClassV2(PdInfoReq pdInfoReq) {
@@ -351,6 +585,7 @@ public class PdClassService {
         }
         return res;
     }
+
 
 
 }

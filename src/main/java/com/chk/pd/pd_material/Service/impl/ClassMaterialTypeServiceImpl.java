@@ -2,7 +2,7 @@ package com.chk.pd.pd_material.Service.impl;
 
 import com.chk.pd.common.exception.BusinessException;
 import com.chk.pd.pd_material.Service.ClassMaterialTypeService;
-import com.chk.pd.pd_material.dao.dao.ClassMaterialTypeDao;
+import com.chk.pd.pd_material.dao.ClassMaterialTypeDao;
 import com.chk.pd.pd_material.domain.ClassMaterialType;
 import com.chk.pd.pd_material.domain.ClassMaterialTypeExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class ClassMaterialTypeServiceImpl implements ClassMaterialTypeService {
         return  res;
     }
 
-    public Integer getMatrialtypeByclassId(Integer classId){
+    public String getMatrialtypeByclassId(Integer classId){
 
         ClassMaterialTypeExample example= new ClassMaterialTypeExample();
         example.createCriteria().andClassIdEqualTo(classId);
@@ -59,7 +59,7 @@ public class ClassMaterialTypeServiceImpl implements ClassMaterialTypeService {
         if(typeset.size()>1){
             throw  new BusinessException("材料器件表class——id对应的type数据出错（有多个）");
         }
-        Integer res=types.get(0).getMaterialType();
+        String res=types.get(0).getMaterialType()+"_"+types.get(0).getMaterialType2();
         return res;
     }
 }

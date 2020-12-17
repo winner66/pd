@@ -1,18 +1,17 @@
 package com.chk.pd.pd_material.Service.impl;
 
-import com.chk.pd.common.vo.ClassType;
+import com.chk.pd.common.vo.PageReq;
 import com.chk.pd.common.vo.ParamType;
-import com.chk.pd.common.vo.ParamTypeMaterial;
-import com.chk.pd.pd.dao.PdInfoDao;
 import com.chk.pd.pd.dao.PdParamDao;
 import com.chk.pd.pd.domain.PdParam;
 import com.chk.pd.pd.service.PdClassService;
 import com.chk.pd.pd.vo.CasRsp;
 import com.chk.pd.pd.vo.PdInfoReq;
-import com.chk.pd.pd.vo.PdInfoReqFuzzyByIn;
+import com.chk.pd.pd.vo.PdInfoRsp;
 import com.chk.pd.pd.vo.TreeRsp;
 import com.chk.pd.pd_material.Dto.materialRsp;
-import com.chk.pd.pd_material.dao.dao.pdInfoMaterialDao;
+import com.chk.pd.pd_material.Dto.pdMaterialInfoVo;
+import com.chk.pd.pd_material.dao.pdInfoMaterialDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,8 @@ public class PdParamServiceImpl {
 
     @Autowired
     private pdInfoServiceImpl  materialService;
+
+
 
     public List<CasRsp> listQuality(materialRsp materRsp) {
 
@@ -207,5 +208,14 @@ public class PdParamServiceImpl {
 
     public List<TreeRsp> listClass(materialRsp rsp) {
        return this.materialService.getclz();
+    }
+
+    public List<CasRsp> listModel(materialRsp rsp) {
+        List<PdParam> params =  materialDao.getExmaterialMapper().listModel(rsp);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+        }
+        return cas;
     }
 }

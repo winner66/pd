@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chk.pd.pd_material.dao.exmapper.exPdInfoMaterialMapper">
+<mapper namespace="com.chk.pd.pd_material.dao.exmapper.ExPdInfoMaterialMapper">
   <resultMap id="BaseResultMap" type="com.chk.pd.pd_material.domain.PdInfoMaterial">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pd_model_id" jdbcType="INTEGER" property="pdModelId" />
     <result column="std" jdbcType="VARCHAR" property="std" />
     <result column="quality" jdbcType="VARCHAR" property="quality" />
     <result column="model" jdbcType="VARCHAR" property="model" />
-    <result column="size" jdbcType="DOUBLE" property="size" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
     <result column="surface_code" jdbcType="VARCHAR" property="surfaceCode" />
     <result column="thickness_code" jdbcType="VARCHAR" property="thicknessCode" />
@@ -55,7 +55,7 @@
     <result column="out_of_band_rejection3" jdbcType="VARCHAR" property="outOfBandRejection3" />
     <result column="out_of_band_rejection4" jdbcType="VARCHAR" property="outOfBandRejection4" />
     <result column="out_of_band_rejection5" jdbcType="VARCHAR" property="outOfBandRejection5" />
-    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="material_type" jdbcType="VARCHAR" property="materialType" />
     <result column="rated_current" jdbcType="VARCHAR" property="ratedCurrent" />
 
     <result column="bandwidth" jdbcType="VARCHAR" property="bandwidth" />
@@ -112,6 +112,9 @@
     <if test="materRsp.materialType != null">
       AND pi.material_type = #{materRsp.materialType}
     </if>
+    <if test="materRsp.materialType2 != null">
+      AND pi.material_type2 = #{materRsp.materialType2}
+    </if>
     <if test="materRsp.bandwidth != null">
       AND pi.bandwidth = #{materRsp.bandwidth}
     </if>
@@ -119,6 +122,89 @@
 
 
   </sql>
+
+  <select id="getPdMaterialInfos" resultType="com.chk.pd.pd_material.Dto.pdMaterialInfoVo">
+    select
+    pm.id as pmId,
+    pm.name as pmName,
+    pm.code as pmCode,
+    pm.order_rule as orderRule,
+
+    pc.id as pcId,
+    pc.name as pcName,
+    pc.icon_url as pcIcon,
+
+    pi.id  as id ,
+    pi.pd_model_id as pdModelId ,
+    pi.std  as std ,
+    pi.quality  as quality ,
+    pi.model as model,
+    pi.size as size ,
+    pi.search_key as searchKey ,
+    pi.surface_code as surfaceCode ,
+    pi.thickness_code as thicknessCode ,
+    pi.length_width_code  as lengthWidthCode ,
+    pi.material_code as materialCode ,
+    pi.center_frequency  as centerFrequency ,
+    pi.pass_band_range  as passBandRange ,
+    pi.other  as other,
+    pi.ripple as ripple,
+    pi.power_capacity as powerCapacity,
+    pi.vswr as vswr ,
+    pi.amplitude_balance as amplitudeBalance ,
+    pi.phase_balance as phaseBalance,
+    pi.insertion_loss as insertionLoss,
+    pi.isolation as isolation,
+    pi.frequency_range as frequencyRange,
+    pi.vswr_stop_band as vswrStopBand,
+    pi.vswr_pass_Band as vswrPassBand,
+    pi.stop_band_by20 as stopBandBy20,
+    pi.cut_off_frequency as cutOffFrequency ,
+    pi.breakdown_voltage as breakdownVoltage,
+    pi.insulation_resistance  as insulationResistance,
+    pi.flexure_strength as flexureStrength ,
+    pi.dielectric_loss_by20G  as dielectricLossBy20g ,
+    pi.dielectric_loss_by1_9G as dielectricLossBy19g,
+    pi.permittivity_by15G  as permittivityBy15g,
+    pi.permittivity_by1_9G  as permittivityBy19g,
+    pi.dielectric_strength as dielectricStrength,
+    pi.insulation_resistance_by125 as  insulationResistanceBy125,
+    pi.insulation_resistance_by25 as insulationResistanceBy25,
+    pi.temperature_alteration_ratio as temperatureAlterationRatio,
+    pi.dielectric_loss_by1MHz as dielectricLossBy1mhz,
+    pi.permittivity as permittivity,
+    pi.powder_density as powderDensity,
+    pi.specific_surfaceArea as specificSurfacearea,
+    pi.d90 as d90,
+    pi.d50 as d50,
+    pi.d10 as d10,
+    pi.sintering_temperature as sinteringTemperature ,
+    pi.soaking_time as soakingTime ,
+    pi.performance as performance,
+    pi.pad_metallurgy aspadMetallurgy ,
+    pi.out_of_band_rejection1 as outOfBandRejection1,
+    pi.out_of_band_rejection2 as outOfBandRejection2,
+    pi.out_of_band_rejection3 as outOfBandRejection3,
+    pi.out_of_band_rejection4 as outOfBandRejection4,
+    pi.out_of_band_rejection5 as outOfBandRejection5,
+    pi.material_type as materialType,
+    pi.rated_current as ratedCurrent,
+    pi.bandwidth as bandwidth,
+    pi.stop_band_by40 as stopBandBy40,
+    pi.pass_band_insertion_loss_by1_3 as passBandInsertionLossBy13,
+    pi.pass_band_insertion_loss_by2_0Typ as passBandInsertionLossBy20typ,
+    pi.material_type2 as materialType2,
+    pi.basis_material as basisMaterial,
+    pi.outlet as outlet,
+    pi.evaluating_scope as evaluatingScope,
+    pi.appearance as   appearance
+
+    from pd_info_material   pi
+    left join pd_model pm on pi.pd_model_id = pm.id
+    left join pd_class pc on pm.pd_class_id = pc.id
+    where 1=1
+    <include refid="where_clause" />
+  </select>
   <select id="listSize" resultType="com.chk.pd.pd.domain.PdParam">
     select pp.name, pp.code, pp.rel, pp.id  from
     (select pi.std as std, pi.size as size
@@ -131,7 +217,16 @@
     --         group by pp.name,pp.code
     order by idx
   </select>
-
+  <select id="listLev3Class" resultType="com.chk.pd.pd.domain.PdClass">
+    select pc.*
+    from pd_class pc
+    join pd_model pm on pm.pd_class_id = pc.id
+    join pd_info_material  pi on pi.pd_model_id = pm.id
+    where 1=1 and pc.level = 3
+    <include refid="where_clause" />
+    group by pc.id
+    order by pc.idx asc
+  </select>
   <select id="listQuality" resultType="com.chk.pd.pd.domain.PdParam">
     select pp.gp, pp.name, pp.code from
     (select quality
@@ -268,8 +363,14 @@
     group by pi.power_capacity) p
     join pd_param pp on p.power_capacity = pp.code where pp.type = #{materRsp.filterType} order  by idx
   </select>
-
-
-
+  <select id="listModel"  resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select model
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.model) p
+    join pd_param pp on p.model = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
 
 </mapper>

@@ -2,13 +2,17 @@ package com.chk.pd.pd_material.Dto;
 
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
 
 @Data
 public class materialRsp {
 
     private String filterType;
     //搜索分类
-    private String searchType;
+    private String clzqa;
 
     private Integer pdModelId;
 
@@ -18,7 +22,7 @@ public class materialRsp {
 
     private String model;
 
-    private Double size;
+    private String size;
 
     private String searchKey;
 
@@ -114,7 +118,7 @@ public class materialRsp {
 
     private String outOfBandRejection5;
 
-    private Integer materialType;
+    private String materialType;
 
     private String ratedCurrent;
 
@@ -135,4 +139,125 @@ public class materialRsp {
     private String evaluatingScope;
 
     private String appearance;
+    public boolean isNull() {
+        try {
+            for (Field f : this.getClass().getDeclaredFields()) {
+                if (!f.getName().equals("filterType")) {
+                    Object o = f.get(this);
+                    if (o != null) {
+                        return false;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    materialRsp(){
+
+    }
+
+
+    public materialRsp(String filterType, String clzqa, Integer pdModelId, String std, String quality, String model, String size, String searchKey, String surfaceCode, String thicknessCode, String lengthWidthCode, String materialCode, String centerFrequency, String passBandRange, String other, String ripple, String powerCapacity, String vswr, String amplitudeBalance, String phaseBalance, String insertionLoss, String isolation, String frequencyRange, String vswrStopBand, String vswrPassBand, String stopBandBy20, String cutOffFrequency, String breakdownVoltage, String insulationResistance, String flexureStrength, String dielectricLossBy20g, String dielectricLossBy19g, String permittivityBy15g, String permittivityBy19g, String dielectricStrength, String insulationResistanceBy125, String insulationResistanceBy25, String temperatureAlterationRatio, String dielectricLossBy1mhz, String permittivity, String powderDensity, String specificSurfacearea, String d90, String d50, String d10, String sinteringTemperature, String soakingTime, String performance, String padMetallurgy, String outOfBandRejection1, String outOfBandRejection2, String outOfBandRejection3, String outOfBandRejection4, String outOfBandRejection5,  String ratedCurrent, String bandwidth, String stopBandBy40, String passBandInsertionLossBy13, String passBandInsertionLossBy20typ,  String basisMaterial, String outlet, String evaluatingScope, String appearance) {
+        this.filterType = filterType;
+        this.clzqa = clzqa;
+        this.pdModelId = pdModelId;
+        this.std = std;
+        this.quality = quality;
+        this.model = model;
+        this.size = size;
+        this.searchKey = searchKey;
+        this.surfaceCode = surfaceCode;
+        this.thicknessCode = thicknessCode;
+        this.lengthWidthCode = lengthWidthCode;
+        this.materialCode = materialCode;
+        this.centerFrequency = centerFrequency;
+        this.passBandRange = passBandRange;
+        this.other = other;
+        this.ripple = ripple;
+        this.powerCapacity = powerCapacity;
+        this.vswr = vswr;
+        this.amplitudeBalance = amplitudeBalance;
+        this.phaseBalance = phaseBalance;
+        this.insertionLoss = insertionLoss;
+        this.isolation = isolation;
+        this.frequencyRange = frequencyRange;
+        this.vswrStopBand = vswrStopBand;
+        this.vswrPassBand = vswrPassBand;
+        this.stopBandBy20 = stopBandBy20;
+        this.cutOffFrequency = cutOffFrequency;
+        this.breakdownVoltage = breakdownVoltage;
+        this.insulationResistance = insulationResistance;
+        this.flexureStrength = flexureStrength;
+        this.dielectricLossBy20g = dielectricLossBy20g;
+        this.dielectricLossBy19g = dielectricLossBy19g;
+        this.permittivityBy15g = permittivityBy15g;
+        this.permittivityBy19g = permittivityBy19g;
+        this.dielectricStrength = dielectricStrength;
+        this.insulationResistanceBy125 = insulationResistanceBy125;
+        this.insulationResistanceBy25 = insulationResistanceBy25;
+        this.temperatureAlterationRatio = temperatureAlterationRatio;
+        this.dielectricLossBy1mhz = dielectricLossBy1mhz;
+        this.permittivity = permittivity;
+        this.powderDensity = powderDensity;
+        this.specificSurfacearea = specificSurfacearea;
+        this.d90 = d90;
+        this.d50 = d50;
+        this.d10 = d10;
+        this.sinteringTemperature = sinteringTemperature;
+        this.soakingTime = soakingTime;
+        this.performance = performance;
+        this.padMetallurgy = padMetallurgy;
+        this.outOfBandRejection1 = outOfBandRejection1;
+        this.outOfBandRejection2 = outOfBandRejection2;
+        this.outOfBandRejection3 = outOfBandRejection3;
+        this.outOfBandRejection4 = outOfBandRejection4;
+        this.outOfBandRejection5 = outOfBandRejection5;
+
+        this.ratedCurrent = ratedCurrent;
+        this.bandwidth = bandwidth;
+        this.stopBandBy40 = stopBandBy40;
+        this.passBandInsertionLossBy13 = passBandInsertionLossBy13;
+        this.passBandInsertionLossBy20typ = passBandInsertionLossBy20typ;
+
+        this.basisMaterial = basisMaterial;
+        this.outlet = outlet;
+        this.evaluatingScope = evaluatingScope;
+        this.appearance = appearance;
+
+        if(clzqa!=null&& clzqa!=""){
+            String  str[]= clzqa.split("_");
+            if(str.length>1){
+                this.materialType2=str[1];
+            }
+            this.materialType=str[0];
+        }
+    }
+
+    public void setClzqa(String clzqa) {
+        this.clzqa = clzqa;
+        if (StringUtils.isNotBlank(clzqa)){
+            if(clzqa!=null&& clzqa!=""){
+                String  str[]= clzqa.split("_");
+                this.materialType=str[0];
+                if(str.length>1){
+                    this.materialType2=str[1];
+                }
+
+            }
+        }
+    }
+
+    public void setSize(String size) {
+        if (StringUtils.isBlank(size)){
+            return;
+        }
+        String[] s = StringUtils.split(size, "_");
+        if (s.length == 2){
+            this.size = s[0];
+        }else {
+            this.size = size;
+        }
+    }
 }

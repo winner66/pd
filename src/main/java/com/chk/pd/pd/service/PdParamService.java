@@ -9,6 +9,8 @@ import com.chk.pd.pd.domain.PdParam;
 import com.chk.pd.pd.vo.CasRsp;
 import com.chk.pd.pd.vo.PdInfoReq;
 import com.chk.pd.pd.vo.PdInfoReqFuzzyByIn;
+import com.chk.pd.pd_material.Dto.materialRsp;
+import com.chk.pd.pd_microware.Dto.microwareRsp;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,9 +161,22 @@ public class PdParamService {
         }
         return new ArrayList<>(cas.values());
     }
-
+    //获取所有的分类
     public List<CasRsp> listClass(PdInfoReq pdInfoReq) {
+        return this.classService.listAllPdClass(pdInfoReq);
+    }
+//    只获取电容器的分类
+    public List<CasRsp> listPdClass(PdInfoReq pdInfoReq) {
         return this.classService.listPdClass(pdInfoReq);
+    }
+    //    只获取材料器件的分类
+    public List<CasRsp> listMaterialPdClass(materialRsp pdInfoReq) {
+        return this.classService.listMaterialPdClass(pdInfoReq);
+    }
+    //    只获取微波的分类
+    public List<CasRsp> listMicrowarePdClass(microwareRsp pdInfoReq) {
+//        return this.classService.listMicrowarePdClass(pdInfoReq);
+        return null;
     }
     public List<CasRsp> listLengthWidthCode(PdInfoReq pdInfoReq) {
         List<PdParam> params = infoDao.getExtPdInfoMapper().listLengthWidthCode(pdInfoReq);
