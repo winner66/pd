@@ -13,7 +13,6 @@
         <!--支持数据库字段驼峰转换-->
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
-
     <!--<plugins>-->
         <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
             <!--<property name="helperDialect" value="mysql"/>-->
@@ -22,3 +21,4 @@
         <!--</plugin>-->
     <!--</plugins>-->
 </configuration>
+

@@ -21,8 +21,8 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 
 import java.util.concurrent.TimeUnit;
 
-@Configuration
-@EnableRabbit
+//@Configuration
+//@EnableRabbit
 public class RabbitListenerConfig implements RabbitListenerConfigurer {
     @Autowired
     private ConnectionFactory connectionFactory;
