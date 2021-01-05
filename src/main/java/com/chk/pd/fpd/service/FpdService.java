@@ -270,35 +270,35 @@ public class FpdService {
         //            引出端形式
         if(series.getOutlet()!=null && series.getOutlet()!=""){
 
-            data.put("outlet",buildTableRsp(series.getOutlet(),","));
+            data.put("outlet",buildTableRsp(series.getOutlet(),";"));
 //温度特性
         }
         if(series.getTemperature()!=null&& series.getTemperature()!=""){
-            data.put("temperature",buildTableRsp(series.getTemperature(),","));
+            data.put("temperature",buildTableRsp(series.getTemperature(),";"));
 
         }
         //尺寸
         if(series.getSize()!=null && series.getSize()!=""){
 //            System.out.println("size:--------"+series.getSize());
-            data.put("size",buildTableRsp(series.getSize(),","));
+            data.put("size",buildTableRsp(series.getSize(),";"));
 
         }
         if(series.getTolerance()!=null && series.getTolerance()!=""){
-            data.put("tolerance",buildTableRsp(series.getTolerance(),","));
+            data.put("tolerance",buildTableRsp(series.getTolerance(),";"));
 
         }
-        //            电压
+        //            电压用；分割
         if(series.getVoltage()!=null&& series.getVoltage()!=""){
-            data.put("voltage",buildTableRsp(series.getVoltage(),","));
+            data.put("voltage",buildTableRsp(series.getVoltage(),";"));
 
         }
         if(series.getSocStr()!=null && series.getSocStr()!=""){
 
-            data.put("socStr",buildTableRsp(series.getSocStr(),","));
+            data.put("socStr",buildTableRsp(series.getSocStr(),";"));
         }
         //        电极材料代码  用，分割
         if(series.getElecCode()!=null&&series.getElecCode()!=""){
-            data.put("eleCode",buildTableRsp(series.getElecCode(),","));
+            data.put("eleCode",buildTableRsp(series.getElecCode(),";"));
         }
         return  data;
 

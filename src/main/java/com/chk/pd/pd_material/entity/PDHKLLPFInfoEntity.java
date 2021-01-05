@@ -15,8 +15,9 @@ public class PDHKLLPFInfoEntity  extends baseMaterialEntiey implements Serializa
     private String std;
 
     private String quality;
+//    通带频率范围
+    private  String frequencyRange;
 //    通带范围 （搜索字段）
-
     private  String passBandRange;
 
 //封装格式

@@ -372,5 +372,14 @@
     group by pi.model) p
     join pd_param pp on p.model = pp.code where pp.type = #{materRsp.filterType} order  by idx
   </select>
+  <select id="listBasisMaterial"  resultType="com.chk.pd.pd.domain.PdParam">
+    select pp.gp, pp.name, pp.code from
+    (select basis_material
+    from  pd_info_material  pi
+    where 1=1
+    <include refid="where_clause" />
+    group by pi.basis_material) p
+    join pd_param pp on p.basis_material = pp.code where pp.type = #{materRsp.filterType} order  by idx
+  </select>
 
 </mapper>

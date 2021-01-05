@@ -27,8 +27,7 @@
     <result column="pack_type" jdbcType="VARCHAR" property="packType" />
     <result column="pin" jdbcType="VARCHAR" property="pin" />
     <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
-
-
+    <result column="del" jdbcType="BIT" property="del" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -91,16 +90,15 @@
   <sql id="Base_Column_List">
     id, pd_model_id, std, quality, model, size, temperature, voltage, capacity_min, capacity_max, 
     capacity_min_idx, capacity_max_idx, tolerance, outlet, elec_code, cap_num, elec_type, 
-    temper_range, wire_ma, wire_size, elec_ser, soc_str, pack_type, pin, search_key
+    temper_range, wire_ma, wire_size, elec_ser, soc_str, pack_type, pin, search_key, 
+    del
   </sql>
-
   <select id="selectByExample" parameterType="com.chk.pd.pd.domain.PdInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-
     from pd_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -109,15 +107,12 @@
       order by ${orderByClause}
     </if>
   </select>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-
     from pd_info
     where id = #{id,jdbcType=BIGINT}
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from pd_info
     where id = #{id,jdbcType=BIGINT}
@@ -137,7 +132,7 @@
       cap_num, elec_type, temper_range, 
       wire_ma, wire_size, elec_ser, 
       soc_str, pack_type, pin, 
-      search_key)
+      search_key, del)
     values (#{id,jdbcType=BIGINT}, #{pdModelId,jdbcType=BIGINT}, #{std,jdbcType=VARCHAR}, 
       #{quality,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
       #{temperature,jdbcType=VARCHAR}, #{voltage,jdbcType=VARCHAR}, #{capacityMin,jdbcType=VARCHAR}, 
@@ -146,7 +141,7 @@
       #{capNum,jdbcType=VARCHAR}, #{elecType,jdbcType=VARCHAR}, #{temperRange,jdbcType=VARCHAR}, 
       #{wireMa,jdbcType=VARCHAR}, #{wireSize,jdbcType=VARCHAR}, #{elecSer,jdbcType=VARCHAR}, 
       #{socStr,jdbcType=VARCHAR}, #{packType,jdbcType=VARCHAR}, #{pin,jdbcType=VARCHAR}, 
-      #{searchKey,jdbcType=VARCHAR})
+      #{searchKey,jdbcType=VARCHAR}, #{del,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.chk.pd.pd.domain.PdInfo">
     insert into pd_info
@@ -226,6 +221,9 @@
       <if test="searchKey != null">
         search_key,
       </if>
+      <if test="del != null">
+        del,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -302,6 +300,9 @@
       </if>
       <if test="searchKey != null">
         #{searchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null">
+        #{del,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -389,6 +390,9 @@
       <if test="record.searchKey != null">
         search_key = #{record.searchKey,jdbcType=VARCHAR},
       </if>
+      <if test="record.del != null">
+        del = #{record.del,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -420,7 +424,8 @@
       soc_str = #{record.socStr,jdbcType=VARCHAR},
       pack_type = #{record.packType,jdbcType=VARCHAR},
       pin = #{record.pin,jdbcType=VARCHAR},
-      search_key = #{record.searchKey,jdbcType=VARCHAR}
+      search_key = #{record.searchKey,jdbcType=VARCHAR},
+      del = #{record.del,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -500,6 +505,9 @@
       <if test="searchKey != null">
         search_key = #{searchKey,jdbcType=VARCHAR},
       </if>
+      <if test="del != null">
+        del = #{del,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -528,7 +536,8 @@
       soc_str = #{socStr,jdbcType=VARCHAR},
       pack_type = #{packType,jdbcType=VARCHAR},
       pin = #{pin,jdbcType=VARCHAR},
-      search_key = #{searchKey,jdbcType=VARCHAR}
+      search_key = #{searchKey,jdbcType=VARCHAR},
+      del = #{del,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="com.chk.pd.pd.domain.PdInfoExample" resultMap="BaseResultMap">
@@ -537,7 +546,6 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-
     from pd_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

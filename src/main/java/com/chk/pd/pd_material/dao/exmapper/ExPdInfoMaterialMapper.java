@@ -48,4 +48,5 @@ public interface ExPdInfoMaterialMapper {
 
     List<pdMaterialInfoVo> getPdMaterialInfos(@Param("materRsp")materialRsp pdInfoReq);
 
+    List<PdParam> listBasisMaterial(@Param("materRsp") materialRsp rsp);
 }

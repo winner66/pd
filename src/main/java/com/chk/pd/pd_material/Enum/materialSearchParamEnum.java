@@ -7,7 +7,7 @@ public enum materialSearchParamEnum {
     clzqa("clzqa","分类"),
     quality("quality","质量等级"),
 
-    model("model","型号"),
+    model("model","产品型号"),
 
     size("size","封装及外形尺寸"),
 

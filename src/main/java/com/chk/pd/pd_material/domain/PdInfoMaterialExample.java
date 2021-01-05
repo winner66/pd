@@ -444,52 +444,62 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andSizeEqualTo(Double value) {
+        public Criteria andSizeEqualTo(String value) {
             addCriterion("size =", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeNotEqualTo(Double value) {
+        public Criteria andSizeNotEqualTo(String value) {
             addCriterion("size <>", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeGreaterThan(Double value) {
+        public Criteria andSizeGreaterThan(String value) {
             addCriterion("size >", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeGreaterThanOrEqualTo(Double value) {
+        public Criteria andSizeGreaterThanOrEqualTo(String value) {
             addCriterion("size >=", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeLessThan(Double value) {
+        public Criteria andSizeLessThan(String value) {
             addCriterion("size <", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeLessThanOrEqualTo(Double value) {
+        public Criteria andSizeLessThanOrEqualTo(String value) {
             addCriterion("size <=", value, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeIn(List<Double> values) {
+        public Criteria andSizeLike(String value) {
+            addCriterion("size like", value, "size");
+            return (Criteria) this;
+        }
+
+        public Criteria andSizeNotLike(String value) {
+            addCriterion("size not like", value, "size");
+            return (Criteria) this;
+        }
+
+        public Criteria andSizeIn(List<String> values) {
             addCriterion("size in", values, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeNotIn(List<Double> values) {
+        public Criteria andSizeNotIn(List<String> values) {
             addCriterion("size not in", values, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeBetween(Double value1, Double value2) {
+        public Criteria andSizeBetween(String value1, String value2) {
             addCriterion("size between", value1, value2, "size");
             return (Criteria) this;
         }
 
-        public Criteria andSizeNotBetween(Double value1, Double value2) {
+        public Criteria andSizeNotBetween(String value1, String value2) {
             addCriterion("size not between", value1, value2, "size");
             return (Criteria) this;
         }
@@ -3794,52 +3804,62 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeEqualTo(Integer value) {
+        public Criteria andMaterialTypeEqualTo(String value) {
             addCriterion("material_type =", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeNotEqualTo(Integer value) {
+        public Criteria andMaterialTypeNotEqualTo(String value) {
             addCriterion("material_type <>", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeGreaterThan(Integer value) {
+        public Criteria andMaterialTypeGreaterThan(String value) {
             addCriterion("material_type >", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andMaterialTypeGreaterThanOrEqualTo(String value) {
             addCriterion("material_type >=", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeLessThan(Integer value) {
+        public Criteria andMaterialTypeLessThan(String value) {
             addCriterion("material_type <", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andMaterialTypeLessThanOrEqualTo(String value) {
             addCriterion("material_type <=", value, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeIn(List<Integer> values) {
+        public Criteria andMaterialTypeLike(String value) {
+            addCriterion("material_type like", value, "materialType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialTypeNotLike(String value) {
+            addCriterion("material_type not like", value, "materialType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialTypeIn(List<String> values) {
             addCriterion("material_type in", values, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeNotIn(List<Integer> values) {
+        public Criteria andMaterialTypeNotIn(List<String> values) {
             addCriterion("material_type not in", values, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeBetween(Integer value1, Integer value2) {
+        public Criteria andMaterialTypeBetween(String value1, String value2) {
             addCriterion("material_type between", value1, value2, "materialType");
             return (Criteria) this;
         }
 
-        public Criteria andMaterialTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andMaterialTypeNotBetween(String value1, String value2) {
             addCriterion("material_type not between", value1, value2, "materialType");
             return (Criteria) this;
         }
@@ -4544,6 +4564,66 @@ public class PdInfoMaterialExample {
             return (Criteria) this;
         }
 
+        public Criteria andDelIsNull() {
+            addCriterion("del is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelIsNotNull() {
+            addCriterion("del is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelEqualTo(Boolean value) {
+            addCriterion("del =", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelNotEqualTo(Boolean value) {
+            addCriterion("del <>", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelGreaterThan(Boolean value) {
+            addCriterion("del >", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("del >=", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelLessThan(Boolean value) {
+            addCriterion("del <", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelLessThanOrEqualTo(Boolean value) {
+            addCriterion("del <=", value, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelIn(List<Boolean> values) {
+            addCriterion("del in", values, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelNotIn(List<Boolean> values) {
+            addCriterion("del not in", values, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelBetween(Boolean value1, Boolean value2) {
+            addCriterion("del between", value1, value2, "del");
+            return (Criteria) this;
+        }
+
+        public Criteria andDelNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("del not between", value1, value2, "del");
+            return (Criteria) this;
+        }
+
         public Criteria andStdLikeInsensitive(String value) {
             addCriterion("upper(std) like", value.toUpperCase(), "std");
             return (Criteria) this;
@@ -4556,6 +4636,11 @@ public class PdInfoMaterialExample {
 
         public Criteria andModelLikeInsensitive(String value) {
             addCriterion("upper(model) like", value.toUpperCase(), "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andSizeLikeInsensitive(String value) {
+            addCriterion("upper(size) like", value.toUpperCase(), "size");
             return (Criteria) this;
         }
 
@@ -4791,6 +4876,11 @@ public class PdInfoMaterialExample {
 
         public Criteria andOutOfBandRejection5LikeInsensitive(String value) {
             addCriterion("upper(out_of_band_rejection5) like", value.toUpperCase(), "outOfBandRejection5");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaterialTypeLikeInsensitive(String value) {
+            addCriterion("upper(material_type) like", value.toUpperCase(), "materialType");
             return (Criteria) this;
         }
 

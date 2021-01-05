@@ -55,7 +55,7 @@
     <result column="out_of_band_rejection3" jdbcType="VARCHAR" property="outOfBandRejection3" />
     <result column="out_of_band_rejection4" jdbcType="VARCHAR" property="outOfBandRejection4" />
     <result column="out_of_band_rejection5" jdbcType="VARCHAR" property="outOfBandRejection5" />
-    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="material_type" jdbcType="VARCHAR" property="materialType" />
     <result column="rated_current" jdbcType="VARCHAR" property="ratedCurrent" />
     <result column="bandwidth" jdbcType="VARCHAR" property="bandwidth" />
     <result column="stop_band_by40" jdbcType="VARCHAR" property="stopBandBy40" />
@@ -66,6 +66,7 @@
     <result column="outlet" jdbcType="VARCHAR" property="outlet" />
     <result column="evaluating_scope" jdbcType="VARCHAR" property="evaluatingScope" />
     <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="del" jdbcType="BIT" property="del" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -138,7 +139,7 @@
     out_of_band_rejection2, out_of_band_rejection3, out_of_band_rejection4, out_of_band_rejection5, 
     material_type, rated_current, bandwidth, stop_band_by40, pass_band_insertion_loss_by1_3, 
     pass_band_insertion_loss_by2_0Typ, material_type2, basis_material, outlet, evaluating_scope, 
-    appearance
+    appearance, del
   </sql>
   <select id="selectByExample" parameterType="com.chk.pd.pd_material.domain.PdInfoMaterialExample" resultMap="BaseResultMap">
     select
@@ -194,9 +195,9 @@
       bandwidth, stop_band_by40, pass_band_insertion_loss_by1_3, 
       pass_band_insertion_loss_by2_0Typ, material_type2, 
       basis_material, outlet, evaluating_scope, 
-      appearance)
+      appearance, del)
     values (#{id,jdbcType=INTEGER}, #{pdModelId,jdbcType=INTEGER}, #{std,jdbcType=VARCHAR}, 
-      #{quality,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{size,jdbcType=DOUBLE}, 
+      #{quality,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
       #{searchKey,jdbcType=VARCHAR}, #{surfaceCode,jdbcType=VARCHAR}, #{thicknessCode,jdbcType=VARCHAR}, 
       #{lengthWidthCode,jdbcType=VARCHAR}, #{materialCode,jdbcType=VARCHAR}, #{centerFrequency,jdbcType=VARCHAR}, 
       #{passBandRange,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{ripple,jdbcType=VARCHAR}, 
@@ -214,11 +215,11 @@
       #{soakingTime,jdbcType=VARCHAR}, #{performance,jdbcType=VARCHAR}, #{padMetallurgy,jdbcType=VARCHAR}, 
       #{outOfBandRejection1,jdbcType=VARCHAR}, #{outOfBandRejection2,jdbcType=VARCHAR}, 
       #{outOfBandRejection3,jdbcType=VARCHAR}, #{outOfBandRejection4,jdbcType=VARCHAR}, 
-      #{outOfBandRejection5,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{ratedCurrent,jdbcType=VARCHAR}, 
+      #{outOfBandRejection5,jdbcType=VARCHAR}, #{materialType,jdbcType=VARCHAR}, #{ratedCurrent,jdbcType=VARCHAR}, 
       #{bandwidth,jdbcType=VARCHAR}, #{stopBandBy40,jdbcType=VARCHAR}, #{passBandInsertionLossBy13,jdbcType=VARCHAR}, 
       #{passBandInsertionLossBy20typ,jdbcType=VARCHAR}, #{materialType2,jdbcType=VARCHAR}, 
       #{basisMaterial,jdbcType=VARCHAR}, #{outlet,jdbcType=VARCHAR}, #{evaluatingScope,jdbcType=VARCHAR}, 
-      #{appearance,jdbcType=VARCHAR})
+      #{appearance,jdbcType=VARCHAR}, #{del,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.chk.pd.pd_material.domain.PdInfoMaterial">
     insert into pd_info_material
@@ -415,6 +416,9 @@
       <if test="appearance != null">
         appearance,
       </if>
+      <if test="del != null">
+        del,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -433,7 +437,7 @@
         #{model,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
-        #{size,jdbcType=DOUBLE},
+        #{size,jdbcType=VARCHAR},
       </if>
       <if test="searchKey != null">
         #{searchKey,jdbcType=VARCHAR},
@@ -577,7 +581,7 @@
         #{outOfBandRejection5,jdbcType=VARCHAR},
       </if>
       <if test="materialType != null">
-        #{materialType,jdbcType=INTEGER},
+        #{materialType,jdbcType=VARCHAR},
       </if>
       <if test="ratedCurrent != null">
         #{ratedCurrent,jdbcType=VARCHAR},
@@ -609,6 +613,9 @@
       <if test="appearance != null">
         #{appearance,jdbcType=VARCHAR},
       </if>
+      <if test="del != null">
+        #{del,jdbcType=BIT},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.chk.pd.pd_material.domain.PdInfoMaterialExample" resultType="java.lang.Long">
@@ -636,7 +643,7 @@
         model = #{record.model,jdbcType=VARCHAR},
       </if>
       <if test="record.size != null">
-        size = #{record.size,jdbcType=DOUBLE},
+        size = #{record.size,jdbcType=VARCHAR},
       </if>
       <if test="record.searchKey != null">
         search_key = #{record.searchKey,jdbcType=VARCHAR},
@@ -780,7 +787,7 @@
         out_of_band_rejection5 = #{record.outOfBandRejection5,jdbcType=VARCHAR},
       </if>
       <if test="record.materialType != null">
-        material_type = #{record.materialType,jdbcType=INTEGER},
+        material_type = #{record.materialType,jdbcType=VARCHAR},
       </if>
       <if test="record.ratedCurrent != null">
         rated_current = #{record.ratedCurrent,jdbcType=VARCHAR},
@@ -812,6 +819,9 @@
       <if test="record.appearance != null">
         appearance = #{record.appearance,jdbcType=VARCHAR},
       </if>
+      <if test="record.del != null">
+        del = #{record.del,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -824,7 +834,7 @@
       std = #{record.std,jdbcType=VARCHAR},
       quality = #{record.quality,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
-      size = #{record.size,jdbcType=DOUBLE},
+      size = #{record.size,jdbcType=VARCHAR},
       search_key = #{record.searchKey,jdbcType=VARCHAR},
       surface_code = #{record.surfaceCode,jdbcType=VARCHAR},
       thickness_code = #{record.thicknessCode,jdbcType=VARCHAR},
@@ -872,7 +882,7 @@
       out_of_band_rejection3 = #{record.outOfBandRejection3,jdbcType=VARCHAR},
       out_of_band_rejection4 = #{record.outOfBandRejection4,jdbcType=VARCHAR},
       out_of_band_rejection5 = #{record.outOfBandRejection5,jdbcType=VARCHAR},
-      material_type = #{record.materialType,jdbcType=INTEGER},
+      material_type = #{record.materialType,jdbcType=VARCHAR},
       rated_current = #{record.ratedCurrent,jdbcType=VARCHAR},
       bandwidth = #{record.bandwidth,jdbcType=VARCHAR},
       stop_band_by40 = #{record.stopBandBy40,jdbcType=VARCHAR},
@@ -882,7 +892,8 @@
       basis_material = #{record.basisMaterial,jdbcType=VARCHAR},
       outlet = #{record.outlet,jdbcType=VARCHAR},
       evaluating_scope = #{record.evaluatingScope,jdbcType=VARCHAR},
-      appearance = #{record.appearance,jdbcType=VARCHAR}
+      appearance = #{record.appearance,jdbcType=VARCHAR},
+      del = #{record.del,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -903,7 +914,7 @@
         model = #{model,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
-        size = #{size,jdbcType=DOUBLE},
+        size = #{size,jdbcType=VARCHAR},
       </if>
       <if test="searchKey != null">
         search_key = #{searchKey,jdbcType=VARCHAR},
@@ -1047,7 +1058,7 @@
         out_of_band_rejection5 = #{outOfBandRejection5,jdbcType=VARCHAR},
       </if>
       <if test="materialType != null">
-        material_type = #{materialType,jdbcType=INTEGER},
+        material_type = #{materialType,jdbcType=VARCHAR},
       </if>
       <if test="ratedCurrent != null">
         rated_current = #{ratedCurrent,jdbcType=VARCHAR},
@@ -1079,6 +1090,9 @@
       <if test="appearance != null">
         appearance = #{appearance,jdbcType=VARCHAR},
       </if>
+      <if test="del != null">
+        del = #{del,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -1088,7 +1102,7 @@
       std = #{std,jdbcType=VARCHAR},
       quality = #{quality,jdbcType=VARCHAR},
       model = #{model,jdbcType=VARCHAR},
-      size = #{size,jdbcType=DOUBLE},
+      size = #{size,jdbcType=VARCHAR},
       search_key = #{searchKey,jdbcType=VARCHAR},
       surface_code = #{surfaceCode,jdbcType=VARCHAR},
       thickness_code = #{thicknessCode,jdbcType=VARCHAR},
@@ -1136,7 +1150,7 @@
       out_of_band_rejection3 = #{outOfBandRejection3,jdbcType=VARCHAR},
       out_of_band_rejection4 = #{outOfBandRejection4,jdbcType=VARCHAR},
       out_of_band_rejection5 = #{outOfBandRejection5,jdbcType=VARCHAR},
-      material_type = #{materialType,jdbcType=INTEGER},
+      material_type = #{materialType,jdbcType=VARCHAR},
       rated_current = #{ratedCurrent,jdbcType=VARCHAR},
       bandwidth = #{bandwidth,jdbcType=VARCHAR},
       stop_band_by40 = #{stopBandBy40,jdbcType=VARCHAR},
@@ -1146,7 +1160,8 @@
       basis_material = #{basisMaterial,jdbcType=VARCHAR},
       outlet = #{outlet,jdbcType=VARCHAR},
       evaluating_scope = #{evaluatingScope,jdbcType=VARCHAR},
-      appearance = #{appearance,jdbcType=VARCHAR}
+      appearance = #{appearance,jdbcType=VARCHAR},
+      del = #{del,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="com.chk.pd.pd_material.domain.PdInfoMaterialExample" resultMap="BaseResultMap">
@@ -1163,4 +1178,7 @@
       order by ${orderByClause}
     </if>
   </select>
+
+
+
 </mapper>

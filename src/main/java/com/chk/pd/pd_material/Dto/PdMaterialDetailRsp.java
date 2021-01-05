@@ -37,12 +37,15 @@ public class PdMaterialDetailRsp {
     private List<String> ruleDesc;
 
     @SneakyThrows
-    public void setRuleExp(PdInfoMaterial pdInfo, List<PdParam> capacities) {
+    public void setRuleExp(PdInfoMaterial pdInfo) {
         String rule = getOrderRule();
-        for (ParamType type : ParamType.values()) {
+        for (materialRuleEnum type : materialRuleEnum.values()) {
             String value = "";
-            if (!type.name().equals("capacity")) {
-                value = BeanUtils.getProperty(pdInfo, type.name());
+            if("CS".equals(type.value())){
+                value="CS";
+
+            }else{
+                value = BeanUtils.getProperty(pdInfo, type.value());
                 if (value == null){
                     value = "";
                 }
@@ -52,14 +55,12 @@ public class PdMaterialDetailRsp {
                 if (value.contains(";")) {
                     value = StringUtils.substringBefore(value, ";");
                 }
-            }else{
-                if (capacities.size() > 0){
-                    value = capacities.get(0).getCode();
-                }
             }
-            rule = StringUtils.replace(rule, type.value(), value + "||", 1);
+
+            rule = StringUtils.replace(rule, type.title(), value + "||", 1);
+//            StringUtils.re
         }
-        rule = OrderRuleUtil.resetSingleModelExp(rule, pdInfo.getModel());
+//        rule = OrderRuleUtil.resetSingleModelExp(rule, pdInfo.getModel());
         String[] ss = StringUtils.split(rule, "||");
         for (int i = 0; i < ss.length; i++) {
             ss[i] = OrderRuleUtil.ruleIdxMap.get(i + 1) + "__" + ss[i];
@@ -79,7 +80,7 @@ public class PdMaterialDetailRsp {
 
     public void setRuleDesc(){
         String rule = getOrderRule();
-        String[] ss = OrderRuleUtil.getRuleDesc(rule);
+        String[] ss = OrderRuleUtil.getMaterialRuleDesc(rule);
         this.ruleDesc = Arrays.asList(ss);
     }
 
@@ -110,18 +111,21 @@ public class PdMaterialDetailRsp {
             pdrule = replace(pdrule, materialRuleEnum.bandwidth.title(), pdInfo.getBandwidth());
             pdrule = replace(pdrule, materialRuleEnum.centerFrequency.title(), pdInfo.getCenterFrequency());
             pdrule = replace(pdrule, materialRuleEnum.cutOffFrequency.title(),pdInfo.getCutOffFrequency() );
-            pdrule = replace(pdrule, materialRuleEnum.frequencyRange.title(),pdInfo.getFrequencyRange() );
+            pdrule = replace(pdrule, materialRuleEnum.CS.title(),materialRuleEnum.CS.value() );
             pdrule = replace(pdrule, materialRuleEnum.lengthWidthCode.title(),pdInfo.getLengthWidthCode() );
-            pdrule = replace(pdrule, materialRuleEnum.HK.title(),materialRuleEnum.HK.value() );
+//            pdrule = replace(pdrule, materialRuleEnum.HK.title(),materialRuleEnum.HK.value() );
             pdrule = replace(pdrule, materialRuleEnum.materialCode.title(),pdInfo.getMaterialCode());
+//            1850～2200   1850M/2200M  DC~80---
             pdrule = replace(pdrule, materialRuleEnum.passBandRange.title(),pdInfo.getPassBandRange());
-            pdrule = replace(pdrule, materialRuleEnum.type.title(),pdInfo.getSize());
+//            通带频率范围
+            pdrule = replace(pdrule, materialRuleEnum.passBandRange2.title(),pdInfo.getFrequencyRange());
+//            频率范围
+             pdrule = replace(pdrule, materialRuleEnum.frequencyRange.title(),pdInfo.getFrequencyRange() );
+            pdrule = replace(pdrule, materialRuleEnum.type.title(),pdInfo.getModel());
             pdrule = replace(pdrule, materialRuleEnum.surfaceCode.title(),pdInfo.getSurfaceCode());
             pdrule = replace(pdrule, materialRuleEnum.thicknessCode.title(),pdInfo.getThicknessCode());
-            pdrule = replace(pdrule, materialRuleEnum.type.title(),pdInfo.getSize());
-
-
-        this.rule = pdrule;
+            pdrule = replace(pdrule, materialRuleEnum.size1.title(),pdInfo.getSize());
+            this.rule = pdrule;
     }
 
     public String replace(final String text, final String searchString, final String replacement) {
@@ -156,6 +160,7 @@ public class PdMaterialDetailRsp {
                 }
             }
             this.setRule(pdInfo, req);
+            this.setRuleExp(pdInfo);
             this.setRuleDesc();
         } catch (Exception e) {
             log.error("创建PdDetailRsp出错", e);

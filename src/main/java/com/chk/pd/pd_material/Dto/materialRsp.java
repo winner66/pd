@@ -233,6 +233,7 @@ public class materialRsp {
             }
             this.materialType=str[0];
         }
+
     }
 
     public void setClzqa(String clzqa) {
@@ -260,4 +261,16 @@ public class materialRsp {
             this.size = size;
         }
     }
+    public void setBasisMaterial(String basisMaterial) {
+        if (StringUtils.isBlank(basisMaterial)){
+            return;
+        }
+        String[] s = StringUtils.split(basisMaterial, "_");
+        if (s.length == 2){
+            this.basisMaterial = s[0];
+        }else {
+            this.basisMaterial= basisMaterial;
+        }
+    }
+
 }

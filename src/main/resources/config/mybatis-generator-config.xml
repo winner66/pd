@@ -33,28 +33,60 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.chk.pd.pd_material.domain" targetProject="src/main/java">
+<!--        <javaModelGenerator targetPackage="com.chk.pd.pd_material.domain" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--            <property name="trimStrings" value="true"/>-->
+<!--        </javaModelGenerator>-->
+
+<!--        <sqlMapGenerator targetPackage="com.chk.pd.pd_material.dao.mapper" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </sqlMapGenerator>-->
+
+<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.pd_material.dao" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </javaClientGenerator>-->
+
+<!--        <table tableName="pd_info_material">-->
+<!--        </table>-->
+
+<!--        <javaModelGenerator targetPackage="com.chk.pd.pd.domain" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--            <property name="trimStrings" value="true"/>-->
+<!--        </javaModelGenerator>-->
+
+<!--        <sqlMapGenerator targetPackage="com.chk.pd.pd.dao.mapper" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </sqlMapGenerator>-->
+
+<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.pd.dao" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </javaClientGenerator>-->
+
+<!--        <table tableName="pd_model">-->
+<!--        </table>-->
+
+        <javaModelGenerator targetPackage="com.chk.pd.pd.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.chk.pd.pd_material.dao.mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.chk.pd.pd.dao.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.pd_material.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chk.pd.pd.dao..mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-
+        <table tableName="pd_info">
+        </table>
 <!--        <table tableName="pd_class"></table>-->
 <!--        <table tableName="pd_class_qa"></table>-->
 <!--        <table tableName="pd_model"></table>-->
 <!--        <table tableName="pd_info"></table>-->
 <!--        <table tableName="pd_param"></table>-->
 
-                <table tableName="pd_info_material">
-                </table>
+
 <!--                <table tableName="order_flow">-->
 <!--                </table>-->
         <!--        <table tableName="order_item">-->

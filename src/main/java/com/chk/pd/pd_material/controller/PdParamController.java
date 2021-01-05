@@ -151,6 +151,13 @@ public class PdParamController {
 
             List<CasRsp> cas = paramService.listModel(rsp);
             return Response.ok(cas);
+        }else  if (materialSearchParamEnum.basisMaterial.value().equals(rsp.getFilterType())) {
+
+
+            rsp.setFilterType(materialSearchParamEnum.basisMaterial.title());
+
+            List<CasRsp> cas = paramService.listBasisMaterial(rsp);
+            return Response.ok(cas);
         }
         else {
             return Response.ok();

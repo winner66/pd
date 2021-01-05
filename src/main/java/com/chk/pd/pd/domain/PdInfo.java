@@ -53,7 +53,7 @@ public class PdInfo implements Serializable {
 
     private String searchKey;
 
-    private Integer  searchType;
+    private Boolean del;
 
     private static final long serialVersionUID = 1L;
 
@@ -257,6 +257,14 @@ public class PdInfo implements Serializable {
         this.searchKey = searchKey == null ? null : searchKey.trim();
     }
 
+    public Boolean getDel() {
+        return del;
+    }
+
+    public void setDel(Boolean del) {
+        this.del = del;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -288,6 +296,7 @@ public class PdInfo implements Serializable {
         sb.append(", packType=").append(packType);
         sb.append(", pin=").append(pin);
         sb.append(", searchKey=").append(searchKey);
+        sb.append(", del=").append(del);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
@@ -329,7 +338,8 @@ public class PdInfo implements Serializable {
             && (this.getSocStr() == null ? other.getSocStr() == null : this.getSocStr().equals(other.getSocStr()))
             && (this.getPackType() == null ? other.getPackType() == null : this.getPackType().equals(other.getPackType()))
             && (this.getPin() == null ? other.getPin() == null : this.getPin().equals(other.getPin()))
-            && (this.getSearchKey() == null ? other.getSearchKey() == null : this.getSearchKey().equals(other.getSearchKey()));
+            && (this.getSearchKey() == null ? other.getSearchKey() == null : this.getSearchKey().equals(other.getSearchKey()))
+            && (this.getDel() == null ? other.getDel() == null : this.getDel().equals(other.getDel()));
     }
 
     @Override
@@ -361,6 +371,7 @@ public class PdInfo implements Serializable {
         result = prime * result + ((getPackType() == null) ? 0 : getPackType().hashCode());
         result = prime * result + ((getPin() == null) ? 0 : getPin().hashCode());
         result = prime * result + ((getSearchKey() == null) ? 0 : getSearchKey().hashCode());
+        result = prime * result + ((getDel() == null) ? 0 : getDel().hashCode());
         return result;
     }
 }

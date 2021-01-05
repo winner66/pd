@@ -218,4 +218,14 @@ public class PdParamServiceImpl {
         }
         return cas;
     }
+
+    public List<CasRsp> listBasisMaterial(materialRsp rsp) {
+        List<PdParam> params =  materialDao.getExmaterialMapper().listBasisMaterial(rsp);
+        List<CasRsp> cas = new ArrayList<>();
+        for (PdParam param : params) {
+//            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+        }
+        return cas;
+    }
 }

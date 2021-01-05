@@ -1,6 +1,7 @@
 package com.chk.pd.common.util;
 
 import com.chk.pd.common.vo.ParamType;
+import com.chk.pd.pd_material.Enum.materialRuleEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
@@ -65,7 +66,50 @@ public class OrderRuleUtil {
         }
         return ss;
     }
+//    微波命名规则
+    public static String[] getMicrowareRules(String orderRule) {
+        String rule = StringUtils.replace(orderRule, "|", "");
+        for (ParamType type : ParamType.values()) {
+            rule = StringUtils.replace(rule, type.value(), type.value() + "||", 1);
+        }
+        String[] ss = StringUtils.split(rule, "||");
+        return ss;
+    }
 
+    public static String[] getMicrowareRuleDesc(String orderRule) {
+        String rule = StringUtils.replace(orderRule, "|", "");
+        for (ParamType type : ParamType.values()) {
+            rule = StringUtils.replace(rule, type.value(), type.title() + "||", 1);
+            rule = StringUtils.replace(rule, "-", "");
+        }
+        String[] ss = StringUtils.split(rule, "||");
+        for (int i =0; i < ss.length; i++){
+            ss[i] = ruleIdxMap.get(i+1) + "：" + ss[i];
+        }
+        return ss;
+    }
+//    材料器件命名规则
+    public static String[] getMateriaRules(String orderRule) {
+        String rule = StringUtils.replace(orderRule, "|", "");
+        for (materialRuleEnum type : materialRuleEnum.values()) {
+            rule = StringUtils.replace(rule, type.title(), type.title() + "||", 1);
+        }
+        String[] ss = StringUtils.split(rule, "||");
+        return ss;
+    }
+
+    public static String[] getMaterialRuleDesc(String orderRule) {
+        String rule = StringUtils.replace(orderRule, "|", "");
+        for (materialRuleEnum type :materialRuleEnum.values()) {
+            rule = StringUtils.replace(rule, type.title(), type.title() + "||", 1);
+            rule = StringUtils.replace(rule, "-", "");
+        }
+        String[] ss = StringUtils.split(rule, "||");
+        for (int i =0; i < ss.length; i++){
+            ss[i] = ruleIdxMap.get(i+1) + "：" + ss[i];
+        }
+        return ss;
+    }
     public static String replace(final String text, final String searchString, final String replacement) {
         String replace = replacement == null ? "" : replacement;
         return StringUtils.replace(text, searchString, replace);
