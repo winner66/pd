@@ -24,7 +24,7 @@ public class materialRsp {
 
     private String size;
 
-    private String searchKey;
+    private String key;
 
     private String surfaceCode;
 
@@ -167,7 +167,7 @@ public class materialRsp {
         this.quality = quality;
         this.model = model;
         this.size = size;
-        this.searchKey = searchKey;
+        this.key = searchKey;
         this.surfaceCode = surfaceCode;
         this.thicknessCode = thicknessCode;
         this.lengthWidthCode = lengthWidthCode;

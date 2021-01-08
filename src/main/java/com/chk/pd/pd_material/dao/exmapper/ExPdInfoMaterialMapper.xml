@@ -118,7 +118,9 @@
     <if test="materRsp.bandwidth != null">
       AND pi.bandwidth = #{materRsp.bandwidth}
     </if>
-
+    <if test="materRsp.key != null">
+      AND MATCH(pi.search_key) AGAINST(#{materRsp.key} in boolean mode)
+    </if>
 
 
   </sql>
@@ -129,18 +131,16 @@
     pm.name as pmName,
     pm.code as pmCode,
     pm.order_rule as orderRule,
-
     pc.id as pcId,
     pc.name as pcName,
     pc.icon_url as pcIcon,
-
     pi.id  as id ,
     pi.pd_model_id as pdModelId ,
     pi.std  as std ,
     pi.quality  as quality ,
     pi.model as model,
     pi.size as size ,
-    pi.search_key as searchKey ,
+    pi.search_key as search_key,
     pi.surface_code as surfaceCode ,
     pi.thickness_code as thicknessCode ,
     pi.length_width_code  as lengthWidthCode ,

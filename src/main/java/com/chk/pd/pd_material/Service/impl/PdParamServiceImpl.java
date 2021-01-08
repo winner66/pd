@@ -103,7 +103,8 @@ public class PdParamServiceImpl {
         List<PdParam> params = materialDao.getExmaterialMapper().listLengthWidthCode(materRsp);
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
-            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+//            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode(), false));
         }
         return cas;
     }
@@ -127,7 +128,8 @@ public class PdParamServiceImpl {
         List<PdParam> params =  materialDao.getExmaterialMapper().listThicknessCode(materRsp);
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
-            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+//            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode(), false));
         }
         return cas;
     }
@@ -135,7 +137,8 @@ public class PdParamServiceImpl {
         List<PdParam> params =  materialDao.getExmaterialMapper().listMaterialCode(materRsp);
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
-            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+//            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode(), false));
         }
         return cas;
     }
@@ -143,7 +146,8 @@ public class PdParamServiceImpl {
         List<PdParam> params =  materialDao.getExmaterialMapper().listSurfaceCode(materRsp);
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
-            cas.add(new CasRsp(param.getName(), param.getCode(), false));
+            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode(), false));
+//            cas.add(new CasRsp(param.getName(), param.getCode(), false));
         }
         return cas;
     }   public List<CasRsp> listCenterFrequency(materialRsp materRsp) {

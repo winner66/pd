@@ -11,13 +11,13 @@ public enum materialSearchParamEnum {
 
     size("size","封装及外形尺寸"),
 
-    surfaceCode("surfaceCode","陶瓷基片的表面代码"),
+    surfaceCode("surfaceCode","表面代码"),
 
-    thicknessCode("thicknessCode","陶瓷基片的厚度代码"),
+    thicknessCode("thicknessCode","厚度代码"),
 
-    lengthWidthCode("lengthWidthCode","陶瓷基片的长宽代码"),
+    lengthWidthCode("lengthWidthCode","长宽代码"),
 
-    materialCode("materialCode","陶瓷基片的材料代码"),
+    materialCode("materialCode","材料代码"),
 
     centerFrequency("centerFrequency","中心频率"),
 
