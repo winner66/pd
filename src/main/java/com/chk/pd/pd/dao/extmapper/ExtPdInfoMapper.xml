@@ -186,12 +186,6 @@
             </foreach>
 
         </if>
-        <if test="pdInfoReq.eleCode != null ">
-            AND pi.elec_code in
-            <foreach item="item" index="index" collection="pdInfoReq.eleCode" open="(" separator="," close=")">
-                #{item}
-            </foreach>
-        </if>
 
         <if test="pdInfoReq.key != null ">
             AND MATCH(pi.search_key) AGAINST(#{pdInfoReq.key} in boolean mode)
@@ -206,7 +200,7 @@
     </sql>
 
     <select id="listSize" resultType="com.chk.pd.pd.domain.PdParam">
-        select pp.name, pp.code, pp.rel, pp.id  from
+        select pp.gp, pp.name, pp.code,pp.rel,pp.idx from
         (select pi.std as std, pi.size as size
         from pd_info pi
         left join pd_model pm on pi.pd_model_id = pm.id
@@ -215,8 +209,8 @@
         group by pi.std, pi.size) p
         join pd_param pp on p.std = pp.rel and p.size = pp.code
         where pp.type = #{pdInfoReq.filterType}
---         group by pp.name,pp.code
-        order by idx
+--         group by pp.code
+        order  by idx
     </select>
 
     <select id="listVoltage" resultType="com.chk.pd.pd.domain.PdParam">

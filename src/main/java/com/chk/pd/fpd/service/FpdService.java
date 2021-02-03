@@ -231,6 +231,35 @@ public class FpdService {
 //                   封装数据
                   data= buildData(series,data);
                   CasRsp tem= new CasRsp(HKSeries,series.getId().toString(), false,data);
+                  StringBuffer str =new StringBuffer("(");
+
+                  if(series.getSize()!=""&&series.getSize()!=null){
+                      str=str.append(series.getSize()+" ");
+                  }
+//                   if(series.getElecCode()!=""&&series.getElecCode()!=null){
+//                       str=str.append(series.getElecCode()+" ");
+//                   }
+                   if(series.getVoltage()!=""&&series.getVoltage()!=null){
+                       str=str.append(series.getVoltage()+" ");
+                   }
+                   if(series.getTolerance()!=""&&series.getTolerance()!=null){
+                       str=str.append(series.getTolerance()+" ");
+                   }
+                   if(series.getOutlet()!=""&&series.getOutlet()!=null){
+                       str=str.append(series.getOutlet()+" ");
+                   }
+                   if(series.getSocStr()!=""&&series.getSocStr()!=null){
+                       str=str.append(series.getSocStr()+" ");
+                   }
+                   if(series.getTemperature()!=""&&series.getTemperature()!=null){
+                       str=str.append(series.getTemperature()+" ");
+                   }
+                   str=str.append(")");
+                   if("()".equals(str.toString())){
+                       tem.setDes(" ");
+                   }else{
+                       tem.setDes(str.toString());
+                   }
                   tem.setData(data);
                    lev3.getChildren().add(tem);
                }

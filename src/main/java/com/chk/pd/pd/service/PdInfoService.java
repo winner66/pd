@@ -57,14 +57,25 @@ public class PdInfoService {
         }
         return pdInfos;
     }
-//    模糊查询对应的国外替代产品
+
+    /**
+     * 模糊查询对应的国外替代产品
+     * @param pdInfoReq
+     * @param pageReq
+     * @return
+     */
     public  List<PdInfoRsp> getPdInfosByFuzzy(PdInfoReqFuzzyByIn pdInfoReq, PageReq pageReq){
         PageHelper.startPage(pageReq.getPageNum(), pageReq.getPageSize());
 
         List<PdInfoRsp> pdInfos = pdInfoDao.getExtPdInfoMapper().getPdInfosByFuzzy(pdInfoReq);
         return   pdInfos;
     }
-//    查国外替代产品个数
+
+    /**
+     * 查国外替代产品个数
+     * @param pdInfoReq
+     * @return
+     */
     public  Integer getPdCountByFuzzy(PdInfoReqFuzzyByIn pdInfoReq){
 
 

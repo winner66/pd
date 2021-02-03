@@ -40,6 +40,7 @@ public class PdParamController {
             pdInfoReq.setFilterType(ParamType.size.value());
             List<CasRsp> cas = paramService.listSize(pdInfoReq);
             return Response.ok(cas);
+
         }else if ("temperature".equals(pdInfoReq.getFilterType())) {
             pdInfoReq.setFilterType(ParamType.temperature.value());
             List<CasRsp> cas = paramService.listTemperature(pdInfoReq);

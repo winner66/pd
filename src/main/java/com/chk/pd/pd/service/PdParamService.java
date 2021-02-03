@@ -70,7 +70,9 @@ public class PdParamService {
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
 //            0805[长宽高] ：0805_12345
-            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+//            cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode() + "_" + param.getId(), false));
+            cas.add(new CasRsp(param.getCode(), param.getCode() + "_" + param.getId(), false));
+
         }
         return cas;
     }
@@ -88,6 +90,8 @@ public class PdParamService {
         List<PdParam> params = infoDao.getExtPdInfoMapper().listTemperature(pdInfoReq);
         List<CasRsp> cas = new ArrayList<>();
         for (PdParam param : params) {
+
+
             cas.add(new CasRsp(param.getCode() + " [" + (param.getName() == null ? "" : param.getName()) + "]", param.getCode(), false));
         }
         return cas;

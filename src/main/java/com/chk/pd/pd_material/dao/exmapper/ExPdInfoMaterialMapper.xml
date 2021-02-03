@@ -76,6 +76,9 @@
     <if test="materRsp.size != null">
       AND pi.size = #{materRsp.size}
     </if>
+    <if test="materRsp.model != null">
+      AND pi.model = #{materRsp.model}
+    </if>
     <if test="materRsp.std != null">
       AND pi.std = #{materRsp.std}
     </if>

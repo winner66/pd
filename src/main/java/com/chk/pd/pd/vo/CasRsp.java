@@ -23,6 +23,7 @@ public class CasRsp {
     public static String OPERA_dir = "noDir";
 
     private String opera;
+    private  String des;
 
     private String fileUrl;
 //

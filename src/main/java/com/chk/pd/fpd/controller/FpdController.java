@@ -26,6 +26,13 @@ public class FpdController {
     @Autowired
     private FpdService fpdService;
 
+
+    /**
+     * 没有使用。。。该接口
+     * @param fpdReq
+     * @param pageReq
+     * @return
+     */
     @GetMapping("get-pd-infos")
     public Response<FpdRsp> getPdInfos(FpdReq fpdReq, PageReq pageReq) {
         log.info(fpdReq.toString() + "---" + pageReq.toString());

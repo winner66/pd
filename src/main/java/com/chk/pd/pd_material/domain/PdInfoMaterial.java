@@ -75,6 +75,7 @@ public class PdInfoMaterial implements Serializable {
 
     private String insulationResistanceBy25;
 
+
     private String temperatureAlterationRatio;
 
     private String dielectricLossBy1mhz;
